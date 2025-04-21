@@ -1,0 +1,129 @@
+{
+  "menuItems": [
+    {
+      "menuItem": "Cars",
+      "subMenuItems": [
+        {
+          "subMenuItem": "Book A Test Drive",
+          "path": "/test-drive"
+        },
+        {
+          "subMenuItem": "Advanced Search",
+          "path": "/advanced-search"
+        },
+        {
+          "subMenuItem": "Compare Cars",
+          "path": "/compare"
+        },
+        {
+          "subMenuItem": "All Brands",
+          "path": "/all-brand"
+        },
+        {
+          "subMenuItem": "Upcoming Cars",
+          "path": "/upcoming-car"
+        },
+        {
+          "subMenuItem": "New Launched Cars",
+          "path": "/newly-launched-cars",
+          "newFlag": true
+        },
+        {
+          "subMenuItem": "Electric Cars",
+          "path": "/ev-car",
+          "cityProtected": true
+        },
+        {
+          "subMenuItem": "EV Charging Stations",
+          "path": "/electric-car-charging-station"
+        },
+        {
+          "subMenuItem": "Fuel Stations",
+          "path": "/fuel-station"
+        },
+        {
+          "subMenuItem": "Dealership",
+          "path": "/dealership"
+        }
+      ]
+    },
+    {
+      "menuItem": "Car Services",
+      "subMenuItems": [
+        {
+          "subMenuItem": "Car Loan",
+          "path": "/car-loan"
+        },
+        {
+          "subMenuItem": "Car Insurance",
+          "path": "/car-insurance"
+        },
+        {
+          "subMenuItem": "EMI Calculator",
+          "path": "/emi-calculator"
+        }
+      ]
+    },
+    {
+      "menuItem": "Assistance",
+      "subMenuItems": [
+        {
+          "subMenuItem": "Warning Lights",
+          "path": "/warning-lights"
+        },
+        {
+          "subMenuItem": "Fuel Calculator",
+          "path": "/fuel-calculator"
+        },
+        {
+          "subMenuItem": "Toll Calculator",
+          "path": "/toll-calculator"
+        }
+      ]
+    },
+    {
+      "menuItem": "Policies",
+      "subMenuItems": [
+        {
+          "subMenuItem": "Privacy Policy"
+        },
+        {
+          "subMenuItem": "Terms & Condition"
+        }
+      ],
+      "mobileOnly": true
+    },
+    {
+      "menuItem": "Resources",
+      "subMenuItems": [
+        {
+          "subMenuItem": "Car News",
+          "path": "https://caronphone.com/news/"
+        },
+        {
+          "subMenuItem": "Blog",
+          "path": "https://caronphone.com/blog/"
+        }
+      ],
+      "mobileOnly": true
+    },
+    {
+      "menuItem": "Car News",
+      "path": "https://caronphone.com/news/",
+      "desktopOnly": true
+    },
+    {
+      "menuItem": "Blog",
+      "path": "https://caronphone.com/blog/",
+      "desktopOnly": true
+    }
+  ],
+  "accountLinks": [
+    {
+      "subMenuItem": "Profile Details"
+    },
+    {
+      "subMenuItem": "My Test Drives"
+    }
+  ]
+}

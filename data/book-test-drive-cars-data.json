@@ -1,0 +1,150 @@
+{
+  "brands": [
+    { "value": "1", "label": "Toyota" },
+    { "value": "2", "label": "Ford" },
+    { "value": "3", "label": "Honda" },
+    { "value": "4", "label": "BMW" },
+    { "value": "5", "label": "Mercedes-Benz" },
+    { "value": "6", "label": "Hyundai" },
+    { "value": "7", "label": "Kia" },
+    { "value": "8", "label": "Nissan" },
+    { "value": "9", "label": "Chevrolet" },
+    { "value": "10", "label": "Volkswagen" },
+    { "value": "11", "label": "Audi" },
+    { "value": "12", "label": "Porsche" },
+    { "value": "13", "label": "Lexus" },
+    { "value": "14", "label": "Mazda" },
+    { "value": "15", "label": "Subaru" },
+    { "value": "16", "label": "Mitsubishi" },
+    { "value": "17", "label": "Volvo" },
+    { "value": "18", "label": "Jaguar" },
+    { "value": "19", "label": "Land Rover" },
+    { "value": "20", "label": "Tesla" },
+    { "value": "21", "label": "Ferrari" },
+    { "value": "22", "label": "Lamborghini" },
+    { "value": "23", "label": "Bentley" },
+    { "value": "24", "label": "Aston Martin" },
+    { "value": "25", "label": "Rolls-Royce" },
+    { "value": "26", "label": "Peugeot" },
+    { "value": "27", "label": "Renault" },
+    { "value": "28", "label": "Citroen" },
+    { "value": "29", "label": "Alfa Romeo" },
+    { "value": "30", "label": "Fiat" }
+  ],
+  "models": [
+    {
+      "value": "101",
+      "label": "Camry",
+      "brandId": "1",
+      "fuelTypes": [
+        { "value": "f1", "label": "Petrol" },
+        { "value": "f3", "label": "Diesel" }
+      ],
+      "transmissionTypes": [
+        { "value": "t1", "label": "Manual" },
+        { "value": "t2", "label": "Automatic" }
+      ],
+      "imgUrl": "https://static.caronphone.com/public/brands/2/432/1554/1554.webp",
+      "imgAlt": "car image"
+    },
+    {
+      "value": "102",
+      "label": "Corolla",
+      "brandId": "1",
+      "fuelTypes": [{ "value": "f1", "label": "Petrol" }],
+      "transmissionTypes": [{ "value": "t2", "label": "Automatic" }],
+      "imgUrl": "https://static.caronphone.com/public/brands/2/432/1554/1554.webp",
+      "imgAlt": "car image"
+    },
+    {
+      "value": "103",
+      "label": "RAV4",
+      "brandId": "1",
+      "fuelTypes": [
+        { "value": "f1", "label": "Petrol" },
+        { "value": "f2", "label": "CNG" }
+      ],
+      "transmissionTypes": [{ "value": "t1", "label": "Manual" }],
+      "imgUrl": "https://static.caronphone.com/public/brands/2/432/1554/1554.webp",
+      "imgAlt": "car image"
+    },
+    {
+      "value": "104",
+      "label": "Highlander",
+      "brandId": "1",
+      "fuelTypes": [{ "value": "f3", "label": "Diesel" }],
+      "transmissionTypes": [{ "value": "t2", "label": "Automatic" }],
+      "imgUrl": "https://static.caronphone.com/public/brands/2/432/1554/1554.webp",
+      "imgAlt": "car image"
+    },
+    {
+      "value": "105",
+      "label": "Yaris",
+      "brandId": "1",
+      "fuelTypes": [
+        { "value": "f1", "label": "Petrol" },
+        { "value": "f2", "label": "CNG" }
+      ],
+      "transmissionTypes": [
+        { "value": "t1", "label": "Manual" },
+        { "value": "t2", "label": "Automatic" }
+      ],
+      "imgUrl": "https://static.caronphone.com/public/brands/2/432/1554/1554.webp",
+      "imgAlt": "car image"
+    },
+    {
+      "value": "201",
+      "label": "Mustang",
+      "brandId": "2",
+      "fuelTypes": [{ "value": "f1", "label": "Petrol" }],
+      "transmissionTypes": [
+        { "value": "t1", "label": "Manual" },
+        { "value": "t2", "label": "Automatic" }
+      ],
+      "imgUrl": "https://static.caronphone.com/public/brands/2/432/1554/1554.webp",
+      "imgAlt": "car image"
+    },
+    {
+      "value": "202",
+      "label": "F-150",
+      "brandId": "2",
+      "fuelTypes": [{ "value": "f3", "label": "Diesel" }],
+      "transmissionTypes": [{ "value": "t2", "label": "Automatic" }],
+      "imgUrl": "https://static.caronphone.com/public/brands/2/432/1554/1554.webp",
+      "imgAlt": "car image"
+    },
+    {
+      "value": "203",
+      "label": "Explorer",
+      "brandId": "2",
+      "fuelTypes": [
+        { "value": "f1", "label": "Petrol" },
+        { "value": "f2", "label": "CNG" }
+      ],
+      "transmissionTypes": [{ "value": "t1", "label": "Manual" }],
+      "imgUrl": "https://static.caronphone.com/public/brands/2/432/1554/1554.webp",
+      "imgAlt": "car image"
+    },
+    {
+      "value": "204",
+      "label": "Focus",
+      "brandId": "2",
+      "fuelTypes": [{ "value": "f1", "label": "Petrol" }],
+      "transmissionTypes": [{ "value": "t2", "label": "Automatic" }],
+      "imgUrl": "https://static.caronphone.com/public/brands/2/432/1554/1554.webp",
+      "imgAlt": "car image"
+    },
+    {
+      "value": "205",
+      "label": "Bronco",
+      "brandId": "2",
+      "fuelTypes": [
+        { "value": "f1", "label": "Petrol" },
+        { "value": "f3", "label": "Diesel" }
+      ],
+      "transmissionTypes": [{ "value": "t1", "label": "Manual" }],
+      "imgUrl": "https://static.caronphone.com/public/brands/2/432/1554/1554.webp",
+      "imgAlt": "car image"
+    }
+  ]
+}

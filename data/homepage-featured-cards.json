@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Book A Test Drive",
+    "imageUrl": "/images/book-test-drive.webp",
+    "imageAlt": "book-test-drive",
+    "iconUrl": "/images/test-drive-icon.webp",
+    "iconAlt": "test-drive-icon",
+    "slug": "/test-drive"
+  },
+  {
+    "title": "Compare Cars",
+    "imageUrl": "/images/compare-home.webp",
+    "imageAlt": "compare-home",
+    "iconUrl": "/images/Compare-Cars-icon.webp",
+    "iconAlt": "compare-cars-icon",
+    "slug": "/compare"
+  },
+  {
+    "title": "Warning Lights",
+    "imageUrl": "/images/warning-light-home.webp",
+    "imageAlt": "warning-light-home",
+    "iconUrl": "/images/Warning-light-icon.webp",
+    "iconAlt": "warning-light-icon",
+    "slug": "/warning-lights"
+  },
+  {
+    "title": "News",
+    "imageUrl": "/images/news-home.webp",
+    "imageAlt": "news-home",
+    "iconUrl": "/images/News-Updates-icon.webp",
+    "iconAlt": "news-updates-icon",
+    "slug": "https://caronphone.com/news/"
+  },
+  {
+    "title": "Blog",
+    "imageUrl": "/images/blog.webp",
+    "imageAlt": "blog",
+    "iconUrl": "/images/blog-icon.webp",
+    "iconAlt": "blog-icon",
+    "slug": "https://caronphone.com/blog/"
+  },
+  {
+    "title": "Car Insurance",
+    "imageUrl": "/images/car-insurance-home.webp",
+    "imageAlt": "car-insurance-home",
+    "iconUrl": "/images/Car-Insurance-icon.webp",
+    "iconAlt": "car-insurance-icon",
+    "slug": "/car-insurance"
+  }
+]
