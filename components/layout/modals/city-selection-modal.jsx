@@ -35,12 +35,15 @@ export default function CitySelectionModal({ cities }) {
       sameSite: "Lax",
     };
 
-    if (process.env.NODE_ENV === "production") {
+    if (process.env.NODE_ENV == "production") {
       // cookieOptions.domain = ".aviansoft.work";
       cookieOptions.domain = ".vercel.app";
       cookieOptions.secure = true;
       cookieOptions.sameSite = "None";
     }
+
+    console.log("cookieOptions: ", cookieOptions);
+    console.log("city find: ", id);
 
     Cookies.set("city", id, cookieOptions);
 
