@@ -30,6 +30,8 @@ export default function CitySelectionModal({ cities }) {
   const handleCitySelection = async (id) => {
     const cookieOptions = {
       expires: 7,
+      path: "/",
+      secure: true,
       sameSite: "Lax",
     };
 

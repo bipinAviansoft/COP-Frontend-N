@@ -20,7 +20,7 @@ export default function NavbarActionBtns() {
   const { city: cityId, citiesList } = useSelector((state) => state.city);
   const { user } = useSelector((state) => state.auth);
 
-  const selectedCity = citiesList?.filter((city) => city.id === cityId)[0];
+  const selectedCity = citiesList?.filter((city) => city.id == cityId)[0];
   const selectedCityName = selectedCity?.city_name || "";
 
   const handleCityClick = () =>
