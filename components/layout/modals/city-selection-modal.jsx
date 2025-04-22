@@ -28,38 +28,36 @@ export default function CitySelectionModal({ cities }) {
     useSelector((state) => state.city);
 
   const handleCitySelection = async (id) => {
-    // const cookieOptions = {
-    //   expires: 7,
-    //   path: "/",
-    //   secure: true,
-    //   sameSite: "Lax",
-    // };
+    const hostname = window.location.hostname;
+    const isLocalhost = hostname === "localhost";
+    const isVercel = hostname.endsWith(".vercel.app");
 
-    // if (process.env.NODE_ENV == "production") {
-    //   // cookieOptions.domain = ".aviansoft.work";
-    //   cookieOptions.domain = ".vercel.app";
-    //   cookieOptions.secure = true;
-    //   cookieOptions.sameSite = "None";
-    // }
+    // 2. Smart domain configuration
+    const domain = isLocalhost
+      ? undefined // localhost can't use domain prefixes
+      : isVercel
+      ? ".vercel.app" // Parent domain for all Vercel subdomains
+      : `.${hostname.split(".").slice(-2).join(".")}`; // For custom domains (e.g., .yourdomain.com)
 
-    const isLocalhost = window.location.hostname === "localhost";
-    const isVercel = window.location.hostname.includes(".vercel.app");
-
-    const options = {
-      expires: 7, // Days
+    // 3. Cookie configuration
+    const cookieOptions = {
+      expires: 7, // days
       path: "/",
       sameSite: "None",
-      secure: true, // Required for SameSite=None
-      ...(!isLocalhost && {
-        domain: isVercel
-          ? ".vercel.app" // For Vercel deployments
-          : `.${window.location.hostname.split(".").slice(-2).join(".")}`, // For custom domains
-      }),
+      secure: true,
+      ...(domain && { domain }), // Conditionally add domain
     };
 
-    Cookies.set("city", id, options);
-    console.log("cookieOptions: ", options);
-    console.log("city find: ", id);
+    // 4. Set the cookie
+    // Cookies.set(name, id, options);
+    Cookies.set("city", id, cookieOptions);
+
+    // 5. Debug output
+    console.log(`Set cookie: city=${id}`, {
+      cookieOptions,
+      currentHost: hostname,
+      effectiveDomain: domain || "localhost",
+    });
 
     dispatch(setCity(id));
     // localStorage.setItem("selectedCity", id);
