@@ -28,24 +28,38 @@ export default function CitySelectionModal({ cities }) {
     useSelector((state) => state.city);
 
   const handleCitySelection = async (id) => {
-    const cookieOptions = {
-      expires: 7,
+    // const cookieOptions = {
+    //   expires: 7,
+    //   path: "/",
+    //   secure: true,
+    //   sameSite: "Lax",
+    // };
+
+    // if (process.env.NODE_ENV == "production") {
+    //   // cookieOptions.domain = ".aviansoft.work";
+    //   cookieOptions.domain = ".vercel.app";
+    //   cookieOptions.secure = true;
+    //   cookieOptions.sameSite = "None";
+    // }
+
+    const isLocalhost = window.location.hostname === "localhost";
+    const isVercel = window.location.hostname.includes(".vercel.app");
+
+    const options = {
+      expires: 7, // Days
       path: "/",
-      secure: true,
-      sameSite: "Lax",
+      sameSite: "None",
+      secure: true, // Required for SameSite=None
+      ...(!isLocalhost && {
+        domain: isVercel
+          ? ".vercel.app" // For Vercel deployments
+          : `.${window.location.hostname.split(".").slice(-2).join(".")}`, // For custom domains
+      }),
     };
 
-    if (process.env.NODE_ENV == "production") {
-      // cookieOptions.domain = ".aviansoft.work";
-      cookieOptions.domain = ".vercel.app";
-      cookieOptions.secure = true;
-      cookieOptions.sameSite = "None";
-    }
-
-    console.log("cookieOptions: ", cookieOptions);
+    Cookies.set("city", id, options);
+    console.log("cookieOptions: ", options);
     console.log("city find: ", id);
-
-    Cookies.set("city", id, cookieOptions);
 
     dispatch(setCity(id));
     // localStorage.setItem("selectedCity", id);
