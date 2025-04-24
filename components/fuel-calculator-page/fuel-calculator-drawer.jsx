@@ -30,6 +30,13 @@ export default function FuelCalculatorDrawer() {
 
   const [googleResponse, setGoogleResponse] = useState(null);
 
+  const [MileageVal, setMileageVal] = useState("");
+  const [fuelTypePrice, setFuelTypePrice] = useState("");
+  const [distance, setDistance] = useState(0);
+  const [literVal, setLiterVal] = useState(0);
+  const [distanceFuelPrice, setDistanceFuelPrice] = useState(0);
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async () => {
     if (!fromData || !toData) {
       toast.error("Please fill both locations.");
@@ -43,25 +50,40 @@ export default function FuelCalculatorDrawer() {
 
     if (user?.mobile) {
       try {
+        setLoading(true);
         const response = await sendFuelRequest(
           "toll-tax/fuel-calculator",
           finalPayload
         );
         setGoogleResponse(response?.apiRes[0]);
+        setDistance(
+          response?.apiRes[0]?.result?.data?.json?.routes[0]?.summary?.distance
+            ?.metric
+        );
+        setLoading(false);
         // Optionally update local state to display result
       } catch (err) {
         console.error(err);
         toast.error("Failed to calculate fuel data");
+        setLoading(false);
       }
     } else {
       dispatch(openAuthModal({ modelIdToAddToWishlist: "" }));
     }
   };
 
+  const handleOnCalcSubmit = () => {
+    const literResult = parseInt(distance) / parseInt(MileageVal);
+    const totalFuelPrice = parseInt(fuelTypePrice) * parseInt(literResult);
+
+    setLiterVal(literResult.toFixed(2));
+    setDistanceFuelPrice(totalFuelPrice);
+  };
+
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-2 items-center reverse">
-        <div className="relative order-2 lg:order-1 p-4 pt-0 lg:p-0">
+      <div className="flex flex-wrap ">
+        <div className="w-full lg:w-[40%] relative z-[2] p-4 pt-0 lg:p-0">
           {/* Toggle & Drawer */}
           <div
             onClick={() => setIsOpen(true)}
@@ -103,16 +125,20 @@ export default function FuelCalculatorDrawer() {
                     onFromChange={(data) => setFromData(data)}
                     onToChange={(data) => setToData(data)}
                   />
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-wrap gap-[20px] items-center justify-between">
                     <div>
                       <Button
                         animated
                         variant="primary-gradient"
                         onClick={handleSubmit}
-                        className="px-3 py-2 md:px-5 md:py-2 bg-primary-darker text-sm md:text-base font-medium"
+                        className="px-3 py-2 md:px-5 md:py-2 bg-primary-darker text-sm md:text-base font-normal"
                       >
                         Calculate Distance{" "}
-                        <i className="bx bx-right-arrow-alt text-xl ml-1"></i>
+                        {loading ? (
+                          <div className="inline-block w-5 h-5 border-[.15em] border-[solid] border-[currentColor] [border-right-color:transparent] rounded-[50%] animate-[.75s_linear_infinite_spinner-border] ml-2"></div>
+                        ) : (
+                          <i className="bx bx-right-arrow-alt text-xl ml-1"></i>
+                        )}
                       </Button>
                     </div>
                     {googleResponse ? (
@@ -135,6 +161,8 @@ export default function FuelCalculatorDrawer() {
                       <Input
                         placeholder="Enter Mileage"
                         className="input-style"
+                        value={MileageVal}
+                        onChange={(e) => setMileageVal(e.target.value)}
                       />
                     </div>
                     <div className="flex flex-col justify-end">
@@ -167,22 +195,27 @@ export default function FuelCalculatorDrawer() {
                       </Label>
                       <Input
                         type="number"
-                        value="94.3"
+                        value={fuelTypePrice}
+                        placeholder="Enter Price"
                         className="input-style"
+                        onChange={(e) => setFuelTypePrice(e.target.value)}
                       />
                     </div>
                   </div>
-
-                  <div className="flex w-max text-xs md:text-sm bg-primary-lighter py-1 px-2 text-white rounded-md">
-                    Current Price: 94.29 ₹/L
-                  </div>
+                  {fuelTypePrice == "" ? null : (
+                    <div className="flex w-max text-xs md:text-sm bg-primary-lighter py-1 px-2 text-white rounded-md">
+                      Current Price: {fuelTypePrice} ₹/L
+                    </div>
+                  )}
 
                   {/* Submit */}
                   <div>
                     <Button
+                      onClick={handleOnCalcSubmit}
                       animated
+                      disabled={distance == 0}
                       variant="primary-gradient"
-                      className="px-3 py-2 md:px-5 md:py-2 bg-primary-darker text-sm md:text-base font-medium"
+                      className="px-3 py-2 md:px-5 md:py-2 bg-primary-darker text-sm md:text-base font-normal"
                     >
                       Calculate Fuel{" "}
                       <i className="bx bx-right-arrow-alt text-xl ml-1"></i>
@@ -192,32 +225,34 @@ export default function FuelCalculatorDrawer() {
               </div>
 
               {/* Result */}
-              <div className="mt-8">
-                <h3 className="text-2xl xl:text-3xl font-semibold text-center text-primary-lighter">
-                  Total Fuel Consumption
-                </h3>
-                <div className="text-center mt-3">
-                  <Label className="text-base text-primary-lighter">
-                    Volume
-                  </Label>
-                  <h4 className="text-xl font-semibold bg-[#0177aa50] rounded-md py-2 px-1">
-                    20.14 Liter
-                  </h4>
+              {literVal > 0 && distanceFuelPrice > 0 ? (
+                <div className="mt-8">
+                  <h3 className="text-2xl xl:text-3xl font-semibold text-center text-primary-lighter">
+                    Total Fuel Consumption
+                  </h3>
+                  <div className="text-center mt-3">
+                    <Label className="text-base text-primary-lighter">
+                      Volume
+                    </Label>
+                    <h4 className="text-xl font-semibold bg-[#0177aa50] rounded-md py-2 px-1">
+                      {literVal} Liter
+                    </h4>
+                  </div>
+                  <div className="text-center mt-3">
+                    <Label className="text-base text-primary-lighter">
+                      Price
+                    </Label>
+                    <h4 className="text-xl font-semibold bg-[#0177aa50] rounded-md py-2 px-1">
+                      ₹ {distanceFuelPrice}
+                    </h4>
+                  </div>
                 </div>
-                <div className="text-center mt-3">
-                  <Label className="text-base text-primary-lighter">
-                    Price
-                  </Label>
-                  <h4 className="text-xl font-semibold bg-[#0177aa50] rounded-md py-2 px-1">
-                    ₹ 1899.27
-                  </h4>
-                </div>
-              </div>
+              ) : null}
             </div>
           </div>
         </div>
         {/* <FuelBanner googleResponse={googleResponse || null} /> */}
-        <FuelBanner googleResponse={null} />
+        <FuelBanner googleResponse={googleResponse || null} />
       </div>
     </>
   );

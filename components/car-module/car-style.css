@@ -43,3 +43,7 @@ b, strong{font-weight: 700;}
 .mob-breadcrumb * { white-space: nowrap; } 
 .mob-breadcrumb { overflow-x: auto; margin-top: 10px; } 
 .mob-breadcrumb::-webkit-scrollbar { width: 0; height: 0; } 
+
+@keyframes spinner-border{
+  100%{transform: rotate(360deg)}
+}

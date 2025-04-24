@@ -21,7 +21,7 @@ export default function CityProtectedLink({ href, children, ...props }) {
   };
 
   return (
-    <Link href={href} onClick={handleClick} {...props}>
+    <Link href={href} className="relative" onClick={handleClick} {...props}>
       {children}
     </Link>
   );

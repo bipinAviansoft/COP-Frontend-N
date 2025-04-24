@@ -28,36 +28,23 @@ export default function CitySelectionModal({ cities }) {
     useSelector((state) => state.city);
 
   const handleCitySelection = async (id) => {
-    const hostname = window.location.hostname;
-    const isLocalhost = hostname === "localhost";
-    const isVercel = hostname.endsWith(".vercel.app");
-
-    // 2. Smart domain configuration
-    const domain = isLocalhost
-      ? undefined // localhost can't use domain prefixes
-      : isVercel
-      ? ".vercel.app" // Parent domain for all Vercel subdomains
-      : `.${hostname.split(".").slice(-2).join(".")}`; // For custom domains (e.g., .yourdomain.com)
-
-    // 3. Cookie configuration
     const cookieOptions = {
-      expires: 7, // days
       path: "/",
-      sameSite: "None",
       secure: true,
-      ...(domain && { domain }), // Conditionally add domain
+      sameSite: "Lax",
     };
 
-    // 4. Set the cookie
-    // Cookies.set(name, id, options);
-    Cookies.set("city", id, cookieOptions);
+    if (process.env.NODE_ENV == "production") {
+      // cookieOptions.domain = ".aviansoft.work";
+      // cookieOptions.domain = ".vercel.app";
+      cookieOptions.secure = true;
+      cookieOptions.sameSite = "None";
+    }
 
-    // 5. Debug output
-    console.log(`Set cookie: city=${id}`, {
-      cookieOptions,
-      currentHost: hostname,
-      effectiveDomain: domain || "localhost",
-    });
+    console.log("cookieOptions: ", cookieOptions);
+    console.log("city find: ");
+
+    Cookies.set("city", id, cookieOptions);
 
     dispatch(setCity(id));
     // localStorage.setItem("selectedCity", id);

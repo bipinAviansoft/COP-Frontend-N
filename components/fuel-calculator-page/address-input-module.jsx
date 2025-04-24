@@ -1,19 +1,26 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { Input } from "../ui/input";
-import { Loader } from "@googlemaps/js-api-loader";
+import { loadGoogleMaps } from "@/lib/google-loader";
 
 export default function AddressInputModule({ onFromChange, onToChange }) {
   const fromRef = useRef(null);
   const toRef = useRef(null);
 
-  useEffect(() => {
-    const loader = new Loader({
-      apiKey: process.env.GOOGLE_SEARCH_PLACES_API,
-      libraries: ["places"],
-    });
+  // useEffect(() => {
+  //   const loader = new Loader({
+  //     apiKey: process.env.GOOGLE_SEARCH_PLACES_API,
+  //     libraries: ["places"],
+  //   });
 
-    loader.load().then(() => {
+  //   loader.load().then(() => {
+  //     initAutocomplete(fromRef.current, onFromChange, "from");
+  //     initAutocomplete(toRef.current, onToChange, "to");
+  //   });
+  // }, []);
+
+  useEffect(() => {
+    loadGoogleMaps().then(() => {
       initAutocomplete(fromRef.current, onFromChange, "from");
       initAutocomplete(toRef.current, onToChange, "to");
     });

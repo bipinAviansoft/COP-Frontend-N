@@ -12,20 +12,5 @@ export async function generateMetadata({ params }) {
 }
 
 export default function Page() {
-  return (
-    <div>
-      <section className="relative lg:py-0 py-5 h-auto lg:h-[calc(100vh-110px)] overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-2 ">
-          <TollCalculatorDrawer />
-          <TollTaxDetails />
-        </div>
-      </section>
-
-      <section className="py-10 lg:py-20 bg-[#e3eef3] mt-12 lg:mt-0">
-        <div className="container relative">
-          <HighwayTips />
-        </div>
-      </section>
-    </div>
-  );
+  return <TollCalculatorDrawer />;
 }
