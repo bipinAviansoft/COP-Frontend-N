@@ -49,6 +49,8 @@ export default function TollCalculatorDrawer() {
   const [literVal, setLiterVal] = useState(0);
   const [distanceFuelPrice, setDistanceFuelPrice] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [tollTagPrice, setTollTagPrice] = useState(0);
+  const [tollCashPrice, setTollCashPrice] = useState(0);
 
   // const handleSubmit = async () => {
   //   if (!fromData || !toData) {
@@ -97,16 +99,31 @@ export default function TollCalculatorDrawer() {
           finalPayload
         );
         setGoogleResponse(response?.apiRes[0]);
+        console.log("response?.apiRes[0]: ", response?.apiRes[0]);
+
         setDistance(
           response?.apiRes[0]?.result?.data?.json?.routes[0]?.summary?.distance
             ?.metric
         );
+        setTollTagPrice(
+          response?.apiRes[0]?.result?.data?.json?.routes[0]?.costs?.tag
+        );
+        setTollCashPrice(
+          response?.apiRes[0]?.result?.data?.json?.routes[0]?.costs?.cash
+        );
 
-        const totalFuelPrice = parseInt(fuelTypePrice) * parseInt(literResult);
-        const literResult = parseInt(distance) / parseInt(MileageVal);
+        if (parseInt(MileageVal) > 0 && parseInt(fuelTypePrice) > 0) {
+          const literResult = parseInt(distance) / parseInt(MileageVal);
+          const totalFuelPrice =
+            parseInt(fuelTypePrice) * parseInt(literResult);
 
-        setLiterVal(literResult.toFixed(2));
-        setDistanceFuelPrice(totalFuelPrice);
+          console.log("literResult: ", literResult);
+          console.log("totalFuelPrice: ", totalFuelPrice);
+
+          setLiterVal(literResult.toFixed(2));
+          setDistanceFuelPrice(totalFuelPrice);
+        }
+
         setLoading(false);
         // Optionally update local state to display result
       } catch (err) {
@@ -121,7 +138,7 @@ export default function TollCalculatorDrawer() {
 
   return (
     <>
-      <section className="relative lg:py-0 py-5 h-auto lg:h-[calc(100vh-110px)] overflow-hidden">
+      <section className="fuel_cal_section relative lg:py-0 py-5 h-auto lg:h-[calc(100vh-110px)] overflow-hidden">
         <div className="flex flex-wrap ">
           <div className="w-full lg:w-[40%] relative  pb-0 p-4 pt-0 lg:p-0">
             {/* Trigger Button */}
@@ -181,6 +198,8 @@ export default function TollCalculatorDrawer() {
                             type="text"
                             placeholder="Enter Mileage"
                             className="w-auto bg-white border-[1px] border-gray-200 h-[40px] sm:h-[45px] focus-visible:ring-0 focus-visible:ring-offset-0"
+                            value={MileageVal}
+                            onChange={(e) => setMileageVal(e.target.value)}
                           />
                           <Label
                             htmlFor="name"
@@ -207,8 +226,9 @@ export default function TollCalculatorDrawer() {
                           <Input
                             type="number"
                             placeholder="Fuel Price"
-                            value="94.3"
                             className="bg-white border-[1px] border-gray-200 h-[40px] sm:h-[45px] focus-visible:ring-0 focus-visible:ring-offset-0"
+                            value={fuelTypePrice}
+                            onChange={(e) => setFuelTypePrice(e.target.value)}
                           />
                         </div>
                       </CollapsibleContent>
@@ -237,55 +257,83 @@ export default function TollCalculatorDrawer() {
 
                 {/* Fuel Calculator Result */}
                 <div className="flex flex-col gap-5 mt-8 w-full md:w-[70%] m-auto">
-                  <div className="flex items-center justify-start w-full gap-3">
-                    <h6 className="text-sm font-medium text-gray-500 w-[150px] md:w-[200px]">
-                      Distance in KM:
-                    </h6>
-                    <span className="text-sm font-medium bg-[#0177aa] text-white rounded-md py-1 px-1 w-[100px] text-center">
-                      282 km
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-start w-full gap-3">
-                    <h6 className="text-sm font-medium text-gray-500 w-[150px] md:w-[200px]">
-                      Toll Cash Price:
-                    </h6>
-                    <div className="flex items-center gap-2">
-                      <div className="text-sm font-medium bg-[#0177aa38] text-black rounded-md py-1 px-1 w-[100px] text-center">
-                        ₹920
-                      </div>
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger className="flex items-center">
-                            <i className="bx bx-info-circle text-gray-600 text-xl"></i>
-                          </TooltipTrigger>
-                          <TooltipContent className="bg-black text-white text-xs">
-                            <p>Show All Tolls Cash Price Details</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
+                  {distance > 0 ? (
+                    <div className="flex items-center justify-start w-full gap-3">
+                      <h6 className="text-sm font-medium text-gray-500 w-[150px] md:w-[200px]">
+                        Distance in KM:
+                      </h6>
+                      <span className="text-sm font-medium bg-[#0177aa] text-white rounded-md py-1 px-1 w-[100px] text-center">
+                        {distance}
+                      </span>
                     </div>
-                  </div>
-                  <div className="flex items-center justify-start w-full gap-3">
-                    <h6 className="text-sm font-medium text-gray-500 w-[150px] md:w-[200px]">
-                      Toll Tag Price:
-                    </h6>
-                    <div className="flex items-center gap-2">
-                      <div className="text-sm font-medium bg-[#0177aa38] text-black rounded-md py-1 px-1 w-[100px] text-center">
-                        ₹920
-                      </div>
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger className="flex items-center">
-                            <i className="bx bx-info-circle text-gray-600 text-xl"></i>
-                          </TooltipTrigger>
-                          <TooltipContent className="bg-black text-white text-xs">
-                            <p>Show All Tolls Cash Price Details</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
+                  ) : null}
+                  {literVal > 0 ? (
+                    <div className="flex items-center justify-start w-full gap-3">
+                      <h6 className="text-sm font-medium text-gray-500 w-[150px] md:w-[200px]">
+                        Fuel Consumption:
+                      </h6>
+                      <span className="text-sm font-medium bg-[#0177aa] text-white rounded-md py-1 px-1 w-[100px] text-center">
+                        {literVal}
+                      </span>
                     </div>
-                  </div>
-                  <div className="flex items-center justify-start w-full gap-3">
+                  ) : null}
+                  {distanceFuelPrice > 0 ? (
+                    <div className="flex items-center justify-start w-full gap-3">
+                      <h6 className="text-sm font-medium text-gray-500 w-[150px] md:w-[200px]">
+                        Fuel Price:
+                      </h6>
+                      <span className="text-sm font-medium bg-[#0177aa] text-white rounded-md py-1 px-1 w-[100px] text-center">
+                        {distanceFuelPrice}
+                      </span>
+                    </div>
+                  ) : null}
+
+                  {tollCashPrice > 0 ? (
+                    <div className="flex items-center justify-start w-full gap-3">
+                      <h6 className="text-sm font-medium text-gray-500 w-[150px] md:w-[200px]">
+                        Toll Cash Price:
+                      </h6>
+                      <div className="flex items-center gap-2">
+                        <div className="text-sm font-medium bg-[#0177aa38] text-black rounded-md py-1 px-1 w-[100px] text-center">
+                          ₹ {tollCashPrice}
+                        </div>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className="flex items-center">
+                              <i className="bx bx-info-circle text-gray-600 text-xl"></i>
+                            </TooltipTrigger>
+                            <TooltipContent className="bg-black text-white text-xs">
+                              <p>Show All Tolls Cash Price Details</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div>
+                    </div>
+                  ) : null}
+
+                  {tollTagPrice > 0 ? (
+                    <div className="flex items-center justify-start w-full gap-3">
+                      <h6 className="text-sm font-medium text-gray-500 w-[150px] md:w-[200px]">
+                        Toll Tag Price:
+                      </h6>
+                      <div className="flex items-center gap-2">
+                        <div className="text-sm font-medium bg-[#0177aa38] text-black rounded-md py-1 px-1 w-[100px] text-center">
+                          ₹ {tollTagPrice}
+                        </div>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger className="flex items-center">
+                              <i className="bx bx-info-circle text-gray-600 text-xl"></i>
+                            </TooltipTrigger>
+                            <TooltipContent className="bg-black text-white text-xs">
+                              <p>Show All Tolls Cash Price Details</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div>
+                    </div>
+                  ) : null}
+                  {/* <div className="flex items-center justify-start w-full gap-3">
                     <h6 className="text-sm font-medium text-gray-500 w-[150px] md:w-[200px]">
                       Total Cost of travel:
                     </h6>
@@ -304,12 +352,12 @@ export default function TollCalculatorDrawer() {
                         </Tooltip>
                       </TooltipProvider>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
           </div>
-          <TollTaxDetails />
+          <TollTaxDetails googleResponse={googleResponse || null} />
         </div>
       </section>
       <section className="py-10 lg:py-20 bg-[#e3eef3] mt-12 lg:mt-0">

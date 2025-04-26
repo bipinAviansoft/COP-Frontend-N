@@ -195,9 +195,9 @@ export default function FuelCalculatorDrawer() {
                       </Label>
                       <Input
                         type="number"
-                        value={fuelTypePrice}
                         placeholder="Enter Price"
                         className="input-style"
+                        value={fuelTypePrice}
                         onChange={(e) => setFuelTypePrice(e.target.value)}
                       />
                     </div>
