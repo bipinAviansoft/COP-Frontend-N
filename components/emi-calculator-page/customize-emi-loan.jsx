@@ -137,18 +137,18 @@ export default function CustomizeEmiSection({
   const totalInterest = totalPayableAmount - loanAmt;
 
   const chartData = [
-    { type: "interest", amount: totalInterest, fill: "#0177aa" },
-    { type: "principal", amount: loanAmt, fill: "#808080" },
+    { type: "interest", amount: totalInterest, fill: "#ffab05" },
+    { type: "principal", amount: loanAmt, fill: "#efefef" },
   ];
 
   const chartConfig = {
     interest: {
       label: "Interest ",
-      color: "#0177aa",
+      color: "#ffab05",
     },
     principal: {
       label: "Prinicpal ",
-      color: "#808080",
+      color: "#efefef",
     },
   };
 
@@ -311,7 +311,7 @@ export default function CustomizeEmiSection({
               brandModelsData === false ? "" : "pt-[70px] md:pt-[100px]"
             } p-[15px] md:p-8 md:!pl-0`}
           >
-            <div className="bg-[#f6f2f2] p-2 md:p-4 rounded-xl flex flex-col justify-between h-full">
+            <div className="bg-white [box-shadow:0_0_7px_rgba(0,0,0,0.2)] p-2 md:p-4 rounded-xl flex flex-col justify-between h-full">
               <div className="flex gap-5">
                 <div className="w-full">
                   <p className="text-base md:text-lg lg:text-xl xl:text-2xl font-semibold mb-1">
@@ -345,6 +345,11 @@ export default function CustomizeEmiSection({
                           content={
                             <ChartTooltipContent
                               formatter={(value, name, item, index) => {
+                                console.log(
+                                  "item?.payload?.fill: ",
+                                  item?.payload?.fill
+                                );
+
                                 const fillColor = item?.payload?.fill;
                                 return (
                                   <div className="flex items-center gap-x-4">
@@ -374,11 +379,11 @@ export default function CustomizeEmiSection({
 
               <div>
                 <div className="flex items-center justify-between mb-1">
-                  <p className="text-sm sm:text-base md:text-lg text-black font-medium flex items-start md:items-center gap-2">
+                  <p className="text-[sm] sm:text-base text-black font-medium flex items-start md:items-center gap-2">
                     <span className="w-3 h-3 md:w-5 md:h-5 mt-[3px] md:mt-0 rounded-full bg-[#656363] block"></span>{" "}
                     Principal Amount
                   </p>
-                  <p className="text-sm sm:text-base md:text-lg text-black font-semibold">
+                  <p className="text-sm sm:text-base text-black font-semibold">
                     ₹{" "}
                     {loanAmt.toLocaleString("en-IN", {
                       maximumFractionDigits: 2,
@@ -386,11 +391,11 @@ export default function CustomizeEmiSection({
                   </p>
                 </div>
                 <div className="flex items-center justify-between mb-1">
-                  <p className="text-sm sm:text-base md:text-lg text-black font-medium flex items-start md:items-center gap-2">
+                  <p className="text-sm sm:text-base text-black font-medium flex items-start md:items-center gap-2">
                     <span className="w-3 h-3 md:w-5 md:h-5 mt-[3px] md:mt-0 rounded-full bg-[#0177aa] block"></span>{" "}
                     Total Interest Payable
                   </p>
-                  <p className="text-sm sm:text-base md:text-lg text-black font-semibold">
+                  <p className="text-sm sm:text-base text-black font-semibold">
                     ₹{" "}
                     {totalInterest.toLocaleString("en-IN", {
                       maximumFractionDigits: 2,
@@ -398,10 +403,10 @@ export default function CustomizeEmiSection({
                   </p>
                 </div>
                 <div className="flex items-center justify-between p-[6px_3px] md:p-[10px_5px] bg-[rgba(217,217,217,0.4)] float-right w-[calc(100%-20px)] md:w-[calc(100%-28px)]">
-                  <p className="text-sm sm:text-base md:text-lg text-black font-medium flex items-start md:items-center gap-2">
+                  <p className="text-sm sm:text-base text-black font-medium flex items-start md:items-center gap-2">
                     Total Amount Payable
                   </p>
-                  <p className="text-sm sm:text-base md:text-lg text-black font-semibold">
+                  <p className="text-sm sm:text-base text-black font-semibold">
                     ₹{" "}
                     {totalPayableAmount.toLocaleString("en-IN", {
                       maximumFractionDigits: 2,
