@@ -36,11 +36,23 @@ export default function ExploreBrandsCards({
     }
   }, [fetchNextPage, inView]);
 
+  console.log("initialModels: ", initialModels);
+
   let models = [...initialModels];
 
-  data?.pages?.map((page) => {
-    models = models.concat(page.data);
-  });
+  console.log("initialModels after: ", models);
+  console.log("data?.pages kkkkk:", data?.pages);
+
+  if (data?.pages[0]?.data) models = models.concat(data?.pages[0]?.data);
+
+  // data?.pages?.map((page) => {
+  //   console.log("page?.data:", page?.data);
+  //   if (page?.data !== undefined) {
+  //     models = models.concat(page?.data);
+  //   }
+  // });
+
+  console.log("models data: ", models);
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-1 gap-3 lg:gap-4">

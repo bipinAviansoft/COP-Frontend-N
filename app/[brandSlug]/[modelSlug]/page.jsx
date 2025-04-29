@@ -32,6 +32,7 @@ export default async function CarModuleWithoutVariant({ params }) {
     `/brands/${brandSlug}/${modelSlug}`,
     true
   );
+  
 
   if (variantsData?.upcoming_stage) {
     return (

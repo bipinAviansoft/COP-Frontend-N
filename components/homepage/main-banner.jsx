@@ -62,7 +62,7 @@ export default function MainBanner({ bannerData, carTypes, brandModels }) {
           </div>
           <div className="hidden md:block absolute w-full top-12 2xl:top-[20%]">
             <div className="container">
-              <div className="md:w-3/5 lg:w-2/5">
+              <div className="md:w-3/5 lg:w-1/2">
                 <h3 className="text-white font-bold mb-2 xl:mb-3 lg:leading-8 text-xl md:text-2xl xl:leading-7 2xl:text-3xl 2xl:leading-9 2xl:mb-4 tracking-wider">
                   {banner_heading}
                 </h3>

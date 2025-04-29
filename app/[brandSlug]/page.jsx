@@ -16,6 +16,8 @@ export default async function Page({ params }) {
     (brand) => brand.slug === `/${brandSlug}`
   )[0];
 
+  console.log(brandAndmodelsData);
+
   const { brand_banner, brand_name } = selectedBrand;
 
   return (
@@ -51,4 +53,4 @@ export default async function Page({ params }) {
       </div>
     </CarModuleComparisonContextProvider>
   );
-}
+} 
