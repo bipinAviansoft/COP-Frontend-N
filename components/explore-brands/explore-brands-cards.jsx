@@ -36,14 +36,11 @@ export default function ExploreBrandsCards({
     }
   }, [fetchNextPage, inView]);
 
-  console.log("initialModels: ", initialModels);
-
   let models = [...initialModels];
 
-  console.log("initialModels after: ", models);
-  console.log("data?.pages kkkkk:", data?.pages);
-
   if (data?.pages[0]?.data) models = models.concat(data?.pages[0]?.data);
+
+  console.log("data?.pages[0]: ", data?.pages[0]);
 
   // data?.pages?.map((page) => {
   //   console.log("page?.data:", page?.data);

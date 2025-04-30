@@ -73,6 +73,11 @@ export default function FuelCalculatorDrawer() {
   };
 
   const handleOnCalcSubmit = () => {
+    if (!MileageVal || !fuelTypePrice) {
+      toast.error("Please enter valid values.");
+      return;
+    }
+
     const literResult = parseInt(distance) / parseInt(MileageVal);
     const totalFuelPrice = parseInt(fuelTypePrice) * parseInt(literResult);
 

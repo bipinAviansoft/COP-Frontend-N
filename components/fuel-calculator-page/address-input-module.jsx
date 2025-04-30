@@ -1,4 +1,5 @@
 "use client";
+import React, { memo } from "react";
 import { useEffect, useRef } from "react";
 import { Input } from "../ui/input";
 import { loadGoogleMaps } from "@/lib/google-loader";
@@ -6,18 +7,6 @@ import { loadGoogleMaps } from "@/lib/google-loader";
 export default function AddressInputModule({ onFromChange, onToChange }) {
   const fromRef = useRef(null);
   const toRef = useRef(null);
-
-  // useEffect(() => {
-  //   const loader = new Loader({
-  //     apiKey: process.env.GOOGLE_SEARCH_PLACES_API,
-  //     libraries: ["places"],
-  //   });
-
-  //   loader.load().then(() => {
-  //     initAutocomplete(fromRef.current, onFromChange, "from");
-  //     initAutocomplete(toRef.current, onToChange, "to");
-  //   });
-  // }, []);
 
   useEffect(() => {
     loadGoogleMaps().then(() => {

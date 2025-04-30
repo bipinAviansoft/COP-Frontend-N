@@ -2,8 +2,9 @@
 import Image from "next/image";
 import BannerImg from "@/public/images/fuel-calculator.png";
 import FuelMap from "./fuel-map";
+import { memo } from "react";
 
-export default function FuelBanner({ googleResponse }) {
+function FuelBanner({ googleResponse }) {
   const route = googleResponse?.result?.data?.json?.summary?.route || null;
 
   let origin;
@@ -46,3 +47,12 @@ export default function FuelBanner({ googleResponse }) {
     </>
   );
 }
+
+function propsAreEqual(prevProps, nextProps) {
+  return (
+    JSON.stringify(prevProps.googleResponse) ===
+    JSON.stringify(nextProps.googleResponse)
+  );
+}
+
+export default memo(FuelBanner, propsAreEqual);

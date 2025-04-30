@@ -14,7 +14,7 @@ export default async function HeaderDataFetchWrapper({ children }) {
     wishlistData = await fetchData("/wishlist");
   }
 
-  return ( 
+  return (
     <>
       <CitySelectionModal cities={cities} />
       <AuthController accountData={accountData} wishlistData={wishlistData} />

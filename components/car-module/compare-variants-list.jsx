@@ -47,7 +47,7 @@ export default function CompareVariantsList({
             return (
               <>
                 <li
-                  key={new Date().getTime() + 2322}
+                  key={`vari-cam-list-${ex_showroom_price}`}
                   className="bg-[#E3E3E333] rounded-[8px] p-[18px] border-[1px] border-[#8080808C] flex items-start justify-between flex-wrap space-y-[15px] md:space-y-0"
                 >
                   <div className="w-full md:w-[50%] ">

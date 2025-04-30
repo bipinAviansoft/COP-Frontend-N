@@ -117,7 +117,10 @@ export default function VariantsModuleInteractiveWrapper({
 
                               return (
                                 <>
-                                  <TabsContent value={`variantTab${index + 2}`}>
+                                  <TabsContent
+                                    key={`variantTab-content-${index}`}
+                                    value={`variantTab${index + 2}`}
+                                  >
                                     <div>
                                       <CompareVariantsList
                                         variants={VariantsType}
