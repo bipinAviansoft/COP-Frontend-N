@@ -13,15 +13,15 @@ export default async function CarModuleContent({
   const [
     headerData,
     variantColorsData,
-    keySpecsData,
-    descriptionData,
+    // keySpecsData,
+    // descriptionData,
     modelDescriptionData,
     specificationData,
     similarModelsData,
     similarVariantsData,
     pricingData,
     galleryData,
-    faqData,
+    // faqData,
     variantsMileageData,
     faqFullData,
     variantEmiData,
@@ -29,10 +29,10 @@ export default async function CarModuleContent({
     fetchData(`/brands/${brandSlug}/${modelSlug}/${variantSlug}`),
 
     fetchData(`/brands/${brandSlug}/${modelSlug}/${variantSlug}/colors`),
-    fetchData(
-      `/brands/${brandSlug}/${modelSlug}/${variantSlug}/key-highlights`
-    ),
-    fetchData(`/brands/${brandSlug}/${modelSlug}/${variantSlug}/description`),
+    // fetchData(
+    //   `/brands/${brandSlug}/${modelSlug}/${variantSlug}/key-highlights`
+    // ),
+    // fetchData(`/brands/${brandSlug}/${modelSlug}/${variantSlug}/description`),
     fetchData(`/brands/${brandSlug}/${modelSlug}/modelDesc`),
     fetchData(
       `/brands/${brandSlug}/${modelSlug}/${variantSlug}/specifications?short=true`
@@ -43,7 +43,7 @@ export default async function CarModuleContent({
     ),
     fetchData(`/brands/${brandSlug}/${modelSlug}/${variantSlug}/price`),
     fetchData(`/brands/${brandSlug}/${modelSlug}/gallery`),
-    fetchData(`/brands/${brandSlug}/${modelSlug}/${variantSlug}/faq`),
+    // fetchData(`/brands/${brandSlug}/${modelSlug}/${variantSlug}/faq`),
     fetchData(`/brands/${brandSlug}/${modelSlug}?type=mileage`),
     fetchData(`/faq/${brandSlug}/${modelSlug}/${variantSlug}`),
     fetchData(`/emi-calculator/${brandSlug}/${modelSlug}/${variantSlug}`),
@@ -71,14 +71,14 @@ export default async function CarModuleContent({
       headerDetails={headerDetails}
       pricingData={pricingData}
       variantColorsData={variantColorsData}
-      keySpecsData={keySpecsData}
-      descriptionData={descriptionData}
+      // keySpecsData={keySpecsData}
+      // descriptionData={descriptionData}
       modelDescriptionData={modelDescriptionData}
       specificationData={specificationData}
       similarModelsData={similarModelsData}
       galleryData={galleryData}
       similarVariantsData={similarVariantsData}
-      faqData={faqData}
+      // faqData={faqData}
       modelPage={modelPage}
       variantsMileageData={variantsMileageData}
       faqFullData={faqFullData}

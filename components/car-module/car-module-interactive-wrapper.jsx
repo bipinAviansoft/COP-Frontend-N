@@ -47,14 +47,14 @@ export default function CarModuleInteractiveWrapper({
   headerDetails,
   pricingData,
   variantColorsData,
-  keySpecsData,
-  descriptionData,
+  // keySpecsData,
+  // descriptionData,
   modelDescriptionData,
   specificationData,
   similarModelsData,
   galleryData,
   similarVariantsData,
-  faqData,
+  // faqData,
   modelPage,
   variantsMileageData,
   faqFullData,
@@ -63,6 +63,8 @@ export default function CarModuleInteractiveWrapper({
   reviewData,
   blogs,
 }) {
+  console.log("pricingData: ", pricingData);
+
   const { ref: overviewRef, inView: isOverviewInView } = useInView({
     threshold: 0.6,
   });

@@ -32,7 +32,7 @@ export default async function UpcomingCarContent({
   // Find the car model based on the slug from all the pages
   const carDetail = carModelsData.find((data) => data.slug == slug);
 
-  const brand = brandSlug.replace(/-cars$/, "");
+  const brand = brandSlug.replace(/-cars$/, "").replace(/-/g, " ");
 
   // upcoming-cars/models?brand=jeep-cars&model=sub-4m-suv
   const [headerData, modelDescriptionData, similarModelsData, blogs] =
