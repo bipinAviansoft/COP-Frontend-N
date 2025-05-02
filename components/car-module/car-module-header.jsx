@@ -11,6 +11,7 @@ export default function CarModuleHeader({
   upcoming_stage,
   reviewLink,
   subPage,
+  reviewData,
 }) {
   const path = usePathname();
 
@@ -111,7 +112,7 @@ export default function CarModuleHeader({
                       Mileage
                     </Link>
                   </li>
-                  {reviewLink ? (
+                  {reviewLink || reviewData ? (
                     <>
                       <li className="pr-3 lg:pr-0">
                         <Link
