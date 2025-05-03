@@ -21,43 +21,63 @@ export async function generateMetadata({ params }) {
     };
   }
 
-  const data = await fetchMetaData(bodyData);
-  return data;
+  try {
+    const data = await fetchMetaData(bodyData);
+    return data || {};
+  } catch (error) {
+    console.error("Meta generation failed:", error);
+    return {};
+  }
 }
 
 export default async function CarModuleWithoutVariant({ params }) {
   const { brandSlug, modelSlug } = params;
 
-  const variantsData = await fetchData(
-    `/brands/${brandSlug}/${modelSlug}`,
-    true
-  );
-  
+  try {
+    const variantsData = await fetchData(
+      `/brands/${brandSlug}/${modelSlug}`,
+      true
+    );
 
-  if (variantsData?.upcoming_stage) {
+    if (!variantsData) {
+      console.error("No variant data found");
+      return new Error();
+    }
+
+    if (variantsData?.upcoming_stage) {
+      return (
+        <UpcomingCarContent
+          slug={`${brandSlug}/${modelSlug}`}
+          brandSlug={brandSlug}
+          modelSlug={modelSlug}
+          upcomingCarData={variantsData}
+          modelPage={true}
+          upcoming_stage={variantsData?.upcoming_stage}
+        />
+      );
+    }
+
+    const baseVariantSlug = variantsData?.variants?.[0]?.slug;
+
+    if (!baseVariantSlug) {
+      console.error("No variants available");
+      return new Error();
+    }
+
+    const variantSlug = baseVariantSlug.split("/")[2];
+
     return (
-      <UpcomingCarContent
-        slug={`${brandSlug}/${modelSlug}`}
+      <CarModuleContent
         brandSlug={brandSlug}
         modelSlug={modelSlug}
-        upcomingCarData={variantsData}
-        modelPage={true}
+        variantSlug={variantSlug}
+        variantsData={variantsData}
         upcoming_stage={variantsData?.upcoming_stage}
+        modelPage={true}
       />
     );
+  } catch (error) {
+    console.error("CarModuleWithoutVariant error:", error);
+    return new Error(); // Return 404 on failure
   }
-
-  const baseVariantSlug = variantsData?.variants[0]?.slug;
-  const variantSlug = baseVariantSlug?.split("/")[2];
-
-  return (
-    <CarModuleContent
-      brandSlug={brandSlug}
-      modelSlug={modelSlug}
-      variantSlug={variantSlug}
-      variantsData={variantsData}
-      upcoming_stage={variantsData?.upcoming_stage}
-      modelPage={true}
-    />
-  );
 }

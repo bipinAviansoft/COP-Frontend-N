@@ -30,7 +30,7 @@ export default function DealersList({ dealersData, dataLimit }) {
                     return (
                       <>
                         <div
-                          key={`dealer-tab-${index}`}
+                          key={`dealer-in-tab-${index}`}
                           className="bg-[#E3E3E333] border-[1px] border-[solid] border-[#8080808C] rounded-[16px] p-[18px]"
                         >
                           <h3 className="text-[16px] font-semibold leading-[24px] text-[#000000] mt-[0] mx-[0] mb-[15px]">

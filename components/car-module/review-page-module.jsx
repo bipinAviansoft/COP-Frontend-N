@@ -41,6 +41,7 @@ export default function ReviewPageModule({
         variantSlug={variantSlug}
         modelPage={modelPage}
         headerDetails={headerDetails}
+        reviewData={reviewData?.totalRating > 0}
         subPage="Review & Rating"
       />
       <div className="pt-[15px] md:pt-[30px]">

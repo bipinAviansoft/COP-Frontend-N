@@ -20,25 +20,40 @@ export async function generateMetadata({ params }) {
     };
   }
 
-  const data = await fetchMetaData(bodyData);
-  return data;
+  try {
+    const data = await fetchMetaData(bodyData);
+    return data || {};
+  } catch (error) {
+    console.error("Metadata fetch error:", error);
+    return {};
+  }
 }
 
 export default async function CarModuleWithVariant({ params }) {
   const { brandSlug, modelSlug, variantSlug } = params;
 
-  const variantsData = await fetchData(
-    `/brands/${brandSlug}/${modelSlug}`,
-    true
-  );
+  try {
+    const variantsData = await fetchData(
+      `/brands/${brandSlug}/${modelSlug}`,
+      true
+    );
 
-  return (
-    <CarModuleContent
-      brandSlug={brandSlug}
-      modelSlug={modelSlug}
-      variantSlug={variantSlug}
-      variantsData={variantsData}
-      modelPage={false}
-    />
-  );
+    if (!variantsData) {
+      console.error("No variant data found");
+      return new Error();
+    }
+
+    return (
+      <CarModuleContent
+        brandSlug={brandSlug}
+        modelSlug={modelSlug}
+        variantSlug={variantSlug}
+        variantsData={variantsData}
+        modelPage={false}
+      />
+    );
+  } catch (error) {
+    console.error("CarModuleWithVariant error:", error);
+    return new Error();
+  }
 }

@@ -63,7 +63,7 @@ export default function CarModuleInteractiveWrapper({
   reviewData,
   blogs,
 }) {
-  console.log("pricingData: ", pricingData);
+  console.log("reviewData: ", reviewData);
 
   const { ref: overviewRef, inView: isOverviewInView } = useInView({
     threshold: 0.6,
@@ -163,6 +163,7 @@ export default function CarModuleInteractiveWrapper({
           variantSlug={variantSlug}
           modelPage={modelPage}
           reviewLink={reviewData?.totalRating > 0}
+          reviewData={reviewData?.totalRating > 0}
           headerDetails={headerDetails}
         />
         {isMobile ? null : (
@@ -250,7 +251,7 @@ export default function CarModuleInteractiveWrapper({
         </div>
 
         {/* Things we like and dislike */}
-        {thingsLikes?.length > 0 && thingsImprovements?.length > 0 ? (
+        {thingsLikes?.length < 0 && thingsImprovements?.length < 0 ? (
           <div className="mt-[30px]">
             <div className="container">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[15px] md:gap-[30px]">
@@ -979,33 +980,16 @@ export default function CarModuleInteractiveWrapper({
                   {/* end */}
 
                   {/* Safety features */}
-                  <div className="bg-white rounded-[16px] ">
+                  {/* <div className="bg-white rounded-[16px] ">
                     <h2 className=" text-[18px] md:text-[24px] font-[600] leading-[28px] text-[#000000] py-[20px] md:py-[35px] px-[15px] md:px-[40px] m-0 ">
                       {headerDetails?.brand_name} {headerDetails?.model_name}{" "}
                       {modelPage ? "" : headerDetails?.variant_name} Safety
                     </h2>
                     <div className="pb-[15px] md:pb-[30px] px-[15px] md:px-[40px] w-full">
                       <SafetyFeaturesList />
-                      {/* <Link
-                        href={`/${selectedSlug}/mileage`}
-                        className="inline-flex items-center gap-[10px] text-[14px] leading-[19px] font-normal text-[#0177AA] underline capitalize"
-                      >
-                        View Detailed Safety Features
-                        <svg
-                          width="13"
-                          height="11"
-                          viewBox="0 0 13 11"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M12.4141 5.51254L7.70706 0.805545C7.61422 0.7127 7.504 0.639051 7.38269 0.588804C7.26138 0.538557 7.13136 0.512695 7.00006 0.512695C6.86876 0.512695 6.73874 0.538557 6.61744 0.588804C6.49613 0.639051 6.38591 0.7127 6.29306 0.805545C6.20022 0.898389 6.12657 1.00861 6.07632 1.12992C6.02607 1.25123 6.00021 1.38124 6.00021 1.51254C6.00021 1.64385 6.02607 1.77386 6.07632 1.89517C6.12657 2.01648 6.20022 2.1267 6.29306 2.21954L8.58606 4.51254L1.00006 4.51254C0.734846 4.51254 0.480491 4.6179 0.292955 4.80544C0.105419 4.99297 6.27355e-05 5.24733 6.2724e-05 5.51254C6.27124e-05 5.77776 0.105419 6.03211 0.292955 6.21965C0.480491 6.40719 0.734846 6.51254 1.00006 6.51254L8.58606 6.51254L6.29306 8.80554C6.19988 8.8982 6.12593 9.00836 6.07547 9.12969C6.025 9.25102 5.99903 9.38114 5.99903 9.51254C5.99903 9.64395 6.025 9.77406 6.07547 9.8954C6.12593 10.0167 6.19988 10.1269 6.29306 10.2195C6.48059 10.407 6.7349 10.5123 7.00006 10.5123C7.26523 10.5123 7.51953 10.407 7.70706 10.2195L12.4141 5.51254Z"
-                            fill="#0177AA"
-                          />
-                        </svg>
-                      </Link> */}
+                      
                     </div>
-                  </div>
+                  </div> */}
                   {/* end */}
 
                   {/* Final thoughts */}

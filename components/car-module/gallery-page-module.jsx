@@ -37,6 +37,7 @@ export default function GalleryPageModule({
             description={modelDescriptionData?.description}
             modelPage={modelPage}
             pageTitle="Images"
+            reviewData={reviewData}
           />
         </div>
         {/* car spec & other design sec */}

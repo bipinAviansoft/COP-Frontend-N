@@ -7,48 +7,63 @@ import Image from "next/image";
 export default async function Page({ params }) {
   const { brandSlug } = params;
 
-  const [brands, brandAndmodelsData] = await Promise.all([
-    fetchData("/brands?carTypes=true"),
-    fetchData(`/brands/${brandSlug}`, true),
-  ]);
+  try {
+    const [brands, brandAndmodelsData] = await Promise.all([
+      fetchData("/brands?carTypes=true"),
+      fetchData(`/brands/${brandSlug}`, true),
+    ]);
 
-  const selectedBrand = brands.filter(
-    (brand) => brand.slug === `/${brandSlug}`
-  )[0];
+    // Adjust comparison depending on your slug structure
+    const selectedBrand = brands.find(
+      (brand) =>
+        brand.slug === brandSlug ||
+        brand.slug === `/${brandSlug}` || // if API returns slug with a leading slash
+        brand.slug.replace("/", "") === brandSlug
+    );
 
-  const { brand_banner, brand_name } = selectedBrand;
+    // Handle missing brand
+    if (!selectedBrand) {
+      console.error("Brand not found for slug:", brandSlug);
+      return new Error("Brand not found for slug:", brandSlug); // safely show 404 page
+    }
 
-  return (
-    <CarModuleComparisonContextProvider>
-      <div className="bg-[#f6f2f2]">
-        <div className="relative w-full aspect-4/1 lg:aspect-[96/21]">
-          <Image
-            src={brand_banner}
-            alt={`banner image for ${brand_name}`}
-            fill
-            className="object-cover object-center"
-          />
-        </div>
+    const { brand_banner, brand_name } = selectedBrand;
 
-        <section className="container py-6 md:py-7 lg:py-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
-            <div className="lg:col-span-8">
-              <CarVariantSection
-                selectedBrandSlug={brandSlug}
-                selectedBrand={selectedBrand}
-                brands={brands}
-                modelsData={brandAndmodelsData}
-              />
-            </div>
-            <div className="lg:col-span-4">
-              <ExploreAllBrandsList
-                selectedBrandSlug={brandSlug}
-                brands={brands}
-              />
-            </div>
+    return (
+      <CarModuleComparisonContextProvider>
+        <div className="bg-[#f6f2f2]">
+          <div className="relative w-full aspect-4/1 lg:aspect-[96/21]">
+            <Image
+              src={brand_banner}
+              alt={`banner image for ${brand_name}`}
+              fill
+              className="object-cover object-center"
+            />
           </div>
-        </section>
-      </div>
-    </CarModuleComparisonContextProvider>
-  );
+
+          <section className="container py-6 md:py-7 lg:py-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+              <div className="lg:col-span-8">
+                <CarVariantSection
+                  selectedBrandSlug={brandSlug}
+                  selectedBrand={selectedBrand}
+                  brands={brands}
+                  modelsData={brandAndmodelsData}
+                />
+              </div>
+              <div className="lg:col-span-4">
+                <ExploreAllBrandsList
+                  selectedBrandSlug={brandSlug}
+                  brands={brands}
+                />
+              </div>
+            </div>
+          </section>
+        </div>
+      </CarModuleComparisonContextProvider>
+    );
+  } catch (error) {
+    console.error("Error rendering brand page:", error);
+    return new Error(`API Failed!`); // or render a fallback component if needed
+  }
 }

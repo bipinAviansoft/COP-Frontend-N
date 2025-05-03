@@ -1,6 +1,7 @@
 import CarColorImagesVideosData from "@/components/car-module/car-color-images-videos-data";
 import GalleryPageModule from "@/components/car-module/gallery-page-module";
-import { fetchBlogs, fetchData, fetchMetaData } from "@/lib/fetch";
+import { resolveVariantData } from "@/lib/carModuleUtils";
+import { fetchData, fetchMetaData } from "@/lib/fetch";
 
 export async function generateMetadata({ params }) {
   const { brandSlug, modelSlug, variantSlug } = params;
@@ -21,41 +22,50 @@ export async function generateMetadata({ params }) {
     };
   }
 
-  const data = await fetchMetaData(bodyData);
-  return data;
+  try {
+    const data = await fetchMetaData(bodyData);
+    return data;
+  } catch (error) {
+    console.error("Metadata fetch error:", error);
+    return {}; // Safe fallback
+  }
 }
 
 export default async function page({ params }) {
   const { brandSlug, modelSlug } = params;
 
-  const variantsData = await fetchData(
-    `/brands/${brandSlug}/${modelSlug}`,
-    true
-  );
+  try {
+    const variantSlug = await resolveVariantData(brandSlug, modelSlug);
 
-  const baseVariantSlug = variantsData?.variants[0]?.slug;
-  const variantSlug = baseVariantSlug?.split("/")[2];
+    if (!variantSlug) {
+      console.error("No valid variantSlug found");
+      return new Error();
+    }
 
-  const [
-    headerData,
-    modelDescriptionData,
-    similarModelsData,
-    variantColorsData,
-    galleryData,
-    reviewData,
-  ] = await Promise.all([
-    fetchData(`/brands/${brandSlug}/${modelSlug}/${variantSlug}`),
-    fetchData(`/brands/${brandSlug}/${modelSlug}/modelDesc`),
-    fetchData(`/brands/${brandSlug}/similarModels`),
-    fetchData(`/brands/${brandSlug}/${modelSlug}/${variantSlug}/colors`),
-    fetchData(`/brands/${brandSlug}/${modelSlug}/gallery`),
-    fetchData(`/ratings-and-reviews/${brandSlug}/${modelSlug}`),
-  ]);
+    const [
+      headerData,
+      modelDescriptionData,
+      similarModelsData,
+      variantColorsData,
+      galleryData,
+      reviewData,
+    ] = await Promise.all([
+      fetchData(`/brands/${brandSlug}/${modelSlug}/${variantSlug}`),
+      fetchData(`/brands/${brandSlug}/${modelSlug}/modelDesc`),
+      fetchData(`/brands/${brandSlug}/similarModels`),
+      fetchData(`/brands/${brandSlug}/${modelSlug}/${variantSlug}/colors`),
+      fetchData(`/brands/${brandSlug}/${modelSlug}/gallery`),
+      fetchData(`/ratings-and-reviews/${brandSlug}/${modelSlug}`),
+    ]);
 
-  const headerDetails = headerData?.variant_detail[0];
+    const headerDetails = headerData?.variant_detail?.[0];
 
-  return (
-    <>
+    if (!headerDetails) {
+      console.error("Missing headerDetails");
+      return new Error();
+    }
+
+    return (
       <GalleryPageModule
         brandSlug={brandSlug}
         modelSlug={modelSlug}
@@ -68,6 +78,9 @@ export default async function page({ params }) {
         galleryData={galleryData}
         reviewData={reviewData}
       />
-    </>
-  );
+    );
+  } catch (error) {
+    console.error("Gallery page fetch error:", error);
+    return new Error();
+  }
 }
