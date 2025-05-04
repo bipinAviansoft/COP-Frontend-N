@@ -40,17 +40,6 @@ export default function ExploreBrandsCards({
 
   if (data?.pages[0]?.data) models = models.concat(data?.pages[0]?.data);
 
-  console.log("data?.pages[0]: ", data?.pages[0]);
-
-  // data?.pages?.map((page) => {
-  //   console.log("page?.data:", page?.data);
-  //   if (page?.data !== undefined) {
-  //     models = models.concat(page?.data);
-  //   }
-  // });
-
-  console.log("models data: ", models);
-
   return (
     <div className="grid grid-cols-2 md:grid-cols-1 gap-3 lg:gap-4">
       {models?.map((model, index) => {

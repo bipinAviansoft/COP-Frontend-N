@@ -13,9 +13,6 @@ const containerStyle = {
 export default function FuelMap({ origin, destination }) {
   const [directions, setDirections] = useState(null);
 
-  console.log("origin: ", origin);
-  console.log("destination: ", destination);
-
   useEffect(() => {
     if (origin && destination) {
       loadGoogleMaps().then(() => {

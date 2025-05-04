@@ -1,7 +1,5 @@
 import SpecsModuleInteractiveWrapper from "@/components/car-module/specs-module-interactive.wrapper";
 import { fetchBlogs, fetchData, fetchMetaData } from "@/lib/fetch";
-import { notFound } from "next/navigation";
-import { resolveVariantData } from "@/lib/carModuleUtils";
 
 export async function generateMetadata({ params }) {
   const { brandSlug, modelSlug, variantSlug } = params;

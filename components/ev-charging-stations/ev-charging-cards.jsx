@@ -79,7 +79,6 @@ export default function EvChargingStation({ cities }) {
         <SelectContent>
           {cities.map((city) => {
             const { id, city_name } = city;
-            console.log("id: ", id);
 
             return (
               <SelectItem key={id} value={id}>

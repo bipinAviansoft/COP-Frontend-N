@@ -345,11 +345,6 @@ export default function CustomizeEmiSection({
                           content={
                             <ChartTooltipContent
                               formatter={(value, name, item, index) => {
-                                console.log(
-                                  "item?.payload?.fill: ",
-                                  item?.payload?.fill
-                                );
-
                                 const fillColor = item?.payload?.fill;
                                 return (
                                   <div className="flex items-center gap-x-4">

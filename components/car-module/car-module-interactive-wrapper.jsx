@@ -63,8 +63,6 @@ export default function CarModuleInteractiveWrapper({
   reviewData,
   blogs,
 }) {
-  console.log("reviewData: ", reviewData);
-
   const { ref: overviewRef, inView: isOverviewInView } = useInView({
     threshold: 0.6,
   });

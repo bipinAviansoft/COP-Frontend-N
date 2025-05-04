@@ -1,8 +1,6 @@
 import ServicePageModule from "@/components/car-module/service-page-module";
 import { fetchBlogs, fetchData, fetchMetaData } from "@/lib/fetch";
 import { cookies } from "next/headers";
-import { notFound } from "next/navigation";
-import { resolveVariantData } from "@/lib/carModuleUtils";
 
 export async function generateMetadata({ params }) {
   const { brandSlug, modelSlug, variantSlug } = params;
@@ -28,7 +26,7 @@ export default async function page({ params }) {
 
   try {
     // const variantSlug = await resolveVariantData(brandSlug, modelSlug);
-    if (!variantSlug) return notFound();
+    if (!variantSlug) return new Error();
 
     const [headerData, modelDescriptionData, similarModelsData] =
       await Promise.all([
@@ -38,7 +36,7 @@ export default async function page({ params }) {
       ]);
 
     const headerDetails = headerData?.variant_detail?.[0];
-    if (!headerDetails) return notFound();
+    if (!headerDetails) return new Error();
 
     const cookieStore = cookies();
     const cityId = cookieStore.get("city")?.value || "";
@@ -67,6 +65,6 @@ export default async function page({ params }) {
     );
   } catch (error) {
     console.error("Service page load failed:", error);
-    return notFound();
+    return new Error();
   }
 }

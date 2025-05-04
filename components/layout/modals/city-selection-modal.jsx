@@ -41,9 +41,6 @@ export default function CitySelectionModal({ cities }) {
       cookieOptions.sameSite = "None";
     }
 
-    console.log("cookieOptions: ", cookieOptions);
-    console.log("city find: ");
-
     Cookies.set("city", id, cookieOptions);
 
     dispatch(setCity(id));

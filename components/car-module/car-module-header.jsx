@@ -15,8 +15,6 @@ export default function CarModuleHeader({
 }) {
   const path = usePathname();
 
-  console.log("path: ", path);
-
   let selectedSlug = modelPage
     ? `/${brandSlug}/${modelSlug}`
     : `/${brandSlug}/${modelSlug}/${variantSlug}`;
@@ -114,7 +112,7 @@ export default function CarModuleHeader({
                       Mileage
                     </Link>
                   </li>
-                  {console.log(`${selectedSlug}/rating-review`)}
+
                   {reviewData ? (
                     <>
                       <li className="pr-3 lg:pr-0">

@@ -1,6 +1,7 @@
 import { fetchBlogs, fetchData } from "@/lib/fetch";
 import CarModuleInteractiveWrapper from "./car-module-interactive-wrapper";
 import { cookies } from "next/headers";
+import Script from "next/script";
 
 export default async function CarModuleContent({
   brandSlug,
@@ -43,6 +44,17 @@ export default async function CarModuleContent({
 
     const headerDetails = headerData?.variant_detail?.[0];
 
+    // ✅ WebPage Schema
+    const webpageSchema = {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: `${headerDetails?.brand_name} - ${headerDetails?.model_name}`,
+      description: headerDetails?.image_title || "",
+      url: modelPage
+        ? `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}`
+        : `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}/${variantSlug}`,
+    };
+
     if (!headerDetails) {
       console.error("Missing header details");
       return new Error();
@@ -62,27 +74,33 @@ export default async function CarModuleContent({
     ]);
 
     return (
-      <CarModuleInteractiveWrapper
-        brandSlug={brandSlug}
-        modelSlug={modelSlug}
-        variantSlug={variantSlug}
-        variantsData={variantsData}
-        headerDetails={headerDetails}
-        pricingData={pricingData}
-        variantColorsData={variantColorsData}
-        modelDescriptionData={modelDescriptionData}
-        specificationData={specificationData}
-        similarModelsData={similarModelsData}
-        galleryData={galleryData}
-        similarVariantsData={similarVariantsData}
-        modelPage={modelPage}
-        variantsMileageData={variantsMileageData}
-        faqFullData={faqFullData}
-        dealersData={dealersData}
-        variantEmiData={variantEmiData}
-        reviewData={reviewData}
-        blogs={blogs?.result}
-      />
+      <>
+        {/* ✅ Inject Schema Markups */}
+        <Script id="schema-webpage" type="application/ld+json">
+          {JSON.stringify(webpageSchema)}
+        </Script>
+        <CarModuleInteractiveWrapper
+          brandSlug={brandSlug}
+          modelSlug={modelSlug}
+          variantSlug={variantSlug}
+          variantsData={variantsData}
+          headerDetails={headerDetails}
+          pricingData={pricingData}
+          variantColorsData={variantColorsData}
+          modelDescriptionData={modelDescriptionData}
+          specificationData={specificationData}
+          similarModelsData={similarModelsData}
+          galleryData={galleryData}
+          similarVariantsData={similarVariantsData}
+          modelPage={modelPage}
+          variantsMileageData={variantsMileageData}
+          faqFullData={faqFullData}
+          dealersData={dealersData}
+          variantEmiData={variantEmiData}
+          reviewData={reviewData}
+          blogs={blogs?.result}
+        />
+      </>
     );
   } catch (error) {
     console.error("CarModuleContent fetch error:", error);

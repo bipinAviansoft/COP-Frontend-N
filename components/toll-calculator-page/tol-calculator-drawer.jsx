@@ -99,7 +99,6 @@ export default function TollCalculatorDrawer() {
           finalPayload
         );
         setGoogleResponse(response?.apiRes[0]);
-        console.log("response?.apiRes[0]: ", response?.apiRes[0]);
 
         setDistance(
           response?.apiRes[0]?.result?.data?.json?.routes[0]?.summary?.distance
@@ -116,9 +115,6 @@ export default function TollCalculatorDrawer() {
           const literResult = parseInt(distance) / parseInt(MileageVal);
           const totalFuelPrice =
             parseInt(fuelTypePrice) * parseInt(literResult);
-
-          console.log("literResult: ", literResult);
-          console.log("totalFuelPrice: ", totalFuelPrice);
 
           setLiterVal(literResult.toFixed(2));
           setDistanceFuelPrice(totalFuelPrice);

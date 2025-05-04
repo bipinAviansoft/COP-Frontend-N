@@ -1,7 +1,5 @@
 import GalleryPageModule from "@/components/car-module/gallery-page-module";
-import { resolveVariantData } from "@/lib/carModuleUtils";
 import { fetchData, fetchMetaData } from "@/lib/fetch";
-import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }) {
   const { brandSlug, modelSlug, variantSlug } = params;
@@ -26,7 +24,7 @@ export default async function page({ params }) {
   const { brandSlug, modelSlug, variantSlug } = params;
 
   try {
-    if (!variantSlug) return notFound();
+    if (!variantSlug) return new Error();
 
     const [
       headerData,
@@ -46,7 +44,7 @@ export default async function page({ params }) {
 
     const headerDetails = headerData?.variant_detail?.[0];
 
-    if (!headerDetails) return notFound();
+    if (!headerDetails) return new Error();
 
     return (
       <GalleryPageModule
@@ -64,6 +62,6 @@ export default async function page({ params }) {
     );
   } catch (error) {
     console.error("Gallery page load failed:", error);
-    return notFound();
+    return new Error(error);
   }
 }

@@ -67,14 +67,16 @@ export default async function CarModuleWithoutVariant({ params }) {
     const variantSlug = baseVariantSlug.split("/")[2];
 
     return (
-      <CarModuleContent
-        brandSlug={brandSlug}
-        modelSlug={modelSlug}
-        variantSlug={variantSlug}
-        variantsData={variantsData}
-        upcoming_stage={variantsData?.upcoming_stage}
-        modelPage={true}
-      />
+      <>
+        <CarModuleContent
+          brandSlug={brandSlug}
+          modelSlug={modelSlug}
+          variantSlug={variantSlug}
+          variantsData={variantsData}
+          upcoming_stage={variantsData?.upcoming_stage}
+          modelPage={true}
+        />
+      </>
     );
   } catch (error) {
     console.error("CarModuleWithoutVariant error:", error);
