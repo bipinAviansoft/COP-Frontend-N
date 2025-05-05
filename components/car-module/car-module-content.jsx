@@ -74,7 +74,7 @@ export default async function CarModuleContent({
       name: `${headerDetails?.brand_name} ${headerDetails?.model_name} ${
         modelPage ? "" : headerDetails?.variant_name
       }`,
-      description: headerDetails?.image_title || "",
+      description: modelDescriptionData?.description || "",
       url: modelPage
         ? `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}`
         : `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}/${variantSlug}`,
@@ -135,7 +135,7 @@ export default async function CarModuleContent({
         name: `${headerDetails?.brand_name} ${headerDetails?.model_name} ${
           modelPage ? "" : headerDetails?.variant_name
         }`,
-        description: headerDetails?.image_title || "",
+        description: modelDescriptionData?.description || "",
         image: [`${headerDetails?.variant_image}`],
         sku: "",
         brand: {
@@ -257,7 +257,7 @@ export default async function CarModuleContent({
             "Fuel Tank Capacity"
           )}`,
         },
-        numberOfAirbags: "6",
+        numberOfAirbags: "",
         fuelEfficiency: [
           {
             "@type": "QuantitativeValue",
