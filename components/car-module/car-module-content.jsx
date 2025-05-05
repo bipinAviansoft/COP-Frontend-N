@@ -52,16 +52,20 @@ export default async function CarModuleContent({
     const cookieStore = cookies();
     const cityId = cookieStore.get("city");
 
-    const [dealersData, reviewData, blogs, faqList] = await Promise.all([
-      fetchData(
-        `/dealership?brand=${headerDetails?.brand_name}&city=${
-          cityId?.value || ""
-        }`
-      ),
-      fetchData(`/ratings-and-reviews/${brandSlug}/${modelSlug}`),
-      fetchBlogs(headerDetails?.brand_name),
-      fetchData(`/brands/${brandSlug}/${modelSlug}/${variantSlug}/faq`),
-    ]);
+    const [dealersData, reviewData, blogs, faqList, specificationSchemaData] =
+      await Promise.all([
+        fetchData(
+          `/dealership?brand=${headerDetails?.brand_name}&city=${
+            cityId?.value || ""
+          }`
+        ),
+        fetchData(`/ratings-and-reviews/${brandSlug}/${modelSlug}`),
+        fetchBlogs(headerDetails?.brand_name),
+        fetchData(`/brands/${brandSlug}/${modelSlug}/${variantSlug}/faq`),
+        fetchData(
+          `/brands/${brandSlug}/${modelSlug}/${variantSlug}/specifications`
+        ),
+      ]);
 
     // ✅ WebPage Schema
     const webpageSchema = {
@@ -167,6 +171,165 @@ export default async function CarModuleContent({
       })),
     };
 
+    // console.log("specificationSchemaData: ", specificationSchemaData);
+
+    const getFeatureValue = (detailsArray, keyName) => {
+      const feature = detailsArray.find(
+        (item) =>
+          item.features_name.trim().toLowerCase() ===
+          keyName.trim().toLowerCase()
+      );
+      return feature ? feature.feature_value.trim() : null;
+    };
+
+    const getFeatureValueFromSpecifications = (
+      specifications,
+      sectionName,
+      keyName
+    ) => {
+      const section = specifications[sectionName];
+      if (!section || !section.details) return null;
+
+      const feature = section.details.find(
+        (item) =>
+          item.features_name.trim().toLowerCase() ===
+          keyName.trim().toLowerCase()
+      );
+
+      return feature ? feature.feature_value.trim() : null;
+    };
+
+    // const fuelCapacity = ;
+    // console.log("variantColorsData: ", variantColorsData);
+
+    const carSchema = [
+      {
+        "@context": "https://schema.org",
+        "@type": "Car",
+        model: `${headerDetails?.model_name}`,
+        image: [
+          ...(galleryData?.Exterior?.graphic_file || []),
+          ...(galleryData?.Interior?.graphic_file || []),
+        ],
+        offers: {
+          priceCurrency: "INR",
+          price: `${headerDetails?.ex_showroom_price}`,
+          availability: "https://schema.org/InStock",
+        },
+        brand: `${headerDetails?.brand_name}`,
+        sku: "",
+        manufacturer: {
+          "@type": "Organization",
+          name: `${headerDetails?.brand_name}`,
+        },
+        url: modelPage
+          ? `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}`
+          : `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}/${variantSlug}`,
+        name: `${headerDetails?.brand_name} ${headerDetails?.model_name} ${headerDetails?.variant_name}`,
+        vehicleIdentificationNumber: "",
+        vehicleModelDate: "",
+        itemCondition: "https://schema.org/NewCondition",
+        bodyType: `${headerDetails?.ct_name}`,
+        numberOfDoors: "",
+        vehicleTransmission: [
+          `${
+            headerDetails?.model_type == 0
+              ? headerDetails?.feature_values?.Transmission
+              : getFeatureValue(
+                  specificationSchemaData?.Specifications?.Transmission
+                    ?.details,
+                  "Type of Transmission"
+                )
+          }`,
+        ],
+        fuelType: variantsData?.fuel_types?.map((fuel) => ({
+          "@type": "QualitativeValue",
+          name: fuel,
+        })),
+        description: `${modelDescriptionData?.description}`,
+        mpn: "",
+        numberOfForwardGears: "",
+        fuelCapacity: {
+          "@type": "QuantitativeValue",
+          unitCode: "Ltr",
+          value: `${getFeatureValue(
+            specificationSchemaData?.Specifications?.Fuel?.details,
+            "Fuel Tank Capacity"
+          )}`,
+        },
+        numberOfAirbags: "6",
+        fuelEfficiency: [
+          {
+            "@type": "QuantitativeValue",
+            name: `${getFeatureValue(
+              specificationSchemaData?.Specifications?.Fuel?.details,
+              "Mileage"
+            )}`,
+          },
+        ],
+        vehicleEngine: [
+          {
+            fuelType: `${headerDetails?.feature_values?.Fuel}`,
+            "@type": "EngineSpecification",
+            engineDisplacement: {
+              "@type": "QuantitativeValue",
+              unitCode: "",
+              value: `${getFeatureValue(
+                specificationSchemaData?.Specifications?.Engine?.details,
+                "Torque"
+              )}`,
+            },
+            torque: {
+              "@type": "QuantitativeValue",
+              unitCode: "nm@rpm",
+              value: `${getFeatureValue(
+                specificationSchemaData?.Specifications?.Engine?.details,
+                "Torque"
+              )}`,
+            },
+            engineType: `${getFeatureValue(
+              specificationSchemaData?.Specifications?.Engine?.details,
+              "Type of Engine"
+            )}`,
+            enginePower: {
+              "@type": "QuantitativeValue",
+              unitCode: "bhp@rpm",
+              value: `${getFeatureValue(
+                specificationSchemaData?.Specifications?.Engine?.details,
+                "Power"
+              )}`,
+            },
+          },
+        ],
+        vehicleSeatingCapacity: `${getFeatureValueFromSpecifications(
+          specificationSchemaData,
+          "Weights & Capacity",
+          "Seating Capacity"
+        )}`,
+        color: [...new Set(variantColorsData.map((item) => item.color_name))],
+        aggregateRating: {
+          "@type": "AggregateRating",
+          reviewCount: `${reviewData?.totalRating}`,
+          ratingValue: `${reviewData?.averageRating}`,
+          worstRating: "",
+          bestRating: `${reviewData?.averageRating}`,
+        },
+        "@graph": [
+          {
+            "@type": "SiteNavigationElement",
+            name: "FAQs",
+            "@id": modelPage
+              ? `${process.env.NEXT_SITE_URL}/faqs/${brandSlug}/${modelSlug}`
+              : `${process.env.NEXT_SITE_URL}/faqs/${brandSlug}/${modelSlug}/${variantSlug}`,
+            "@context": "https://schema.org",
+            url: modelPage
+              ? `${process.env.NEXT_SITE_URL}/faqs/${brandSlug}/${modelSlug}`
+              : `${process.env.NEXT_SITE_URL}/faqs/${brandSlug}/${modelSlug}/${variantSlug}`,
+          },
+        ],
+      },
+    ];
+
     return (
       <>
         {/* ✅ Inject Schema Markups */}
@@ -184,6 +347,9 @@ export default async function CarModuleContent({
             {JSON.stringify(faqSchema)}
           </Script>
         )}
+        <Script id="schema-car" type="application/ld+json">
+          {JSON.stringify(carSchema)}
+        </Script>
 
         <CarModuleInteractiveWrapper
           brandSlug={brandSlug}

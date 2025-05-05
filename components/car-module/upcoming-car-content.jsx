@@ -1,6 +1,6 @@
 import { fetchBlogs, fetchData } from "@/lib/fetch";
-import CarModuleInteractiveWrapper from "./car-module-interactive-wrapper";
 import UpcomingCarModule from "./upcoming-car-module";
+import Script from "next/script";
 
 export default async function UpcomingCarContent({
   slug,
@@ -43,8 +43,93 @@ export default async function UpcomingCarContent({
       fetchBlogs(brand),
     ]);
 
+  // ✅ WebPage Schema
+  const webpageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: `${headerData?.data?.brand_name} ${headerData?.data?.model_name}`,
+    description: modelDescriptionData?.description || "",
+    url: `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}`,
+    publisher: {
+      "@type": "Organization",
+      name: "CarOnPhone",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://caronphone.com/images/logo_white.png",
+      },
+    },
+  };
+
+  // ✅ BreadcrumbList Schema
+  const breadcrumbItems = [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: `${process.env.NEXT_SITE_URL}`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: headerData?.data?.brand_name,
+      item: `${process.env.NEXT_SITE_URL}/${brandSlug}`,
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: headerData?.data?.model_name,
+      item: `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}`,
+    },
+  ];
+
+  // ✅ Final schema
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: breadcrumbItems,
+  };
+
+  // ✅ Product Schema
+  const productSchema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: `${headerData?.data?.brand_name} ${headerData?.data?.model_name}`,
+      description: modelDescriptionData?.description || "",
+      image: [`${headerData?.data?.model_image}`],
+      sku: "",
+      brand: {
+        "@type": "Brand",
+        name: `${headerData?.data?.brand_name}`,
+      },
+      review: {
+        "@type": "Review",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: "",
+          bestRating: "",
+        },
+        author: {
+          "@type": "Person",
+          name: "CarOnPhone",
+        },
+      },
+    },
+  ];
+
   return (
     <>
+      {/* ✅ Inject Schema Markups */}
+      <Script id="schema-webpage" type="application/ld+json">
+        {JSON.stringify(webpageSchema)}
+      </Script>
+      <Script id="schema-breadcrumb" type="application/ld+json">
+        {JSON.stringify(breadcrumbSchema)}
+      </Script>
+      <Script id="schema-product" type="application/ld+json">
+        {JSON.stringify(productSchema)}
+      </Script>
+
       <UpcomingCarModule
         headerData={headerData?.data}
         modelDescriptionData={modelDescriptionData}
