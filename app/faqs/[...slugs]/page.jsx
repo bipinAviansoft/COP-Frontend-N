@@ -4,10 +4,27 @@ import { fetchData, fetchMetaData } from "@/lib/fetch";
 
 export async function generateMetadata({ params }) {
   const bodyData = { page_name_slug: "faqs" };
+  const [brandSlug, modelSlug, variantSlug] = params?.slugs || [];
 
   const data = await fetchMetaData(bodyData);
 
-  return data;
+  let slug;
+
+  if (brandSlug) {
+    slug = variantSlug
+      ? `${process.env.NEXT_SITE_URL}/faqs/${brandSlug}/${modelSlug}/${variantSlug}`
+      : `${process.env.NEXT_SITE_URL}/faqs/${brandSlug}/${modelSlug}`;
+  }
+
+  // return data;
+  const canonicalUrl = brandSlug ? slug : `${process.env.NEXT_SITE_URL}/faqs`;
+
+  return {
+    ...data,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+  };
 }
 
 export default async function FaqsPage({ params }) {

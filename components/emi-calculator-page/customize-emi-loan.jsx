@@ -375,7 +375,7 @@ export default function CustomizeEmiSection({
               <div>
                 <div className="flex items-center justify-between mb-1">
                   <p className="text-[sm] sm:text-base text-black font-medium flex items-start md:items-center gap-2">
-                    <span className="w-3 h-3 md:w-5 md:h-5 mt-[3px] md:mt-0 rounded-full bg-[#656363] block"></span>{" "}
+                    <span className="w-3 h-3 md:w-5 md:h-5 mt-[3px] md:mt-0 rounded-full bg-[#efefef] block"></span>{" "}
                     Principal Amount
                   </p>
                   <p className="text-sm sm:text-base text-black font-semibold">
@@ -387,7 +387,7 @@ export default function CustomizeEmiSection({
                 </div>
                 <div className="flex items-center justify-between mb-1">
                   <p className="text-sm sm:text-base text-black font-medium flex items-start md:items-center gap-2">
-                    <span className="w-3 h-3 md:w-5 md:h-5 mt-[3px] md:mt-0 rounded-full bg-[#0177aa] block"></span>{" "}
+                    <span className="w-3 h-3 md:w-5 md:h-5 mt-[3px] md:mt-0 rounded-full bg-[#ffab05] block"></span>{" "}
                     Total Interest Payable
                   </p>
                   <p className="text-sm sm:text-base text-black font-semibold">

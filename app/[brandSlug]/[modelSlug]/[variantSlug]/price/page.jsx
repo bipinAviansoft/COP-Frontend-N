@@ -13,7 +13,15 @@ export async function generateMetadata({ params }) {
 
   try {
     const data = await fetchMetaData(bodyData);
-    return data;
+    // return data;
+    const canonicalUrl = `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}/${variantSlug}/price`;
+
+    return {
+      ...data,
+      alternates: {
+        canonical: canonicalUrl,
+      },
+    };
   } catch (error) {
     console.error("MetaData fetch failed:", error);
     return {};

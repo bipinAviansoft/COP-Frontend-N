@@ -33,9 +33,11 @@ export default function DealersList({ dealersData, dataLimit }) {
                           key={`dealer-in-tab-${index}`}
                           className="bg-[#E3E3E333] border-[1px] border-[solid] border-[#8080808C] rounded-[16px] p-[18px]"
                         >
-                          <h3 className="text-[16px] font-semibold leading-[24px] text-[#000000] mt-[0] mx-[0] mb-[15px]">
-                            {item?.company_name}
-                          </h3>
+                          {item?.company_name == "-" ? null : (
+                            <h3 className="text-[16px] font-semibold leading-[24px] text-[#000000] mt-[0] mx-[0] mb-[15px]">
+                              {item?.company_name}
+                            </h3>
+                          )}
                           <ul className="space-y-[10px] mb-[20px]">
                             <li className="text-[14px] leading-[19px] font-normal text-[#565F64] flex gap-[20px]">
                               <svg

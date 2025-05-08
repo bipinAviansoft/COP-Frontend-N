@@ -192,9 +192,9 @@ export default function UpcomingCarModule({
                           {upcomingCarData?.upcoming_data?.map(
                             (item, index) => {
                               return Object.entries(item).map(
-                                ([key, value]) => (
+                                ([key, value, indx]) => (
                                   <li
-                                    key={index}
+                                    key={`upcoming-overview-${key}`}
                                     className="flex flex-col items-center text-center w-[calc(50%-5px)] md:w-full whitespace-nowrap px-[15px] py-[30px] rounded-[15px] border-[1px] border-[solid] border-[#8080808C] bg-[#E3E3E333]"
                                   >
                                     <img

@@ -20,7 +20,7 @@ export default async function CarsByBudget() {
           View More
         </Button>
       </div>
-      <Tabs defaultValue={tabsList[0]}>
+      <Tabs defaultValue={tabsList[1]}>
         <TabsList className="w-full bg-transparent justify-start p-0 gap-x-2 md:gap-x-4">
           {tabsList.map((tab) => {
             return (

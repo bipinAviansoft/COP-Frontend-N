@@ -1,8 +1,38 @@
 import CarVariantSection from "@/components/explore-brands/car-variants";
 import ExploreAllBrandsList from "@/components/explore-brands/explore-all-brands";
 import CarModuleComparisonContextProvider from "@/contexts/car-module-comparison-context";
-import { fetchData } from "@/lib/fetch";
+import { fetchData, fetchMetaData } from "@/lib/fetch";
 import Image from "next/image";
+
+export async function generateMetadata({ params }) {
+  const { brandSlug } = params;
+  const bodyData = {
+    page_name_slug: "all-brands",
+    brand: brandSlug.replace("-cars", ""),
+  };
+
+  try {
+    const [brandAndmodelsData] = await Promise.all([
+      fetchData(`/brands/${brandSlug}`, true),
+    ]);
+    const data = await fetchMetaData(
+      bodyData,
+      brandAndmodelsData?.data[0]?.model_image
+    );
+
+    const canonicalUrl = `${process.env.NEXT_SITE_URL}/${brandSlug}`;
+
+    return {
+      ...data,
+      alternates: {
+        canonical: canonicalUrl,
+      },
+    };
+  } catch (error) {
+    console.error("Meta generation failed:", error);
+    return {};
+  }
+}
 
 export default async function Page({ params }) {
   const { brandSlug } = params;

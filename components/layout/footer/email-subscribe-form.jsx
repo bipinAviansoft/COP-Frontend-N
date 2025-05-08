@@ -28,6 +28,7 @@ export default function EmailSubscribeForm() {
       sendRequest(`subscribe?email=${email}`, undefined, "POST"),
     onSuccess: () => {
       toast.success("Successfully subscribed for newsletters!");
+      form.reset();
     },
     onError: (error) => {
       toast.error(error.message || "Something went wrong! Please try again.");

@@ -153,7 +153,7 @@ export default function AllBrandsCarousel({ brandModels }) {
             return (
               <li
                 key={index}
-                className="flex-[0_0_25%] lg:flex-[0_0_16.67%] lg: min-w-0 pl-1.5 md:pl-2.5 lg:pl-3.5 py-4 lg:py-6"
+                className="flex-[0_0_33%] sm:flex-[0_0_30%] lg:flex-[0_0_16.67%] lg: min-w-0 pl-1.5 md:pl-2.5 lg:pl-3.5 py-4 lg:py-6"
               >
                 <Link href={slug} className="cursor-pointer block">
                   <div className="relative bg-white flex flex-col items-center border rounded-md p-2.5 md:p-3 lg:p-8 shadow-md">
@@ -165,7 +165,7 @@ export default function AllBrandsCarousel({ brandModels }) {
                         sizes="(max-width: 768px) 56px, (max-width: 1024px) 96px, 128px"
                       />
                     </div>
-                    <p className="text-xs md:text-sm lg:text-base font-medium text-theme-black">
+                    <p className="text-xs md:text-sm lg:text-base font-medium text-center text-theme-black">
                       {brand_name}
                     </p>
                   </div>

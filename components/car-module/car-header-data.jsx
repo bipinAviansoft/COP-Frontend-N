@@ -17,6 +17,10 @@ export default function CarHeaderData({
   const selectedCity = citiesList?.filter((city) => city.id === cityId)[0];
   const selectedCityName = selectedCity?.city_name || "";
 
+  const dummyPrice = upcomingPage
+    ? false
+    : headerDetails?.ex_showroom_price == "N/A";
+
   const exShowroomPrice = upcomingPage
     ? headerDetails?.min_price
     : headerDetails?.ex_showroom_price;
@@ -47,7 +51,13 @@ export default function CarHeaderData({
                       Starting from
                     </span>{" "}
                     <span className="font-[700]">
-                      ₹ {formattedPrice?.price} {formattedPrice?.unit}*
+                      ₹{" "}
+                      {`${
+                        dummyPrice
+                          ? "__,__"
+                          : `${formattedPrice?.price} ${formattedPrice?.unit}`
+                      }`}
+                      *
                     </span>
                   </h2>
                 </div>
@@ -72,7 +82,13 @@ export default function CarHeaderData({
                   <span className="text-[20px] font-[600] block">
                     Starting from
                   </span>{" "}
-                  ₹ {formattedPrice?.price} {formattedPrice?.unit}*
+                  ₹{" "}
+                  {`${
+                    dummyPrice
+                      ? "__,__"
+                      : `${formattedPrice?.price} ${formattedPrice?.unit}`
+                  }`}
+                  *
                 </h2>
               </div>
             </div>
@@ -120,7 +136,13 @@ export default function CarHeaderData({
               <div className="block xl:hidden">
                 <div className="md:pt-[10px]">
                   <h2 className="text-[22px] md:text-[27px] text-[#0177aa] leading-[27px] lg:text-[32px] leading-[38px] font-bold">
-                    Rs. {formattedPrice?.price} {formattedPrice?.unit}*
+                    Rs.{" "}
+                    {`${
+                      dummyPrice
+                        ? "__,__"
+                        : `${formattedPrice?.price} ${formattedPrice?.unit}`
+                    }`}
+                    *
                   </h2>
                   <p className="text-[15px] md:text-[16px] text-base leading-6 text-gray-600 mb-[7px]">
                     Ex-showroom Price
@@ -144,7 +166,13 @@ export default function CarHeaderData({
             <div className="xl:w-[calc(25%-10px)] w-full hidden xl:block">
               <div className="pt-[10px]">
                 <h2 className="text-[32px] text-[#0177aa] leading-[38px] font-bold mb-[7px]">
-                  Rs. {formattedPrice?.price} {formattedPrice?.unit}*
+                  Rs.{" "}
+                  {`${
+                    dummyPrice
+                      ? "__,__"
+                      : `${formattedPrice?.price} ${formattedPrice?.unit}`
+                  }`}
+                  *
                 </h2>
                 <p className="text-base leading-6 text-gray-600 mb-[10px]">
                   Ex-showroom Price

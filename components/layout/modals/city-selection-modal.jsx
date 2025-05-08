@@ -13,7 +13,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { setCities, setCity, closeCityModal } from "@/store";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function CitySelectionModal({ cities }) {
@@ -45,11 +45,7 @@ export default function CitySelectionModal({ cities }) {
 
     dispatch(setCity(id));
     // localStorage.setItem("selectedCity", id);
-    await new Promise((resolve) =>
-      setTimeout(() => {
-        resolve();
-      }, 500)
-    );
+    await new Promise((resolve) => setTimeout(resolve, 150));
     if (refresh) {
       router.refresh();
     } else if (redirectTo) {
@@ -59,9 +55,11 @@ export default function CitySelectionModal({ cities }) {
 
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredCities = cities.filter((city) =>
-    city.city_name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredCities = useMemo(() => {
+    return cities.filter((city) =>
+      city.city_name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [searchTerm, cities]);
 
   return (
     <Dialog
@@ -100,7 +98,11 @@ export default function CitySelectionModal({ cities }) {
                 type="single"
                 className="flex-wrap justify-start gap-2 pr-2"
                 value={city}
-                onValueChange={(cityId) => handleCitySelection(cityId)}
+                onValueChange={(cityId) => {
+                  if (cityId && cityId !== city) {
+                    handleCitySelection(cityId);
+                  }
+                }}
               >
                 {cities
                   .filter((city) => city.isPopular)

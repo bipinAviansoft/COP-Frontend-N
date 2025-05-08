@@ -5,9 +5,21 @@ import { fetchData, fetchMetaData } from "@/lib/fetch";
 export async function generateMetadata({ params }) {
   const bodyData = { page_name_slug: "emi-calculator" };
 
+  const [brandSlug, modelSlug, variantSlug] = params?.slugs || [];
+
   const data = await fetchMetaData(bodyData);
 
-  return data;
+  // return data;
+  const canonicalUrl = brandSlug
+    ? `${process.env.NEXT_SITE_URL}/emi-calculator/${brandSlug}/${modelSlug}/${variantSlug}`
+    : `${process.env.NEXT_SITE_URL}/emi-calculator`;
+
+  return {
+    ...data,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+  };
 }
 
 export default async function Page({ params }) {

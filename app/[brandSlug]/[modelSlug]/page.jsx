@@ -6,6 +6,22 @@ export async function generateMetadata({ params }) {
   const { brandSlug, modelSlug, variantSlug } = params;
   let bodyData;
 
+  const variantsData = await fetchData(
+    `/brands/${brandSlug}/${modelSlug}`,
+    true
+  );
+
+  let pageImg;
+
+  if (variantsData?.upcoming_stage) {
+    const upcomingCarData = await fetchData(
+      `/upcoming-cars/models?brand=${brandSlug}&model=${modelSlug}`
+    );
+    pageImg = upcomingCarData?.data?.model_image;
+  } else {
+    pageImg = variantsData?.variants?.[0]?.variant_image;
+  }
+
   if (variantSlug) {
     bodyData = {
       page_name_slug: "car-module",
@@ -22,8 +38,17 @@ export async function generateMetadata({ params }) {
   }
 
   try {
-    const data = await fetchMetaData(bodyData);
-    return data || {};
+    const data = await fetchMetaData(bodyData, pageImg);
+    const canonicalUrl = `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}`;
+
+    return {
+      ...data,
+      alternates: {
+        canonical: canonicalUrl,
+      },
+    };
+
+    // return data || {};
   } catch (error) {
     console.error("Meta generation failed:", error);
     return {};

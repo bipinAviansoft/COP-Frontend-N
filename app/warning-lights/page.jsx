@@ -6,7 +6,15 @@ export async function generateMetadata({ params }) {
 
   const data = await fetchMetaData(bodyData);
 
-  return data;
+  // return data;
+  const canonicalUrl = `${process.env.NEXT_SITE_URL}/warning-lights`;
+
+  return {
+    ...data,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+  };
 }
 
 export default async function Page() {

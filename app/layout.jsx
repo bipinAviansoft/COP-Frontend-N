@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="images/favicon.ico" sizes="any" />
+        <link rel="icon" href="/images/favicon.ico" sizes="any" />
         <meta name="theme-color" content="#0177aa" />
         <meta name="robots" content="noindex, nofollow" />
         <meta name="mobile-web-app-capable" content="yes" />
@@ -41,6 +41,7 @@ export default function RootLayout({ children }) {
           content="black-translucent"
         />
         <meta name="msapplication-starturl" content="/" />
+        <meta name="msvalidate.01" content="39BC138BC872BEE9A3EEB7D5BB427267" />
       </head>
       <body
         className={`${poppins.className} antialiased flex flex-col bg-theme-background selection:bg-sky-100 selection:text-sky-600`}

@@ -59,7 +59,7 @@ export default function AuthForm() {
   function onSubmit(values) {
     mutate(values);
   }
- 
+
   return (
     <div className="flex flex-col gap-y-4">
       <div className="flex flex-col gap-y-1">

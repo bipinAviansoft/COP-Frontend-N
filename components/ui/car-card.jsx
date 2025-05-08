@@ -90,6 +90,11 @@ export default function CarCard({ carDetails, toggleWishlist }) {
               {feature_json?.map((feature, index) => {
                 const { features_image, feature_value } = feature;
 
+                let icon =
+                  index == 0
+                    ? "https://static.caronphone.com/public/Feature/12/12.svg"
+                    : "https://static.caronphone.com/public/Feature/10/10.svg";
+
                 return (
                   <div
                     key={index}
@@ -97,7 +102,7 @@ export default function CarCard({ carDetails, toggleWishlist }) {
                   >
                     <span className="relative size-4 lg:size-5 shrink-0">
                       <Image
-                        src={features_image}
+                        src={icon}
                         alt="Engine or Battery Capacity Feature Image"
                         fill
                         className="invert saturate-0 hue-rotate-[175deg]"

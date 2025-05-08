@@ -6,7 +6,15 @@ export async function generateMetadata({ params }) {
   const bodyData = { page_name_slug: "about-us" };
 
   const data = await fetchMetaData(bodyData);
-  return data;
+  // return data;
+  const canonicalUrl = `${process.env.NEXT_SITE_URL}/about-us`;
+
+  return {
+    ...data,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+  };
 }
 
 export default function Page() {

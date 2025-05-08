@@ -5,11 +5,21 @@ import BookTestDriveContextProvider from "@/contexts/book-test-drive-context";
 import { fetchData, fetchMetaData } from "@/lib/fetch";
 
 export async function generateMetadata({ params }) {
+  const [brandSlug, modelSlug] = params.slugs || [];
   const bodyData = { page_name_slug: "book-test-drive" };
 
   const data = await fetchMetaData(bodyData);
 
-  return data;
+  const canonicalUrl = `${process.env.NEXT_SITE_URL}/test-drive`;
+
+  return {
+    ...data,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+  };
+
+  // return data;
 }
 
 export default async function TestDrivePage({ params }) {

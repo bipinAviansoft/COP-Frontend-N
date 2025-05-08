@@ -11,12 +11,14 @@ export default function Footer() {
       <section className="container pt-6 flex flex-col gap-y-6 lg:flex-row items-center lg:items-start">
         <div className="w-full lg:w-5/12">
           <div className="relative w-44 lg:w-64 aspect-5/1 mb-8">
-            <Image
-              src="/images/logo.png"
-              alt="CarOnPhone: Drive Dreams Home"
-              fill
-              sizes="(max-width: 1024px) 176px, 256px"
-            />
+            <Link href={"/"}>
+              <Image
+                src="/images/logo.png"
+                alt="CarOnPhone: Drive Dreams Home"
+                fill
+                sizes="(max-width: 1024px) 176px, 256px"
+              />
+            </Link>
           </div>
           <EmailSubscribeForm />
         </div>
@@ -66,7 +68,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-y-3 text-sm lg:text-base">
               <li>
                 <Link
-                  href="/"
+                  href="tel:+91 9723443555"
                   className="font-semibold flex items-center gap-x-2"
                 >
                   <div className="bg-primary-gradient size-8 flex items-center justify-center text-white rounded-full">
@@ -77,7 +79,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/"
+                  href="mailto:support@caronphone.com"
                   className="font-semibold flex items-center gap-x-2"
                 >
                   <div className="bg-primary-gradient size-8 flex items-center justify-center text-white rounded-full">

@@ -2,7 +2,24 @@ import CompareCarDetails from "@/components/compare-answer-page/compare-car-deta
 import CompareCarInteractiveWrapper from "@/components/compare-answer-page/compare-car-interactive-wrapper";
 import CompareCarsSection from "@/components/compare-answer-page/compare-cars-header";
 import CompareCarsName from "@/components/compare-car/compare-cars-name";
-import { fetchData } from "@/lib/fetch";
+import { fetchData, fetchMetaData } from "@/lib/fetch";
+
+export async function generateMetadata({ params }) {
+  const { variantsSlug } = params;
+  const bodyData = { page_name_slug: "compare-page" };
+
+  const data = await fetchMetaData(bodyData);
+
+  // return data;
+  const canonicalUrl = `${process.env.NEXT_SITE_URL}/compare/${variantsSlug}`;
+
+  return {
+    ...data,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+  };
+}
 
 export default async function CompareCarDetailPage({ params }) {
   const { variantsSlug } = params;

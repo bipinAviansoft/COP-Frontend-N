@@ -32,7 +32,7 @@ export default function CarColorImagesVideosData({
             defaultValue="tab1"
             className="w-full flex flex-col-reverse md:flex-row relative"
           >
-            <TabsList className="relative z-[9] mt-[-30px] sm:mt-[-40px] md:mt-0 pl-[20px] md:px-0 bg-transparent h-auto w-full flex gap-[10px] flex md:flex-col justify-start md:w-[80px] md:pt-[100px] ">
+            <TabsList className="relative z-[9] mt-[-30px] sm:mt-[-40px] md:mt-0 pl-[30px] md:px-0 bg-transparent h-auto w-full flex gap-[10px] flex md:flex-col justify-start md:w-[80px] md:pt-[100px] ">
               <TabsTrigger
                 value="tab1"
                 className="group text-[#24272C] flex flex-col gap-[6px] items-center justify-center data-[state=active]:text-[#0177AA] text-[9px] min-w-[68px] md:text-[10.5px] font-[500] p-[10px] !shadow-[0_0_10px_rgba(0,0,0,0.1)] md:!shadow-none md:py-[15px] md:px-[10px] rounded-[16px] md:rounded-[16px_0_0_16px] md:w-full data-[state=active]:bg-white bg-white  md:bg-transparent"
@@ -103,7 +103,7 @@ export default function CarColorImagesVideosData({
                     defaultValue="colorTab0"
                     className="w-full flex md:gap-[20px] items-center flex-wrap relative"
                   >
-                    <TabsList className="md:ml-[20px] scroll-bar-none space-y-[10px] md:space-y-[20px] w-[60px] md:w-[80px] h-full block max-h-[155px] md:max-h-[300px] overflow-y-auto py-[5px] px-0 bg-transparent overflow-x-hidden h-auto">
+                    <TabsList className="md:ml-[20px] mt-[-15px] sm:mt-0 scroll-bar-none space-y-[10px] md:space-y-[20px] w-[60px] md:w-[80px] h-full block max-h-[155px] md:max-h-[300px] overflow-y-auto py-[5px] px-0 bg-transparent overflow-x-hidden h-auto">
                       {variantColorsData.map((item, index) => {
                         const {
                           id,

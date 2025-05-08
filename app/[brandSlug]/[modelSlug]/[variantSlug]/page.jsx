@@ -5,6 +5,13 @@ export async function generateMetadata({ params }) {
   const { brandSlug, modelSlug, variantSlug } = params;
   let bodyData;
 
+  const variantsData = await fetchData(
+    `/brands/${brandSlug}/${modelSlug}/${variantSlug}`,
+    true
+  );
+
+  const pageImg = variantsData?.variant_image;
+
   if (variantSlug) {
     bodyData = {
       page_name_slug: "car-module",
@@ -21,8 +28,16 @@ export async function generateMetadata({ params }) {
   }
 
   try {
-    const data = await fetchMetaData(bodyData);
-    return data || {};
+    const data = await fetchMetaData(bodyData, pageImg);
+    // return data || {};
+    const canonicalUrl = `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}/${variantSlug}`;
+
+    return {
+      ...data,
+      alternates: {
+        canonical: canonicalUrl,
+      },
+    };
   } catch (error) {
     console.error("Metadata fetch error:", error);
     return {};

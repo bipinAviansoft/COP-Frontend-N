@@ -8,7 +8,15 @@ export async function generateMetadata({ params }) {
   const bodyData = { page_name_slug: "advanced-search" };
 
   const data = await fetchMetaData(bodyData);
-  return data;
+  // return data;
+  const canonicalUrl = `${process.env.NEXT_SITE_URL}/advanced-search`;
+
+  return {
+    ...data,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+  };
 }
 
 export default async function AdvancedSearch({ searchParams }) {

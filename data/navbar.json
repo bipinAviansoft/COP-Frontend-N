@@ -4,10 +4,6 @@
       "menuItem": "Cars",
       "subMenuItems": [
         {
-          "subMenuItem": "Book A Test Drive",
-          "path": "/test-drive"
-        },
-        {
           "subMenuItem": "Advanced Search",
           "path": "/advanced-search"
         },
@@ -40,10 +36,6 @@
         {
           "subMenuItem": "Fuel Stations",
           "path": "/fuel-station"
-        },
-        {
-          "subMenuItem": "Dealership",
-          "path": "/dealership"
         }
       ]
     },
@@ -85,10 +77,12 @@
       "menuItem": "Policies",
       "subMenuItems": [
         {
-          "subMenuItem": "Privacy Policy"
+          "subMenuItem": "Privacy Policy",
+          "path": "/privacy-policy"
         },
         {
-          "subMenuItem": "Terms & Condition"
+          "subMenuItem": "Terms & Condition",
+          "path": "/terms-and-conditions"
         }
       ],
       "mobileOnly": true
@@ -109,21 +103,18 @@
     },
     {
       "menuItem": "Car News",
-      "path": "https://aviancoptesting.site/news/",
+      "path": "https://caronphone.com/news/",
       "desktopOnly": true
     },
     {
       "menuItem": "Blog",
-      "path": "https://aviancoptesting.site/blog/",
+      "path": "https://caronphone.com/blog/",
       "desktopOnly": true
     }
   ],
   "accountLinks": [
     {
       "subMenuItem": "Profile Details"
-    },
-    {
-      "subMenuItem": "My Test Drives"
     }
   ]
 }
