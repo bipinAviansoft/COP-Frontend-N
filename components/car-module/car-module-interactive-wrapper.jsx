@@ -145,6 +145,8 @@ export default function CarModuleInteractiveWrapper({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  console.log("specificationData: ", specificationData);
+
   return (
     <CarModuleComparisonContextProvider>
       <ComparisonDrawer

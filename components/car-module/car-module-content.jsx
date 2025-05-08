@@ -300,7 +300,7 @@ export default async function CarModuleContent({
         },
       ],
       vehicleSeatingCapacity: `${variantEmiData?.seating_capacity}`,
-      color: [...new Set(variantColorsData.map((item) => item.color_name))],
+      color: [...new Set(variantColorsData?.map((item) => item.color_name))],
       aggregateRating: {
         "@type": "AggregateRating",
         reviewCount: `${reviewData?.totalRating}`,
