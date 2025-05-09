@@ -4,10 +4,15 @@ import anonymousAvatar from "@/public/images/non_profile_image.webp";
 import Image from "next/image";
 import Navbar from "./navbar";
 import NavbarActionBtns from "./navbar-action-btns";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { openAuthModal } from "@/store";
 
 export default function MobileNavbar() {
   const { user } = useSelector((state) => state.auth);
+
+  const dispatch = useDispatch();
+
+  const handleLoginClick = () => dispatch(openAuthModal({ refresh: true }));
 
   return (
     <Sheet>
@@ -15,7 +20,10 @@ export default function MobileNavbar() {
         <i className="bx bx-menu text-white text-2xl bg-white/5 p-1 rounded w-10 h-10 !flex justify-center items-center"></i>
       </SheetTrigger>
       <SheetContent side="left" className="w-[75%] p-0 overflow-y-auto">
-        <div className="bg-primary-gradient flex items-center gap-x-4 p-4">
+        <div
+          onClick={handleLoginClick}
+          className="bg-primary-gradient flex items-center gap-x-4 p-4"
+        >
           <Image
             src={anonymousAvatar}
             alt="anonymous avatar"

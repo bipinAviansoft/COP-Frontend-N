@@ -49,7 +49,7 @@ export default function Navbar() {
                 <ul className="lg:invisible lg:group-hover:visible lg:opacity-0 lg:absolute lg:top-full lg:z-50 lg:group-hover:opacity-100 lg:min-w-64 lg:shadow-xl lg:border lg:border-gray-lighter transition-all duration-300 lg:rounded-lg lg:overflow-hidden">
                   {subMenuItems &&
                     subMenuItems
-                      .filter((subItem) =>
+                      ?.filter((subItem) =>
                         subItem.subMenuItem === "Book A Test Drive"
                           ? allowTestDrive
                           : true

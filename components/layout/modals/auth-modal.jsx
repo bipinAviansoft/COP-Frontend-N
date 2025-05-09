@@ -24,7 +24,7 @@ export default function AuthModal() {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={() => dispatch(closeAuthModal())}>
-      <DialogContent className="w-4/5 max-w-[420px] p-6 rounded-lg">
+      <DialogContent className="w-[95%] max-w-[420px] p-4 md:p-6 rounded-lg">
         <div className="relative w-40 lg:w-52 aspect-4/1">
           <Image
             src={logo}

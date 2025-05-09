@@ -70,19 +70,21 @@ export default function ReviewPageModule({
                   </div>
                   <ReviewList reviewData={reviewData} dataLimit="full" />
                 </div>
-                <div className="bg-white rounded-[16px] py-[15px] md:py-[30px] px-[15px] md:px-[40px] w-full">
-                  <LatestAutomotiveNews
-                    blogs={blogs}
-                    title={`${headerDetails?.brand_name} ${
-                      headerDetails?.model_name
-                    } 
+                {blogs?.length > 0 ? (
+                  <div className="bg-white rounded-[16px] py-[15px] md:py-[30px] px-[15px] md:px-[40px] w-full">
+                    <LatestAutomotiveNews
+                      blogs={blogs}
+                      title={`${headerDetails?.brand_name} ${
+                        headerDetails?.model_name
+                      } 
                                                           ${
                                                             modelPage
                                                               ? ""
                                                               : headerDetails?.variant_name
                                                           }`}
-                  />
-                </div>
+                    />
+                  </div>
+                ) : null}
               </div>
             </div>
             <div className="w-full xl:w-[calc(25%-10px)]">

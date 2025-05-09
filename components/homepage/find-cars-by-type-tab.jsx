@@ -12,7 +12,7 @@ export default function FindCarsByTypeTab({ carTypes }) {
   const handleCarTypeClick = (type) => {
     setSelectedTypes((prev) => {
       if (prev.includes(type)) {
-        return prev.filter((selectedType) => selectedType !== type);
+        return prev?.filter((selectedType) => selectedType !== type);
       } else {
         return [...prev, type];
       }

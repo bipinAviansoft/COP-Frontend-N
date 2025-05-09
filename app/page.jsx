@@ -122,13 +122,15 @@ export default async function Home() {
         <UpcomingCarsCarousel upComingBanners={upComingBanners} />
       </section>
 
-      <section className="my-6 md:my-7 lg:my-8">
-        <div className="container">
-          <div className="py-6 px-3 md:py-10 md:px-5 lg:py-12 lg:px-7 bg-white shadow-xl rounded-3xl">
-            <LatestAutomotiveNews blogs={blogs} />
+      {blogs?.length > 0 ? (
+        <section className="my-6 md:my-7 lg:my-8">
+          <div className="container">
+            <div className="py-6 px-3 md:py-10 md:px-5 lg:py-12 lg:px-7 bg-white shadow-xl rounded-3xl">
+              <LatestAutomotiveNews blogs={blogs} />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
     </>
   );
 }

@@ -20,7 +20,7 @@ export default function FilterItems({
   const onCheckChange = (checked, value) => {
     const updatedItems = checked
       ? [...selectedItemsList, value]
-      : selectedItemsList.filter((item) => item !== value);
+      : selectedItemsList?.filter((item) => item !== value);
 
     const params = new URLSearchParams(searchParams);
 
@@ -39,7 +39,7 @@ export default function FilterItems({
 
   const selectedItemsList = selectedItems?.split(",") || [];
 
-  const filteredItems = items.filter((item) =>
+  const filteredItems = items?.filter((item) =>
     item.name.toLowerCase().includes(input.toLowerCase())
   );
 

@@ -317,7 +317,10 @@ export default function CarInsuranceSection({ brandModels, cities }) {
 
                     <FormLabel className="!ml-2 !mt-0">
                       By proceeding ahead you expressly agree to
-                      <Link href="/" className="text-blue-500 ml-1">
+                      <Link
+                        href="/privacy-policy"
+                        className="text-blue-500 ml-1"
+                      >
                         Privacy Policy
                       </Link>
                     </FormLabel>
