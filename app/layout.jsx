@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" href="/images/favicon.ico" sizes="any" />
         <meta name="theme-color" content="#0177aa" />
-        <meta name="robots" content="index, follow" />
+        <meta name="robots" content="noindex, nofollow" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="application-name" content="CarOnPhone" />
