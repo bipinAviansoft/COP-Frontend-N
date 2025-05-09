@@ -47,14 +47,11 @@ export default function CarModuleInteractiveWrapper({
   headerDetails,
   pricingData,
   variantColorsData,
-  // keySpecsData,
-  // descriptionData,
   modelDescriptionData,
   specificationData,
   similarModelsData,
   galleryData,
   similarVariantsData,
-  // faqData,
   modelPage,
   variantsMileageData,
   faqFullData,
@@ -147,6 +144,8 @@ export default function CarModuleInteractiveWrapper({
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  console.log("specificationData: ", specificationData);
 
   return (
     <CarModuleComparisonContextProvider>
@@ -438,201 +437,206 @@ export default function CarModuleInteractiveWrapper({
                   {/* end */}
 
                   {/* Technology and Features */}
-                  <div className="bg-white rounded-[16px] ">
-                    <h2 className=" text-[18px] md:text-[24px] font-[600] leading-[28px] text-[#000000] py-[20px] md:py-[35px] px-[15px] md:px-[40px] m-0 ">
-                      {headerDetails?.brand_name} {headerDetails?.model_name}{" "}
-                      {modelPage ? "" : headerDetails?.variant_name} Features
-                    </h2>
-                    <div>
-                      <Tabs
-                        defaultValue="techFeatTab1"
-                        className="w-full flex flex-wrap relative"
-                      >
-                        <TabsList className="pl-[15px] md:pl-[40px] py-0 !h-[auto] w-full flex items-end justify-start gap-[35px] pr-0 bg-transparent border-b-[1px] border-[#8080808C] scroll-bar-none overflow-x-auto md:overflow-x-visible rounded-none whitespace-nowrap">
-                          {Object.keys(specificationData?.features || {}).map(
-                            (key, index) => {
-                              let title = key.replace(/_/g, " ");
-                              return (
-                                <>
-                                  <TabsTrigger
-                                    key={index + new Date().getTime()}
-                                    value={`techFeatTab${index + 1}`}
-                                    className="relative group text-[#24272C] flex gap-[6px] items-center justify-center data-[state=active]:text-[#0177AA] text-[16px] leading-[22px] font-[400] p-[5px] !shadow-none border-b-[1px] border-transparent data-[state=active]:border-[#0177AA] mb-[-1px] !rounded-none before:content-[''] before:absolute before:left-[50%] before:translate-x-[-50%] before:bottom-[-7px] before:w-0 before:h-0 before:border-l-[7px] before:border-l-[transparent] before:border-r-[7px] before:border-r-[transparent] before:border-t-[7px] before:border-t-[#0177AA] data-[state=active]:before:opacity-100 before:opacity-0"
-                                  >
-                                    {title}
-                                  </TabsTrigger>
-                                </>
-                              );
-                            }
-                          )}
-                        </TabsList>
-                        <div className="py-[15px] md:py-[30px] px-[15px] md:px-[40px] w-full ">
-                          {Object.keys(specificationData?.features || {}).map(
-                            (key, index) => {
-                              const entries = Object.entries(
-                                specificationData?.features[key].details
-                              );
+                  {specificationData?.features &&
+                  Object.keys(specificationData?.features).length > 0 ? (
+                    <div className="bg-white rounded-[16px] ">
+                      <h2 className=" text-[18px] md:text-[24px] font-[600] leading-[28px] text-[#000000] py-[20px] md:py-[35px] px-[15px] md:px-[40px] m-0 ">
+                        {headerDetails?.brand_name} {headerDetails?.model_name}{" "}
+                        {modelPage ? "" : headerDetails?.variant_name} Features
+                      </h2>
+                      <div>
+                        <Tabs
+                          defaultValue="techFeatTab1"
+                          className="w-full flex flex-wrap relative"
+                        >
+                          <TabsList className="pl-[15px] md:pl-[40px] py-0 !h-[auto] w-full flex items-end justify-start gap-[35px] pr-0 bg-transparent border-b-[1px] border-[#8080808C] scroll-bar-none overflow-x-auto md:overflow-x-visible rounded-none whitespace-nowrap">
+                            {Object.keys(specificationData?.features || {}).map(
+                              (key, index) => {
+                                let title = key.replace(/_/g, " ");
+                                return (
+                                  <>
+                                    <TabsTrigger
+                                      key={index + new Date().getTime()}
+                                      value={`techFeatTab${index + 1}`}
+                                      className="relative group text-[#24272C] flex gap-[6px] items-center justify-center data-[state=active]:text-[#0177AA] text-[16px] leading-[22px] font-[400] p-[5px] !shadow-none border-b-[1px] border-transparent data-[state=active]:border-[#0177AA] mb-[-1px] !rounded-none before:content-[''] before:absolute before:left-[50%] before:translate-x-[-50%] before:bottom-[-7px] before:w-0 before:h-0 before:border-l-[7px] before:border-l-[transparent] before:border-r-[7px] before:border-r-[transparent] before:border-t-[7px] before:border-t-[#0177AA] data-[state=active]:before:opacity-100 before:opacity-0"
+                                    >
+                                      {title}
+                                    </TabsTrigger>
+                                  </>
+                                );
+                              }
+                            )}
+                          </TabsList>
+                          <div className="py-[15px] md:py-[30px] px-[15px] md:px-[40px] w-full ">
+                            {Object.keys(specificationData?.features || {}).map(
+                              (key, index) => {
+                                const entries = Object.entries(
+                                  specificationData?.features[key].details
+                                );
 
-                              const midIndex = Math.ceil(entries.length / 2);
-                              const col1 = entries.slice(0, midIndex);
-                              const col2 = entries.slice(midIndex);
+                                const midIndex = Math.ceil(entries.length / 2);
+                                const col1 = entries.slice(0, midIndex);
+                                const col2 = entries.slice(midIndex);
 
-                              return (
-                                <>
-                                  <TabsContent
-                                    className="mb-[30px]"
-                                    key={index + new Date().getTime()}
-                                    value={`techFeatTab${index + 1}`}
-                                  >
-                                    <div className="w-full flex flex-wrap gap-y-[20px]">
-                                      <div className="w-full lg:w-1/2">
-                                        <ul className="space-y-[20px]">
-                                          {col1.map((item, idx) => (
-                                            <>
-                                              <li
-                                                key={idx}
-                                                className="text-[14px] leading-[19px] font-[400] text-[#282C2F] flex flex-wrap items-center  "
-                                              >
-                                                <span className="w-1/2 pr-2">
-                                                  {item[1].features_name}
-                                                </span>
-                                                <strong className="w-1/2 pl-2 text-end md:text-start">
-                                                  {item[1].feature_value ==
-                                                    "Yes" ||
-                                                  item[1].feature_value ==
-                                                    "No" ? (
-                                                    <>
-                                                      {item[1].feature_value ==
-                                                      "Yes" ? (
-                                                        <svg
-                                                          className="ml-auto md:ml-0"
-                                                          width="14"
-                                                          height="11"
-                                                          viewBox="0 0 14 11"
-                                                          fill="none"
-                                                          xmlns="http://www.w3.org/2000/svg"
-                                                        >
-                                                          <path
-                                                            d="M4.70783 8.00879L11.7703 0.946289C11.937 0.779623 12.1314 0.696289 12.3537 0.696289C12.5759 0.696289 12.7703 0.779623 12.937 0.946289C13.1037 1.11296 13.187 1.31101 13.187 1.54046C13.187 1.7699 13.1037 1.96768 12.937 2.13379L5.29117 9.80046C5.1245 9.96712 4.93005 10.0505 4.70783 10.0505C4.48561 10.0505 4.29117 9.96712 4.1245 9.80046L0.541166 6.21712C0.374499 6.05046 0.294499 5.85268 0.301166 5.62379C0.307833 5.3949 0.394777 5.19684 0.561999 5.02962C0.729221 4.8624 0.927277 4.77907 1.15617 4.77962C1.38505 4.78018 1.58283 4.86351 1.7495 5.02962L4.70783 8.00879Z"
-                                                            fill="#81B52F"
-                                                          />
-                                                        </svg>
-                                                      ) : (
-                                                        <svg
-                                                          className="ml-auto md:ml-0"
-                                                          width="10"
-                                                          height="11"
-                                                          viewBox="0 0 10 11"
-                                                          fill="none"
-                                                          xmlns="http://www.w3.org/2000/svg"
-                                                        >
-                                                          <path
-                                                            d="M9.0625 1.9248L0.9375 10.0498M0.9375 1.9248L9.0625 10.0498"
-                                                            stroke="#F21313"
-                                                            strokeWidth="1.875"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                          />
-                                                        </svg>
-                                                      )}
-                                                    </>
-                                                  ) : (
-                                                    item[1].feature_value
-                                                  )}
-                                                </strong>
-                                              </li>
-                                            </>
-                                          ))}
-                                        </ul>
+                                return (
+                                  <>
+                                    <TabsContent
+                                      className="mb-[30px]"
+                                      key={index + new Date().getTime()}
+                                      value={`techFeatTab${index + 1}`}
+                                    >
+                                      <div className="w-full flex flex-wrap gap-y-[20px]">
+                                        <div className="w-full lg:w-1/2">
+                                          <ul className="space-y-[20px]">
+                                            {col1.map((item, idx) => (
+                                              <>
+                                                <li
+                                                  key={idx}
+                                                  className="text-[14px] leading-[19px] font-[400] text-[#282C2F] flex flex-wrap items-center  "
+                                                >
+                                                  <span className="w-1/2 pr-2">
+                                                    {item[1].features_name}
+                                                  </span>
+                                                  <strong className="w-1/2 pl-2 text-end md:text-start">
+                                                    {item[1].feature_value ==
+                                                      "Yes" ||
+                                                    item[1].feature_value ==
+                                                      "No" ? (
+                                                      <>
+                                                        {item[1]
+                                                          .feature_value ==
+                                                        "Yes" ? (
+                                                          <svg
+                                                            className="ml-auto md:ml-0"
+                                                            width="14"
+                                                            height="11"
+                                                            viewBox="0 0 14 11"
+                                                            fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                          >
+                                                            <path
+                                                              d="M4.70783 8.00879L11.7703 0.946289C11.937 0.779623 12.1314 0.696289 12.3537 0.696289C12.5759 0.696289 12.7703 0.779623 12.937 0.946289C13.1037 1.11296 13.187 1.31101 13.187 1.54046C13.187 1.7699 13.1037 1.96768 12.937 2.13379L5.29117 9.80046C5.1245 9.96712 4.93005 10.0505 4.70783 10.0505C4.48561 10.0505 4.29117 9.96712 4.1245 9.80046L0.541166 6.21712C0.374499 6.05046 0.294499 5.85268 0.301166 5.62379C0.307833 5.3949 0.394777 5.19684 0.561999 5.02962C0.729221 4.8624 0.927277 4.77907 1.15617 4.77962C1.38505 4.78018 1.58283 4.86351 1.7495 5.02962L4.70783 8.00879Z"
+                                                              fill="#81B52F"
+                                                            />
+                                                          </svg>
+                                                        ) : (
+                                                          <svg
+                                                            className="ml-auto md:ml-0"
+                                                            width="10"
+                                                            height="11"
+                                                            viewBox="0 0 10 11"
+                                                            fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                          >
+                                                            <path
+                                                              d="M9.0625 1.9248L0.9375 10.0498M0.9375 1.9248L9.0625 10.0498"
+                                                              stroke="#F21313"
+                                                              strokeWidth="1.875"
+                                                              strokeLinecap="round"
+                                                              strokeLinejoin="round"
+                                                            />
+                                                          </svg>
+                                                        )}
+                                                      </>
+                                                    ) : (
+                                                      item[1].feature_value
+                                                    )}
+                                                  </strong>
+                                                </li>
+                                              </>
+                                            ))}
+                                          </ul>
+                                        </div>
+                                        <div className="w-full lg:w-1/2">
+                                          <ul className="space-y-[20px]">
+                                            {col2.map((item, idx) => (
+                                              <>
+                                                <li
+                                                  key={idx}
+                                                  className="text-[14px] leading-[19px] font-[400] text-[#282C2F] flex flex-wrap items-center  "
+                                                >
+                                                  <span className="w-1/2 pr-2">
+                                                    {item[1].features_name}
+                                                  </span>
+                                                  <strong className="w-1/2 pl-2 text-end md:text-start">
+                                                    {item[1].feature_value ==
+                                                      "Yes" ||
+                                                    item[1].feature_value ==
+                                                      "No" ? (
+                                                      <>
+                                                        {item[1]
+                                                          .feature_value ==
+                                                        "Yes" ? (
+                                                          <svg
+                                                            className="ml-auto md:ml-0"
+                                                            width="14"
+                                                            height="11"
+                                                            viewBox="0 0 14 11"
+                                                            fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                          >
+                                                            <path
+                                                              d="M4.70783 8.00879L11.7703 0.946289C11.937 0.779623 12.1314 0.696289 12.3537 0.696289C12.5759 0.696289 12.7703 0.779623 12.937 0.946289C13.1037 1.11296 13.187 1.31101 13.187 1.54046C13.187 1.7699 13.1037 1.96768 12.937 2.13379L5.29117 9.80046C5.1245 9.96712 4.93005 10.0505 4.70783 10.0505C4.48561 10.0505 4.29117 9.96712 4.1245 9.80046L0.541166 6.21712C0.374499 6.05046 0.294499 5.85268 0.301166 5.62379C0.307833 5.3949 0.394777 5.19684 0.561999 5.02962C0.729221 4.8624 0.927277 4.77907 1.15617 4.77962C1.38505 4.78018 1.58283 4.86351 1.7495 5.02962L4.70783 8.00879Z"
+                                                              fill="#81B52F"
+                                                            />
+                                                          </svg>
+                                                        ) : (
+                                                          <svg
+                                                            className="ml-auto md:ml-0"
+                                                            width="10"
+                                                            height="11"
+                                                            viewBox="0 0 10 11"
+                                                            fill="none"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                          >
+                                                            <path
+                                                              d="M9.0625 1.9248L0.9375 10.0498M0.9375 1.9248L9.0625 10.0498"
+                                                              stroke="#F21313"
+                                                              strokeWidth="1.875"
+                                                              strokeLinecap="round"
+                                                              strokeLinejoin="round"
+                                                            />
+                                                          </svg>
+                                                        )}
+                                                      </>
+                                                    ) : (
+                                                      item[1].feature_value
+                                                    )}
+                                                  </strong>
+                                                </li>
+                                              </>
+                                            ))}
+                                          </ul>
+                                        </div>
                                       </div>
-                                      <div className="w-full lg:w-1/2">
-                                        <ul className="space-y-[20px]">
-                                          {col2.map((item, idx) => (
-                                            <>
-                                              <li
-                                                key={idx}
-                                                className="text-[14px] leading-[19px] font-[400] text-[#282C2F] flex flex-wrap items-center  "
-                                              >
-                                                <span className="w-1/2 pr-2">
-                                                  {item[1].features_name}
-                                                </span>
-                                                <strong className="w-1/2 pl-2 text-end md:text-start">
-                                                  {item[1].feature_value ==
-                                                    "Yes" ||
-                                                  item[1].feature_value ==
-                                                    "No" ? (
-                                                    <>
-                                                      {item[1].feature_value ==
-                                                      "Yes" ? (
-                                                        <svg
-                                                          className="ml-auto md:ml-0"
-                                                          width="14"
-                                                          height="11"
-                                                          viewBox="0 0 14 11"
-                                                          fill="none"
-                                                          xmlns="http://www.w3.org/2000/svg"
-                                                        >
-                                                          <path
-                                                            d="M4.70783 8.00879L11.7703 0.946289C11.937 0.779623 12.1314 0.696289 12.3537 0.696289C12.5759 0.696289 12.7703 0.779623 12.937 0.946289C13.1037 1.11296 13.187 1.31101 13.187 1.54046C13.187 1.7699 13.1037 1.96768 12.937 2.13379L5.29117 9.80046C5.1245 9.96712 4.93005 10.0505 4.70783 10.0505C4.48561 10.0505 4.29117 9.96712 4.1245 9.80046L0.541166 6.21712C0.374499 6.05046 0.294499 5.85268 0.301166 5.62379C0.307833 5.3949 0.394777 5.19684 0.561999 5.02962C0.729221 4.8624 0.927277 4.77907 1.15617 4.77962C1.38505 4.78018 1.58283 4.86351 1.7495 5.02962L4.70783 8.00879Z"
-                                                            fill="#81B52F"
-                                                          />
-                                                        </svg>
-                                                      ) : (
-                                                        <svg
-                                                          className="ml-auto md:ml-0"
-                                                          width="10"
-                                                          height="11"
-                                                          viewBox="0 0 10 11"
-                                                          fill="none"
-                                                          xmlns="http://www.w3.org/2000/svg"
-                                                        >
-                                                          <path
-                                                            d="M9.0625 1.9248L0.9375 10.0498M0.9375 1.9248L9.0625 10.0498"
-                                                            stroke="#F21313"
-                                                            strokeWidth="1.875"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                          />
-                                                        </svg>
-                                                      )}
-                                                    </>
-                                                  ) : (
-                                                    item[1].feature_value
-                                                  )}
-                                                </strong>
-                                              </li>
-                                            </>
-                                          ))}
-                                        </ul>
-                                      </div>
-                                    </div>
-                                  </TabsContent>
-                                </>
-                              );
-                            }
-                          )}
-                          <Link
-                            href={`/${selectedSlug}/specifications`}
-                            className="inline-flex items-center gap-[10px] text-[14px] leading-[19px] font-normal text-[#0177AA] underline capitalize"
-                          >
-                            View Detailed Features
-                            <svg
-                              width="13"
-                              height="11"
-                              viewBox="0 0 13 11"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
+                                    </TabsContent>
+                                  </>
+                                );
+                              }
+                            )}
+                            <Link
+                              href={`/${selectedSlug}/specifications`}
+                              className="inline-flex items-center gap-[10px] text-[14px] leading-[19px] font-normal text-[#0177AA] underline capitalize"
                             >
-                              <path
-                                d="M12.4141 5.51254L7.70706 0.805545C7.61422 0.7127 7.504 0.639051 7.38269 0.588804C7.26138 0.538557 7.13136 0.512695 7.00006 0.512695C6.86876 0.512695 6.73874 0.538557 6.61744 0.588804C6.49613 0.639051 6.38591 0.7127 6.29306 0.805545C6.20022 0.898389 6.12657 1.00861 6.07632 1.12992C6.02607 1.25123 6.00021 1.38124 6.00021 1.51254C6.00021 1.64385 6.02607 1.77386 6.07632 1.89517C6.12657 2.01648 6.20022 2.1267 6.29306 2.21954L8.58606 4.51254L1.00006 4.51254C0.734846 4.51254 0.480491 4.6179 0.292955 4.80544C0.105419 4.99297 6.27355e-05 5.24733 6.2724e-05 5.51254C6.27124e-05 5.77776 0.105419 6.03211 0.292955 6.21965C0.480491 6.40719 0.734846 6.51254 1.00006 6.51254L8.58606 6.51254L6.29306 8.80554C6.19988 8.8982 6.12593 9.00836 6.07547 9.12969C6.025 9.25102 5.99903 9.38114 5.99903 9.51254C5.99903 9.64395 6.025 9.77406 6.07547 9.8954C6.12593 10.0167 6.19988 10.1269 6.29306 10.2195C6.48059 10.407 6.7349 10.5123 7.00006 10.5123C7.26523 10.5123 7.51953 10.407 7.70706 10.2195L12.4141 5.51254Z"
-                                fill="#0177AA"
-                              />
-                            </svg>
-                          </Link>
-                        </div>
-                      </Tabs>
+                              View Detailed Features
+                              <svg
+                                width="13"
+                                height="11"
+                                viewBox="0 0 13 11"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M12.4141 5.51254L7.70706 0.805545C7.61422 0.7127 7.504 0.639051 7.38269 0.588804C7.26138 0.538557 7.13136 0.512695 7.00006 0.512695C6.86876 0.512695 6.73874 0.538557 6.61744 0.588804C6.49613 0.639051 6.38591 0.7127 6.29306 0.805545C6.20022 0.898389 6.12657 1.00861 6.07632 1.12992C6.02607 1.25123 6.00021 1.38124 6.00021 1.51254C6.00021 1.64385 6.02607 1.77386 6.07632 1.89517C6.12657 2.01648 6.20022 2.1267 6.29306 2.21954L8.58606 4.51254L1.00006 4.51254C0.734846 4.51254 0.480491 4.6179 0.292955 4.80544C0.105419 4.99297 6.27355e-05 5.24733 6.2724e-05 5.51254C6.27124e-05 5.77776 0.105419 6.03211 0.292955 6.21965C0.480491 6.40719 0.734846 6.51254 1.00006 6.51254L8.58606 6.51254L6.29306 8.80554C6.19988 8.8982 6.12593 9.00836 6.07547 9.12969C6.025 9.25102 5.99903 9.38114 5.99903 9.51254C5.99903 9.64395 6.025 9.77406 6.07547 9.8954C6.12593 10.0167 6.19988 10.1269 6.29306 10.2195C6.48059 10.407 6.7349 10.5123 7.00006 10.5123C7.26523 10.5123 7.51953 10.407 7.70706 10.2195L12.4141 5.51254Z"
+                                  fill="#0177AA"
+                                />
+                              </svg>
+                            </Link>
+                          </div>
+                        </Tabs>
+                      </div>
                     </div>
-                  </div>
+                  ) : null}
                   {/* end */}
 
                   {/* Model Variants */}
@@ -687,7 +691,7 @@ export default function CarModuleInteractiveWrapper({
                               </TabsContent>
                               {fuel_types &&
                                 fuel_types?.map((item, index) => {
-                                  const VariantsType = variants.filter(
+                                  const VariantsType = variants?.filter(
                                     (variant) => variant.fuel_type === item
                                   );
 
@@ -966,20 +970,21 @@ export default function CarModuleInteractiveWrapper({
                   {/* end */}
 
                   {/* News */}
-                  <div className="bg-white rounded-[16px] py-[15px] md:py-[30px] px-[15px] md:px-[40px] w-full">
-                    <LatestAutomotiveNews
-                      blogs={blogs}
-                      title={`${headerDetails?.brand_name} ${
-                        headerDetails?.model_name
-                      } 
+                  {blogs?.length > 0 ? (
+                    <div className="bg-white rounded-[16px] py-[15px] md:py-[30px] px-[15px] md:px-[40px] w-full">
+                      <LatestAutomotiveNews
+                        blogs={blogs}
+                        title={`${headerDetails?.brand_name} ${
+                          headerDetails?.model_name
+                        } 
                                           ${
                                             modelPage
                                               ? ""
                                               : headerDetails?.variant_name
                                           }`}
-                    />
-                  </div>
-                  {/* end */}
+                      />
+                    </div>
+                  ) : null}
 
                   {/* Safety features */}
                   {/* <div className="bg-white rounded-[16px] ">
