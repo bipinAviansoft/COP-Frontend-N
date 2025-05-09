@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import CustomizeEmiSection from "@/components/emi-calculator-page/customize-emi-loan";
 import CarSelectionModal from "@/components/layout/modals/car-selection-modal";
 import { fetchData, fetchMetaData } from "@/lib/fetch";

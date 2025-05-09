@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { buildXml } from "@/lib/buildxml";
 import { fetchData } from "@/lib/fetch";
 

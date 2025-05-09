@@ -1,10 +1,7 @@
 "use client";
 import Button from "@/components/ui/button";
 import Link from "next/link";
-import { redirect } from "next/navigation";
-
-export default function Error({ error, reset }) {
-  // redirect("/"); // Redirect to homepage
+export default function Error() {
   return (
     <div className="min-h-80 flex flex-col justify-center text-center items-center py-10 px-4 bg-white">
       <img

@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import CarVariantSection from "@/components/explore-brands/car-variants";
 import ExploreAllBrandsList from "@/components/explore-brands/explore-all-brands";
 import CarModuleComparisonContextProvider from "@/contexts/car-module-comparison-context";

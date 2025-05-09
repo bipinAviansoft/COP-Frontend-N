@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import AboutUsSection from "@/components/about-us/about-us-section";
 import StepSection from "@/components/about-us/steps-section";
 import { fetchMetaData } from "@/lib/fetch";

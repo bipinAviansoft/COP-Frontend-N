@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import ProfileSection from "@/components/profile-page/profile-section";
 import { fetchData } from "@/lib/fetch";
 import { redirect } from "next/navigation";

@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import Image from "next/image";
 import BgImg from "@/public/images/car-loan-banner-img.png";
 import LoanProviderSection from "@/components/carloanpage/loan-provider-section";

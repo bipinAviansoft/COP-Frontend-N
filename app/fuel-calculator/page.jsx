@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import FuelBanner from "@/components/fuel-calculator-page/fuel-banner";
 import FuelCalculatorDrawer from "@/components/fuel-calculator-page/fuel-calculator-drawer";
 import DevBug from "@/components/ui/dev-bug";

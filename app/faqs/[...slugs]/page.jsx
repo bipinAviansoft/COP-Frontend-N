@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import FaqDetails from "@/components/faqs-details/faqs-details";
 import FaqMainBanner from "@/components/faqs-details/faqs-main-banner";
 import { fetchData, fetchMetaData } from "@/lib/fetch";

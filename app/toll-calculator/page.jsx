@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import HighwayTips from "@/components/toll-calculator-page/highway-tips";
 import TollCalculatorDrawer from "@/components/toll-calculator-page/tol-calculator-drawer";
 import TollTaxDetails from "@/components/toll-calculator-page/toll-tax-details";

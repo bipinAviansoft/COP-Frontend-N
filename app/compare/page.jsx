@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import CarSelectionGrid from "@/components/compare-car/car-selection-grid";
 import DiscoverDreamCarSection from "@/components/compare-car/discover-dream-car";
 import CommonBanner from "@/components/layout/common-banner/banner";

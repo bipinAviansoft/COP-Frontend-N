@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { fetchBlogs, fetchData, fetchMetaData } from "@/lib/fetch";
 import VariantsModuleInteractiveWrapper from "@/components/car-module/variants-module-interactive-wrapper";
 import { resolveVariantData } from "@/lib/carModuleUtils";

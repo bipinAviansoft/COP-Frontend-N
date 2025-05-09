@@ -1,4 +1,4 @@
-import CarColorImagesVideosData from "@/components/car-module/car-color-images-videos-data";
+export const dynamic = "force-dynamic";
 import GalleryPageModule from "@/components/car-module/gallery-page-module";
 import { resolveVariantData } from "@/lib/carModuleUtils";
 import { fetchData, fetchMetaData } from "@/lib/fetch";

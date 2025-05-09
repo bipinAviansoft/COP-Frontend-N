@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import AllBrandsSection from "@/components/homepage/all-brands-section";
 import CarsByBudget from "@/components/homepage/cars-by-budget";
 import ElectricCarsSection from "@/components/homepage/electric-cars-section";

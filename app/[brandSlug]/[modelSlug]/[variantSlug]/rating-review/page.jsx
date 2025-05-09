@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import ReviewPageModule from "@/components/car-module/review-page-module";
 import { fetchBlogs, fetchData, fetchMetaData } from "@/lib/fetch";
 
