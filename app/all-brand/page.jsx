@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import BrandsList from "@/components/allbrandspage/brands-list";
 import CommonBanner from "@/components/layout/common-banner/banner";
 import { fetchData, fetchMetaData } from "@/lib/fetch";

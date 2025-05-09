@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import AdvSearchMobileActions from "@/components/advanced-search/adv-search-mobile-actions";
 import SearchFilters from "@/components/advanced-search/search-filters";
 import SearchResults from "@/components/advanced-search/search-results";

@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import { fetchBlogs, fetchData, fetchMetaData } from "@/lib/fetch";
 import MileagePageModule from "@/components/car-module/mileage-page-module";
 

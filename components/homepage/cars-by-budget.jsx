@@ -21,7 +21,7 @@ export default async function CarsByBudget() {
         </Button>
       </div>
       <Tabs defaultValue={tabsList[1]}>
-        <TabsList className="w-full scroll-bar-none overflow-x-auto md:overflow-x-visible rounded-none whitespace-nowrap bg-transparent justify-start p-0 gap-x-2 md:gap-x-4">
+        <TabsList className="w-full bg-transparent justify-start p-0 gap-x-2 md:gap-x-4">
           {tabsList.map((tab) => {
             return (
               <TabsTrigger

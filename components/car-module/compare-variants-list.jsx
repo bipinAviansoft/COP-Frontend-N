@@ -30,7 +30,7 @@ export default function CompareVariantsList({
               slug,
             } = variant;
 
-            const isSelectedForComparison = carsSelectedForComparison?.filter(
+            const isSelectedForComparison = carsSelectedForComparison.filter(
               (car) => {
                 return car.full_slug === variant.full_slug;
               }

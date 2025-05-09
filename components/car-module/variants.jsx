@@ -41,7 +41,7 @@ export default function Variants({ variantsData, selectedVariantSlug }) {
             />
           </TabsContent>
           {fuel_types.map((type) => {
-            const filteredVariants = variants?.filter(
+            const filteredVariants = variants.filter(
               (variant) => variant.fuel_type === type
             );
 

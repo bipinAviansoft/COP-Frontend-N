@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import CarModuleContent from "@/components/car-module/car-module-content";
 import { fetchData, fetchMetaData } from "@/lib/fetch";
 

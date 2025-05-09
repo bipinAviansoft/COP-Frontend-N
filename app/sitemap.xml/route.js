@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 export async function GET() {
   const baseUrl = process.env.NEXT_SITE_URL || "https://localhost:3000";
 

@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import Image from "next/image";
 import BgImg from "@/public/images/car-insurance-banner-bg.png";
 import CarInsuranceSection from "@/components/car-insurance-page/car-insurance-section";

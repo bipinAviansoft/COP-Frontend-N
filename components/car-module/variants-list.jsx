@@ -12,8 +12,8 @@ export default function VariantsList({
     <>
       <ul className="p-0 m-0 mb-[10px] flex flex-col gap-[7px]">
         {variants
-          ?.slice(0, dataLimit === "full" ? variants?.length : dataLimit)
-          ?.map((variant, indx) => {
+          .slice(0, dataLimit === "full" ? variants.length : dataLimit)
+          .map((variant) => {
             const {
               brand_name,
               model_name,
@@ -30,7 +30,7 @@ export default function VariantsList({
 
             return (
               <>
-                <li key={`variant-li-${indx}-${dataLimit}`}>
+                <li key={new Date().getTime() + 123}>
                   <Link href={`/${slug}`} className="form-check relative ">
                     <input
                       className="peer absolute top-1/2 transform -translate-y-1/2 left-4 border-gray-400 checked:bg-[#0177AA] checked:border-[#0177AA] "

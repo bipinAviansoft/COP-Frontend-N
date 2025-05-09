@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import { fetchMetaData } from "@/lib/fetch";
 
 export async function generateMetadata({ params }) {

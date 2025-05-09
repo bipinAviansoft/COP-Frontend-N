@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import AllBrandsSection from "@/components/homepage/all-brands-section";
 import CarsByBudget from "@/components/homepage/cars-by-budget";
 import ElectricCarsSection from "@/components/homepage/electric-cars-section";
@@ -123,15 +122,13 @@ export default async function Home() {
         <UpcomingCarsCarousel upComingBanners={upComingBanners} />
       </section>
 
-      {blogs?.length > 0 ? (
-        <section className="my-6 md:my-7 lg:my-8">
-          <div className="container">
-            <div className="py-6 px-3 md:py-10 md:px-5 lg:py-12 lg:px-7 bg-white shadow-xl rounded-3xl">
-              <LatestAutomotiveNews blogs={blogs} />
-            </div>
+      <section className="my-6 md:my-7 lg:my-8">
+        <div className="container">
+          <div className="py-6 px-3 md:py-10 md:px-5 lg:py-12 lg:px-7 bg-white shadow-xl rounded-3xl">
+            <LatestAutomotiveNews blogs={blogs} />
           </div>
-        </section>
-      ) : null}
+        </div>
+      </section>
     </>
   );
 }

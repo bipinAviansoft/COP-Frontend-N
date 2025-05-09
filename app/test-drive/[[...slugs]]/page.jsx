@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import PersonalDetailsForm from "@/components/test-drive/personal-details-form";
 import VehicleSelectionForm from "@/components/test-drive/vehicle-selection-form";
 import { Separator } from "@/components/ui/separator";

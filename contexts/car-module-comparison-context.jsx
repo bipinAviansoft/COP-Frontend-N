@@ -16,7 +16,7 @@ export default function CarModuleComparisonContextProvider({ children }) {
     );
 
     if (existingCarIndex >= 0) {
-      const filteredCars = cars?.filter((prevCar) => prevCar.id !== car.id);
+      const filteredCars = cars.filter((prevCar) => prevCar.id !== car.id);
       setCars(filteredCars);
     } else {
       setCars([...cars, car]);

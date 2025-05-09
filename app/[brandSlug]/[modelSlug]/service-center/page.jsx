@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import ServicePageModule from "@/components/car-module/service-page-module";
 import { fetchBlogs, fetchData, fetchMetaData } from "@/lib/fetch";
 import { cookies } from "next/headers";

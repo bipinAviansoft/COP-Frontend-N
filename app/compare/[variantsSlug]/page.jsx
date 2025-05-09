@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import CompareCarDetails from "@/components/compare-answer-page/compare-car-details";
 import CompareCarInteractiveWrapper from "@/components/compare-answer-page/compare-car-interactive-wrapper";
 import CompareCarsSection from "@/components/compare-answer-page/compare-cars-header";

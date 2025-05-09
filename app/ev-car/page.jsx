@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import EvCarStations from "@/components/ev-car/ev-car-stations";
 import TabsCard from "@/components/ev-car/ev-car-tabs";
 import FilteredEVCars from "@/components/ev-car/filtered-cars";

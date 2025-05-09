@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import DealershipCards from "@/components/dealership/dealership-cards";
 import { fetchData, fetchMetaData } from "@/lib/fetch";
 

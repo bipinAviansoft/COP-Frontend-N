@@ -77,12 +77,10 @@
       "menuItem": "Policies",
       "subMenuItems": [
         {
-          "subMenuItem": "Privacy Policy",
-          "path": "/privacy-policy"
+          "subMenuItem": "Privacy Policy"
         },
         {
-          "subMenuItem": "Terms & Condition",
-          "path": "/terms-and-conditions"
+          "subMenuItem": "Terms & Condition"
         }
       ],
       "mobileOnly": true

@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import GalleryPageModule from "@/components/car-module/gallery-page-module";
 import { fetchData, fetchMetaData } from "@/lib/fetch";
 

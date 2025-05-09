@@ -16,7 +16,7 @@ export default function FindCarByBrandTab({ brandModels }) {
   const [brandSlug, setBrandSlug] = useState("");
   const [modelSlug, setModelSlug] = useState("");
 
-  const filteredModels = brandModels?.filter(
+  const filteredModels = brandModels.filter(
     (brandData) => brandData.slug === brandSlug
   )[0]?.models;
 

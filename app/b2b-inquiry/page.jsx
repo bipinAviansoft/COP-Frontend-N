@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import B2BpartnerSection from "@/components/b2b-inquiry/partner-section";
 import { fetchMetaData } from "@/lib/fetch";
 

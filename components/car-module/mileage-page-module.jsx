@@ -207,17 +207,15 @@ export default function MileagePageModule({
                       </ul>
                     </div>
                   </div>
-                  {blogs?.length > 0 ? (
-                    <div className="bg-white rounded-[16px] py-[15px] md:py-[30px] px-[15px] md:px-[40px] w-full">
-                      <LatestAutomotiveNews
-                        blogs={blogs}
-                        title={`${headerDetails?.brand_name} ${
-                          headerDetails?.model_name
-                        } 
+                  <div className="bg-white rounded-[16px] py-[15px] md:py-[30px] px-[15px] md:px-[40px] w-full">
+                    <LatestAutomotiveNews
+                      blogs={blogs}
+                      title={`${headerDetails?.brand_name} ${
+                        headerDetails?.model_name
+                      } 
                         ${modelPage ? "" : headerDetails?.variant_name}`}
-                      />
-                    </div>
-                  ) : null}
+                    />
+                  </div>
                 </div>
               </div>
               <div className="w-full xl:w-[calc(25%-10px)]">

@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import WarningLightsSection from "@/components/warning-lights/warning-light-section";
 import { fetchData, fetchMetaData } from "@/lib/fetch";
 

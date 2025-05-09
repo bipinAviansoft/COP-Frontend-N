@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import EvChargingStation from "@/components/ev-charging-stations/ev-charging-cards";
 import { fetchData, fetchMetaData } from "@/lib/fetch";
 

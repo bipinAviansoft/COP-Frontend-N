@@ -64,7 +64,7 @@ export default async function TrendingCars() {
         Trending
       </h2>
       <Tabs defaultValue={TRENDING_CARS_TABS[0].value}>
-        <TabsList className="w-full scroll-bar-none overflow-x-auto md:overflow-x-visible rounded-none whitespace-nowrap bg-transparent justify-start p-0 gap-x-4">
+        <TabsList className="w-full bg-transparent justify-start p-0 gap-x-4">
           {TRENDING_CARS_TABS.map((tab) => {
             const { title, value, modelType } = tab;
             const isEv = modelType;

@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import { fetchBlogs, fetchData, fetchMetaData } from "@/lib/fetch";
 import SpecsModuleInteractiveWrapper from "@/components/car-module/specs-module-interactive.wrapper";
 

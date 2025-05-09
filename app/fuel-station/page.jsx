@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import FuelStationsCards from "@/components/fuel-stations/fuel-stations-cards";
 import { fetchData, fetchMetaData } from "@/lib/fetch";
 

@@ -46,7 +46,7 @@ export default async function CarModuleContent({
 
     if (!headerDetails) {
       console.error("Missing header details");
-      return null;
+      return new Error();
     }
 
     const cookieStore = cookies();
@@ -174,12 +174,12 @@ export default async function CarModuleContent({
     // console.log("specificationSchemaData: ", specificationSchemaData);
 
     const getFeatureValue = (detailsArray, keyName) => {
-      const feature = detailsArray?.find(
+      const feature = detailsArray.find(
         (item) =>
-          item?.features_name.trim().toLowerCase() ===
-          keyName?.trim().toLowerCase()
+          item.features_name.trim().toLowerCase() ===
+          keyName.trim().toLowerCase()
       );
-      return feature ? feature?.feature_value?.trim() : null;
+      return feature ? feature.feature_value.trim() : null;
     };
 
     const getFeatureValueFromSpecifications = (
@@ -303,7 +303,7 @@ export default async function CarModuleContent({
           },
         ],
         vehicleSeatingCapacity: `${variantEmiData?.seating_capacity}`,
-        color: [...new Set(variantColorsData?.map((item) => item.color_name))],
+        color: [...new Set(variantColorsData.map((item) => item.color_name))],
         aggregateRating: {
           "@type": "AggregateRating",
           reviewCount: `${reviewData?.totalRating}`,
@@ -326,22 +326,6 @@ export default async function CarModuleContent({
         ],
       },
     ];
-
-    // console.log(`resp ${variantsData}`, variantsData);
-    // console.log(`resp ${headerDetails}`, headerDetails);
-    // console.log(`resp ${pricingData}`, pricingData);
-    // console.log(`resp ${variantColorsData}`, variantColorsData);
-    // console.log(`resp ${modelDescriptionData}`, modelDescriptionData);
-    // console.log(`resp ${specificationData}`, specificationData);
-    // console.log(`resp ${similarModelsData}`, similarModelsData);
-    // console.log(`resp ${galleryData}`, galleryData);
-    // console.log(`resp ${similarVariantsData}`, similarVariantsData);
-    // console.log(`resp ${variantsMileageData}`, variantsMileageData);
-    // console.log(`resp ${faqFullData}`, faqFullData);
-    // console.log(`resp ${dealersData}`, dealersData);
-    // console.log(`resp ${variantEmiData}`, variantEmiData);
-    // console.log(`resp ${reviewData}`, reviewData);
-    // console.log(`resp ${blogs?.result}`, blogs?.result);
 
     return (
       <>
@@ -388,7 +372,7 @@ export default async function CarModuleContent({
       </>
     );
   } catch (error) {
-    console.error("error: ", error);
+    console.error("CarModuleContent fetch error:", error);
     return new Error();
   }
 }
