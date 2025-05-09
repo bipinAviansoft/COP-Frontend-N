@@ -39,7 +39,7 @@ export default function AppliedFilters({ filters = {}, pageType }) {
     } else {
       const existingParamValues = params.get(key);
       const existingValues = existingParamValues?.split(",") || [];
-      const updatedValues = existingValues.filter(
+      const updatedValues = existingValues?.filter(
         (value) => value !== valueToRemove
       );
 

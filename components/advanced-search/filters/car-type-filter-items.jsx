@@ -13,7 +13,7 @@ export default function CarTypeFilterItems({ items, selectedItems }) {
   const handleCarTypeClick = (value) => {
     const updatedItems = !selectedItemsList.includes(value)
       ? [...selectedItemsList, value]
-      : selectedItemsList.filter((item) => item !== value);
+      : selectedItemsList?.filter((item) => item !== value);
 
     const params = new URLSearchParams(searchParams);
 

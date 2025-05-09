@@ -17,7 +17,7 @@ export default function FindEVCarsByBrandTab({ brands }) {
   const { updateBrand } = useContext(EvCarContext);
 
   const handleSearchClick = () => {
-    const brand = brands.filter((brand) => brand.id === brandId)[0];
+    const brand = brands?.filter((brand) => brand.id === brandId)[0];
     updateBrand(brand);
   };
 

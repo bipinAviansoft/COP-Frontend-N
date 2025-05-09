@@ -1,4 +1,5 @@
 import { buildXml } from "@/lib/buildxml";
+import { fetchData } from "@/lib/fetch";
 
 export async function GET() {
   const baseUrl = process.env.NEXT_SITE_URL || "https://localhost:3000";

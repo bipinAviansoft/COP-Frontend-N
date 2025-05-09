@@ -19,7 +19,7 @@ const useCompareCar = () => {
 
   const removeCar = (slug) => {
     setSelectedCars((prevCars) => {
-      return prevCars.filter((car) => {
+      return prevCars?.filter((car) => {
         return car.slug !== slug;
       });
     });

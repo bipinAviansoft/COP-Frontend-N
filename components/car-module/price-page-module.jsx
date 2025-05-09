@@ -109,7 +109,7 @@ export default function PricePageModule({
                             </TabsContent>
                             {fuel_types &&
                               fuel_types?.map((item, index) => {
-                                const VariantsType = variants.filter(
+                                const VariantsType = variants?.filter(
                                   (variant) => variant.fuel_type === item
                                 );
 
