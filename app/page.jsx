@@ -40,24 +40,6 @@ export default async function Home() {
     fetchBlogs(),
   ]);
 
-  // ✅ WebPage Schema
-  const webpageSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: "Discover & Purchase New Cars in India | CarOnPhone",
-    description:
-      "Find your dream car on CarOnPhone. Discover new models, read reviews, and stay updated on Tata, Maruti, Toyota, Hyundai, and more. Book a test drive now!",
-    url: "https://caronphone.com/",
-    publisher: {
-      "@type": "Organization",
-      name: "CarOnPhone",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://caronphone.com/images/logo_white.png",
-      },
-    },
-  };
-
   const organizationSchema = [
     {
       "@context": "https://schema.org",
@@ -78,9 +60,6 @@ export default async function Home() {
   return (
     <>
       {/* ✅ Inject Schema Markups */}
-      <Script id="schema-webpage" type="application/ld+json">
-        {JSON.stringify(webpageSchema)}
-      </Script>
 
       <Script id="schema-organization" type="application/ld+json">
         {JSON.stringify(organizationSchema)}

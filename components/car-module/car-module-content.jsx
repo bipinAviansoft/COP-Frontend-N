@@ -39,7 +39,7 @@ export default async function CarModuleContent({
     fetchData(`/brands/${brandSlug}/${modelSlug}?type=mileage`),
     fetchData(`/faq/${brandSlug}/${modelSlug}/${variantSlug}`),
     fetchData(`/emi-calculator/${brandSlug}/${modelSlug}/${variantSlug}`),
-  ]);
+  ]);  
 
   const headerDetails = headerData?.variant_detail?.[0];
 

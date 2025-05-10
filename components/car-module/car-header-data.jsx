@@ -62,13 +62,13 @@ export default function CarHeaderData({
                   </h2>
                 </div>
               </div>
-              {description && description ? (
+              {/* {description && description ? (
                 <div className="short_des">
                   <p className="text-sm leading-5 text-black font-normal">
                     {description}
                   </p>
                 </div>
-              ) : null}
+              ) : null} */}
             </div>
             <div className="xl:w-[calc(25%-10px)] w-full hidden xl:block">
               <div className="pt-[10px]">
@@ -155,13 +155,13 @@ export default function CarHeaderData({
                   </Link>
                 </div>
               </div>
-              {description && description ? (
+              {/* {description && description ? (
                 <div className="short_des mt-[15px]">
                   <p className="text-sm leading-5 text-black font-normal">
                     {description}
                   </p>
                 </div>
-              ) : null}
+              ) : null} */}
             </div>
             <div className="xl:w-[calc(25%-10px)] w-full hidden xl:block">
               <div className="pt-[10px]">

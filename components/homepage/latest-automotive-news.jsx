@@ -93,9 +93,9 @@ export default function LatestAutomotiveNews({ blogs, title }) {
                       alt={`Image provided by ${author} for this news`}
                     />
                   </div>
-                  <h4 className="text-[16px] font-semibold line-clamp-2 mb-2">
+                  <h3 className="text-[16px] font-semibold line-clamp-2 mb-2">
                     {post_title}
-                  </h4>
+                  </h3>
                   <Button className="bg-[#e8effc] text-primary-darker rounded-full text-sm h-auto self-start mt-auto">
                     Read More <i className="bx bx-chevron-right text-xl"></i>
                   </Button>
