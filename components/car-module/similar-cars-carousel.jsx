@@ -23,6 +23,8 @@ export default function SimilarCarsCarousel({ variants, modelType }) {
     align: "start",
   });
 
+  console.log("variants: ", variants);
+
   const {
     prevBtnDisabled,
     nextBtnDisabled,
@@ -76,7 +78,7 @@ export default function SimilarCarsCarousel({ variants, modelType }) {
                   loading="lazy"
                   alt="Compare Car Model Image"
                   title="Compare Car Model Image"
-                  className="max-w-full w-full mx-[auto] my-[0]"
+                  className="max-w-full w-full mx-[auto] my-[0] min-h-[120px] object-contain"
                 />
                 <h3 className="text-[16px] leading-[24px] font-semibold text-[#000000] text-start line-clamp-2 min-h-[48px] ">
                   <Link href={`/${variant?.full_slug}`}>
@@ -90,26 +92,61 @@ export default function SimilarCarsCarousel({ variants, modelType }) {
                 {modelType == 0 ? (
                   <div className="">
                     <ul className="text-[16px] p-0 m-0 [list-style:none]">
-                      <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
-                        Engine
-                        <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
-                          {variant?.feature_values?.Engine}
-                        </span>
-                      </li>
-                      <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
-                        Fuel
-                        <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
-                          {" "}
-                          {variant?.feature_values?.Fuel}
-                        </span>
-                      </li>
-                      <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
-                        Transmission
-                        <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
-                          {" "}
-                          {variant?.feature_values?.Transmission}
-                        </span>
-                      </li>
+                      {variant?.feature_values?.Engine ? (
+                        <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
+                          Engine
+                          <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
+                            {variant?.feature_values?.Engine}
+                          </span>
+                        </li>
+                      ) : null}
+
+                      {variant?.feature_values?.Displacement ? (
+                        <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
+                          Displacement
+                          <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
+                            {variant?.feature_values?.Displacement}
+                          </span>
+                        </li>
+                      ) : null}
+
+                      {variant?.feature_values?.Fuel ? (
+                        <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
+                          Fuel
+                          <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
+                            {" "}
+                            {variant?.feature_values?.Fuel}
+                          </span>
+                        </li>
+                      ) : null}
+
+                      {variant?.feature_values?.Type_of_Fuel ? (
+                        <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
+                          Fuel
+                          <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
+                            {" "}
+                            {variant?.feature_values?.Type_of_Fuel}
+                          </span>
+                        </li>
+                      ) : null}
+                      {variant?.feature_values?.Transmission ? (
+                        <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
+                          Transmission
+                          <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
+                            {" "}
+                            {variant?.feature_values?.Transmission}
+                          </span>
+                        </li>
+                      ) : null}
+                      {variant?.feature_values?.Type_of_Transmission ? (
+                        <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
+                          Transmission
+                          <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
+                            {" "}
+                            {variant?.feature_values?.Type_of_Transmission}
+                          </span>
+                        </li>
+                      ) : null}
                       <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
                         Mileage
                         <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
@@ -122,12 +159,24 @@ export default function SimilarCarsCarousel({ variants, modelType }) {
                 ) : (
                   <div className="">
                     <ul className="text-[16px] p-0 m-0 [list-style:none]">
-                      <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
-                        Transmission
-                        <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
-                          {variant?.feature_values?.Transmission}
-                        </span>
-                      </li>
+                      {variant?.feature_values?.Transmission ? (
+                        <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
+                          Transmission
+                          <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
+                            {" "}
+                            {variant?.feature_values?.Transmission}
+                          </span>
+                        </li>
+                      ) : null}
+                      {variant?.feature_values?.Type_of_Transmission ? (
+                        <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
+                          Transmission
+                          <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
+                            {" "}
+                            {variant?.feature_values?.Type_of_Transmission}
+                          </span>
+                        </li>
+                      ) : null}
                       <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
                         Battery Capacity
                         <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
@@ -135,20 +184,42 @@ export default function SimilarCarsCarousel({ variants, modelType }) {
                           {variant?.feature_values?.Battery_Capacity}
                         </span>
                       </li>
-                      <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
-                        Power
-                        <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
-                          {" "}
-                          {variant?.feature_values?.Power}
-                        </span>
-                      </li>
-                      <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
-                        Driving Range
-                        <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
-                          {" "}
-                          {variant?.feature_values?.Driving_Range}
-                        </span>
-                      </li>
+                      {variant?.feature_values?.Power ? (
+                        <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
+                          Power
+                          <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
+                            {" "}
+                            {variant?.feature_values?.Power}
+                          </span>
+                        </li>
+                      ) : null}
+                      {variant?.feature_values?.Power_EV ? (
+                        <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
+                          Power
+                          <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
+                            {" "}
+                            {variant?.feature_values?.Power_EV}
+                          </span>
+                        </li>
+                      ) : null}
+                      {variant?.feature_values?.Driving_Range ? (
+                        <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
+                          Driving Range
+                          <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
+                            {" "}
+                            {variant?.feature_values?.Driving_Range}
+                          </span>
+                        </li>
+                      ) : null}
+                      {variant?.feature_values?.Range ? (
+                        <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
+                          Driving Range
+                          <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
+                            {" "}
+                            {variant?.feature_values?.Range}
+                          </span>
+                        </li>
+                      ) : null}
                       <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
                         Charging Time (AC)
                         <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
