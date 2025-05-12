@@ -27,7 +27,7 @@ export async function GET() {
     "warning-lights",
   ];
 
-  const urls = pages.map((page) => `${baseUrl}/${page}`);
+  let urls = pages.map((page) => `${baseUrl}/${page}`);
 
   const xml = buildXml(urls);
 

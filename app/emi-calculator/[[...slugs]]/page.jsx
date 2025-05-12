@@ -7,12 +7,28 @@ export async function generateMetadata({ params }) {
 
   const [brandSlug, modelSlug, variantSlug] = params?.slugs || [];
 
-  const data = await fetchMetaData(bodyData);
+  let variantData;
 
+  if (brandSlug && modelSlug && variantSlug) {
+    variantData = await fetchData(
+      `/emi-calculator/${brandSlug}/${modelSlug}/${variantSlug}`
+    );
+  }
+
+  const pageImg = variantData?.variant_image || null;
+
+  const data = await fetchMetaData(bodyData, pageImg);
   // return data;
   const canonicalUrl = brandSlug
     ? `${process.env.NEXT_SITE_URL}/emi-calculator/${brandSlug}/${modelSlug}/${variantSlug}`
     : `${process.env.NEXT_SITE_URL}/emi-calculator`;
+
+  if (brandSlug && modelSlug && variantSlug) {
+    data.title = `${variantData?.name} ${data.title}`;
+    data.openGraph.title = `${data.title}`;
+    data.openGraph.url = `${canonicalUrl}`;
+    data.twitter.title = `${data.title}`;
+  }
 
   return {
     ...data,

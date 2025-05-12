@@ -6,7 +6,22 @@ export async function generateMetadata({ params }) {
   const bodyData = { page_name_slug: "faqs" };
   const [brandSlug, modelSlug, variantSlug] = params?.slugs || [];
 
-  const data = await fetchMetaData(bodyData);
+  let baseVariantSlug;
+
+  if (!variantSlug) {
+    const { variants } = await fetchData(`/brands/${brandSlug}/${modelSlug}`);
+    baseVariantSlug = variants[0]?.slug?.split("/")[2];
+  }
+
+  const fullSlug = `${brandSlug}/${modelSlug}/${
+    variantSlug || baseVariantSlug
+  }`;
+
+  const faqData = await fetchData(`/faq/${fullSlug}`);
+
+  const { variant_name, variant_image, faqs } = faqData;
+
+  const data = await fetchMetaData(bodyData, variant_image);
 
   let slug;
 
@@ -16,8 +31,14 @@ export async function generateMetadata({ params }) {
       : `${process.env.NEXT_SITE_URL}/faqs/${brandSlug}/${modelSlug}`;
   }
 
-  // return data;
   const canonicalUrl = brandSlug ? slug : `${process.env.NEXT_SITE_URL}/faqs`;
+
+  if (brandSlug && modelSlug && variantSlug) {
+    data.title = `${variant_name} ${data.title}`;
+    data.openGraph.title = `${data.title}`;
+    data.openGraph.url = `${canonicalUrl}`;
+    data.twitter.title = `${data.title}`;
+  }
 
   return {
     ...data,

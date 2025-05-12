@@ -4,10 +4,11 @@ import SimilarCarsCarousel from "./similar-cars-carousel";
 export default function SimilarVariantsSection({
   selectedVariant,
   similarVariants,
+  modelType,
 }) {
   return (
     <>
-      <SimilarCarsCarousel variants={similarVariants} />
+      <SimilarCarsCarousel variants={similarVariants} modelType={modelType} />
     </>
   );
 }
