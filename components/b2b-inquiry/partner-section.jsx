@@ -59,6 +59,7 @@ export default function B2BpartnerSection() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Origin: `${process.env.NEXT_SITE_URL}`,
           },
           body: JSON.stringify(input), // Send the form data as a JSON body
         }
