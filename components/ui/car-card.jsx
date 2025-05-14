@@ -1,3 +1,5 @@
+"use client";
+
 import { cn, formatCarMinMaxPrice } from "@/lib/utils";
 import { Separator } from "@radix-ui/react-separator";
 import Image from "next/image";
@@ -36,6 +38,11 @@ export default function CarCard({ carDetails, toggleWishlist }) {
   const handleImageError = () => {
     setCardImage("/images/coming-Soon.jpg");
   };
+
+  // Format the launch date outside of the JSX to avoid hydration errors
+  const formattedLaunchDate = launch_date
+    ? format(new Date(`${launch_date.split("T")[0]} 00:00:00`), "dd MMMM, yyyy")
+    : "";
 
   return (
     <CityProtectedLink href={slug} className="group">
@@ -122,10 +129,7 @@ export default function CarCard({ carDetails, toggleWishlist }) {
               <Separator className="h-[1px] bg-black/10" />
               <span className="text-[10px] md:text-xs lg:text-sm text-gray-darker inline-block px-3 lg:px-4 py-3">
                 {isUpcoming ? "Expected Launch" : "Launched on"}{" "}
-                {format(
-                  new Date(`${launch_date.split("T")[0]} 00:00:00`),
-                  "dd MMMM, yyyy"
-                )}
+                {formattedLaunchDate}
               </span>
             </>
           )}

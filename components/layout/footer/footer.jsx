@@ -1,11 +1,18 @@
-import Button from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+"use client";
+import { useEffect, useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import Link from "next/link";
 import EmailSubscribeForm from "./email-subscribe-form";
 
 export default function Footer() {
+  // Inside Footer component
+  const [year, setYear] = useState(null);
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
+
   return (
     <footer className="bg-[#f2f4f6] text-primary-darker pt-8">
       <section className="container pt-6 flex flex-col gap-y-6 lg:flex-row items-center lg:items-start">
@@ -116,7 +123,7 @@ export default function Footer() {
           </a>
         </div>
         <span className="font-semibold text-sm">
-          © {new Date().getFullYear()} CarOnPhone. All Rights Reserved
+          © {year ? `${year} CarOnPhone. All Rights Reserved` : "CarOnPhone."}
         </span>
       </section>
     </footer>

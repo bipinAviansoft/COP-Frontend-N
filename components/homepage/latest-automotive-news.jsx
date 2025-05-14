@@ -1,12 +1,12 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { usePrevNextButtons } from "@/hooks/use-prev-next-buttons";
 import Button from "../ui/button";
 import useEmblaCarousel from "embla-carousel-react";
-import Image from "next/image";
-import { formatDistanceToNow, formatDistanceToNowStrict } from "date-fns";
 import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
+import { formatDistanceToNowStrict } from "date-fns";
 
 export default function LatestAutomotiveNews({ blogs, title }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ align: "start" }, [
@@ -20,20 +20,24 @@ export default function LatestAutomotiveNews({ blogs, title }) {
     prevBtnDisabled,
   } = usePrevNextButtons(emblaApi);
 
+  // State to store time text for each blog
+  const [relativeTimes, setRelativeTimes] = useState([]);
+
+  useEffect(() => {
+    const times = blogs.map((blog) =>
+      formatDistanceToNowStrict(new Date(blog.post_date), { addSuffix: true })
+    );
+    setRelativeTimes(times);
+  }, [blogs]);
+
   return (
     <>
       {/* header */}
       <div className="flex justify-between items-center mb-2">
-        <h2 className=" text-[18px] md:text-[24px] font-[600] leading-[28px] text-[#000000] m-0 ">
+        <h2 className="text-[18px] md:text-[24px] font-[600] leading-[28px] text-[#000000] m-0">
           {title ? `${title} News & Updates` : "Latest Automotive News"}
         </h2>
         <div className="flex items-center gap-x-2">
-          {/* <Button
-            animated
-            className="uppercase text-xs md:text-sm lg:text-base tracking-wider h-auto"
-          >
-            Explore
-          </Button> */}
           <div className="hidden md:flex items-center gap-x-2">
             <Button
               onClick={onPrevButtonClick}
@@ -56,10 +60,11 @@ export default function LatestAutomotiveNews({ blogs, title }) {
       {/* carousel */}
       <div ref={emblaRef} className="overflow-hidden select-none">
         <ul className="flex touch-pan-y touch-pinch-zoom cursor-grab -ml-4">
-          {blogs?.map((news) => {
-            const { ID, news_image, brand, post_date, post_title } = news;
+          {blogs?.map((news, index) => {
+            const { ID, news_image, brand, post_title } = news;
             const { url, link } = news_image;
             const { name: author, image: authorImgUrl } = brand["0"];
+
             return (
               <li
                 key={ID}
@@ -81,9 +86,7 @@ export default function LatestAutomotiveNews({ blogs, title }) {
                       <span className="text-sm font-medium">{author}</span>
                     </div>
                     <span className="text-xs text-gray-darker">
-                      {formatDistanceToNowStrict(new Date(post_date), {
-                        addSuffix: true,
-                      })}
+                      {relativeTimes[index] || ""}
                     </span>
                   </div>
                   <div className="relative w-full aspect-5/3 rounded-lg overflow-hidden mb-4">
