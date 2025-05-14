@@ -32,16 +32,17 @@ export default async function UpcomingCarContent({
   // Find the car model based on the slug from all the pages
   const carDetail = carModelsData.find((data) => data.slug == slug);
 
-  const brand = brandSlug.replace(/-cars$/, "").replace(/-/g, " ");
+  // const brand = brandSlug.replace(/-cars$/, "").replace(/-/g, " ");
 
   // upcoming-cars/models?brand=jeep-cars&model=sub-4m-suv
-  const [headerData, modelDescriptionData, similarModelsData, blogs] =
+  const [headerData, modelDescriptionData, similarModelsData] =
     await Promise.all([
       fetchData(`/upcoming-cars/models?brand=${brandSlug}&model=${modelSlug}`),
       fetchData(`/brands/${brandSlug}/${modelSlug}/modelDesc`),
       fetchData(`/brands/${brandSlug}/similarModels`),
-      fetchBlogs(brand),
     ]);
+
+  const [blogs] = await Promise.all([fetchBlogs(headerData?.data?.brand_name)]);
 
   // ✅ WebPage Schema
   const webpageSchema = {
