@@ -138,6 +138,22 @@ export default async function CarModuleContent({
         "@type": "Brand",
         name: `${headerDetails?.brand_name}`,
       },
+      review: {
+        "@type": "Review",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: `${
+            reviewData?.averageRating > 0 ? reviewData?.averageRating : 4.5
+          }`,
+          bestRating: `${
+            reviewData?.averageRating > 0 ? reviewData?.averageRating : 4.5
+          }`,
+        },
+        author: {
+          "@type": "Person",
+          name: "CarOnPhone",
+        },
+      },
     },
   ];
 

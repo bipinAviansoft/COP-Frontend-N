@@ -91,11 +91,6 @@ export default function RootLayout({ children }) {
             <Footer />
           </QueryProvider>
         </StoreProvider>
-        <script
-          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_SEARCH_PLACES_API}&libraries=places`}
-          async
-          defer
-        ></script>
       </body>
     </html>
   );
