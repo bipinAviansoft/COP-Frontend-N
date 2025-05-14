@@ -39,7 +39,7 @@ export default async function CarModuleContent({
     fetchData(`/brands/${brandSlug}/${modelSlug}?type=mileage`),
     fetchData(`/faq/${brandSlug}/${modelSlug}/${variantSlug}`),
     fetchData(`/emi-calculator/${brandSlug}/${modelSlug}/${variantSlug}`),
-  ]);  
+  ]);
 
   const headerDetails = headerData?.variant_detail?.[0];
 
@@ -70,19 +70,16 @@ export default async function CarModuleContent({
   const webpageSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: `${headerDetails?.brand_name} ${headerDetails?.model_name} ${
-      modelPage ? "" : headerDetails?.variant_name
-    }`,
-    description: modelDescriptionData?.description || "",
-    url: modelPage
-      ? `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}`
-      : `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}/${variantSlug}`,
+    name: "Discover & Purchase New Cars in India | CarOnPhone",
+    description:
+      "Find your dream car on CarOnPhone. Discover new models, read reviews, and stay updated on Tata, Maruti, Toyota, Hyundai, and more. Book a test drive now!",
+    url: "https://caronphone.com/",
     publisher: {
       "@type": "Organization",
       name: "CarOnPhone",
       logo: {
         "@type": "ImageObject",
-        url: "https://caronphone.com/images/logo_white.png",
+        url: "https://caronphone.com/favicon.ico",
       },
     },
   };
@@ -140,18 +137,6 @@ export default async function CarModuleContent({
       brand: {
         "@type": "Brand",
         name: `${headerDetails?.brand_name}`,
-      },
-      review: {
-        "@type": "Review",
-        reviewRating: {
-          "@type": "Rating",
-          ratingValue: `${reviewData?.totalRating}`,
-          bestRating: `${reviewData?.averageRating}`,
-        },
-        author: {
-          "@type": "Person",
-          name: "CarOnPhone",
-        },
       },
     },
   ];
@@ -303,10 +288,18 @@ export default async function CarModuleContent({
       color: [...new Set(variantColorsData?.map((item) => item.color_name))],
       aggregateRating: {
         "@type": "AggregateRating",
-        reviewCount: `${reviewData?.totalRating}`,
-        ratingValue: `${reviewData?.averageRating}`,
-        worstRating: "",
-        bestRating: `${reviewData?.averageRating}`,
+        reviewCount: `${
+          reviewData?.totalRating > 0 ? reviewData?.totalRating : 4.5
+        }`,
+        ratingValue: `${
+          reviewData?.averageRating > 0 ? reviewData?.averageRating : 4.5
+        }`,
+        worstRating: `${
+          reviewData?.averageRating > 0 ? reviewData?.averageRating : 4.5
+        }`,
+        bestRating: `${
+          reviewData?.averageRating > 0 ? reviewData?.averageRating : 4.5
+        }`,
       },
       "@graph": [
         {

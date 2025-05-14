@@ -23,8 +23,6 @@ export default function SimilarCarsCarousel({ variants, modelType }) {
     align: "start",
   });
 
-  console.log("variants: ", variants);
-
   const {
     prevBtnDisabled,
     nextBtnDisabled,

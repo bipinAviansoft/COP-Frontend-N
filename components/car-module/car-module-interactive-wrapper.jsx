@@ -337,7 +337,7 @@ export default function CarModuleInteractiveWrapper({
                             return (
                               <>
                                 <TabsTrigger
-                                  key={index + new Date().getTime()}
+                                  key={`spec_tabs_model_${index}`}
                                   value={`specTab${index + 1}`}
                                   className="relative group text-[#24272C] flex gap-[6px] items-center justify-center data-[state=active]:text-[#0177AA] text-[16px] leading-[22px] font-[400] p-[5px] !shadow-none border-b-[1px] border-transparent data-[state=active]:border-[#0177AA] mb-[-1px] !rounded-none before:content-[''] before:absolute before:left-[50%] before:translate-x-[-50%] before:bottom-[-7px] before:w-0 before:h-0 before:border-l-[7px] before:border-l-[transparent] before:border-r-[7px] before:border-r-[transparent] before:border-t-[7px] before:border-t-[#0177AA] data-[state=active]:before:opacity-100 before:opacity-0"
                                 >
@@ -363,7 +363,7 @@ export default function CarModuleInteractiveWrapper({
                               <>
                                 <TabsContent
                                   className="mb-[30px]"
-                                  key={index + new Date().getTime()}
+                                  key={`spec_tabs_content_model_${index}`}
                                   value={`specTab${index + 1}`}
                                 >
                                   <div className="w-full flex flex-wrap gap-y-[20px]">
@@ -454,7 +454,7 @@ export default function CarModuleInteractiveWrapper({
                                 return (
                                   <>
                                     <TabsTrigger
-                                      key={index + new Date().getTime()}
+                                      key={`tech_feature_tabs_${index}`}
                                       value={`techFeatTab${index + 1}`}
                                       className="relative group text-[#24272C] flex gap-[6px] items-center justify-center data-[state=active]:text-[#0177AA] text-[16px] leading-[22px] font-[400] p-[5px] !shadow-none border-b-[1px] border-transparent data-[state=active]:border-[#0177AA] mb-[-1px] !rounded-none before:content-[''] before:absolute before:left-[50%] before:translate-x-[-50%] before:bottom-[-7px] before:w-0 before:h-0 before:border-l-[7px] before:border-l-[transparent] before:border-r-[7px] before:border-r-[transparent] before:border-t-[7px] before:border-t-[#0177AA] data-[state=active]:before:opacity-100 before:opacity-0"
                                     >
@@ -480,7 +480,7 @@ export default function CarModuleInteractiveWrapper({
                                   <>
                                     <TabsContent
                                       className="mb-[30px]"
-                                      key={index + new Date().getTime()}
+                                      key={`tech_feature_tabs_content_${index}`}
                                       value={`techFeatTab${index + 1}`}
                                     >
                                       <div className="w-full flex flex-wrap gap-y-[20px]">
@@ -867,7 +867,7 @@ export default function CarModuleInteractiveWrapper({
                                 return (
                                   <>
                                     <TabsTrigger
-                                      key={index + new Date().getTime()}
+                                      key={`spec_warrenty_tabs_${index}`}
                                       value={`techFeatTab${index + 1}`}
                                       className="relative group text-[#24272C] flex gap-[6px] items-center justify-center data-[state=active]:text-[#0177AA] text-[16px] leading-[22px] font-[400] p-[5px] !shadow-none border-b-[1px] border-transparent data-[state=active]:border-[#0177AA] mb-[-1px] !rounded-none before:content-[''] before:absolute before:left-[50%] before:translate-x-[-50%] before:bottom-[-7px] before:w-0 before:h-0 before:border-l-[7px] before:border-l-[transparent] before:border-r-[7px] before:border-r-[transparent] before:border-t-[7px] before:border-t-[#0177AA] data-[state=active]:before:opacity-100 before:opacity-0"
                                     >
@@ -893,7 +893,7 @@ export default function CarModuleInteractiveWrapper({
                                   <>
                                     <TabsContent
                                       className="mb-[30px]"
-                                      key={index + new Date().getTime()}
+                                      key={`spec_warrenty_tabs_content_${index}`}
                                       value={`techFeatTab${index + 1}`}
                                     >
                                       <div className="w-full flex flex-wrap gap-y-[20px]">

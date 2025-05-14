@@ -106,8 +106,8 @@ export default async function UpcomingCarContent({
         "@type": "Review",
         reviewRating: {
           "@type": "Rating",
-          ratingValue: "",
-          bestRating: "",
+          ratingValue: "4.5",
+          bestRating: "4.5",
         },
         author: {
           "@type": "Person",

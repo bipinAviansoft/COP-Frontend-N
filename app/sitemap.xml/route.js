@@ -6,6 +6,8 @@ export async function GET() {
     `${baseUrl}/sitemaps/models-sitemap.xml`,
     `${baseUrl}/sitemaps/variants-sitemap.xml`,
     `${baseUrl}/sitemaps/pages-sitemap.xml`,
+    `${baseUrl}/news/sitemap_index.xml`, // https://caronphone.com/news/sitemap_index.xml
+    `${baseUrl}/blog/sitemap_index.xml`, // https://caronphone.com/blog/sitemap_index.xml
   ];
 
   const body = `<?xml version="1.0" encoding="UTF-8"?>

@@ -4,7 +4,6 @@ import { fetchData } from "@/lib/fetch";
 export async function GET() {
   const baseUrl = process.env.NEXT_SITE_URL || "https://localhost:3000";
   const pages = [
-    "",
     "about-us",
     "advanced-search",
     "all-brand",
@@ -28,7 +27,7 @@ export async function GET() {
     "warning-lights",
   ];
 
-  let urls = pages.map((page) => `${baseUrl}${page ? `/${page}` : ""}`);
+  const urls = pages.map((page) => `${baseUrl}/${page}`);
 
   const xml = buildXml(urls);
 
