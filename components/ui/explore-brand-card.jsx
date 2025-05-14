@@ -63,15 +63,17 @@ export default function ExploreBrandCard({ model, singlePrice }) {
         />
       </Link>
       <div className="px-1 lg:px-0">
-        <Link
-          href={`/${slug}`}
-          className="text-sm sm:text-base lg:text-xl font-semibold mb-1 lg:mb-2 xl:mb-3 text-black hover:text-gray-700 line-clamp-1"
-        >
-          {name}
-        </Link>
-        <h4 className="text-sm sm:text-base lg:text-xl font-semibold text-black mb-0.5 lg:mb-1">
+        <h2>
+          <Link
+            href={`/${slug}`}
+            className="text-sm sm:text-base lg:text-xl font-semibold mb-1 lg:mb-2 xl:mb-3 text-black hover:text-gray-700 line-clamp-1"
+          >
+            {name}
+          </Link>
+        </h2>
+        <div className="text-sm sm:text-base lg:text-xl font-semibold text-black mb-0.5 lg:mb-1">
           ₹ {formattedPrice} *
-        </h4>
+        </div>
         <p className="text-[10px] lg:text-xs text-gray-500 font-medium mb-2 lg:mb-3">
           {" "}
           Ex-showroom price{" "}

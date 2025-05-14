@@ -6,6 +6,8 @@ export async function GET() {
     `${baseUrl}/sitemaps/models-sitemap.xml`,
     `${baseUrl}/sitemaps/variants-sitemap.xml`,
     `${baseUrl}/sitemaps/pages-sitemap.xml`,
+    `${baseUrl}/sitemaps/emi-calculator-sitemap.xml`,
+    `${baseUrl}/sitemaps/faqs-sitemap.xml`,
     `${baseUrl}/news/sitemap_index.xml`, // https://caronphone.com/news/sitemap_index.xml
     `${baseUrl}/blog/sitemap_index.xml`, // https://caronphone.com/blog/sitemap_index.xml
   ];

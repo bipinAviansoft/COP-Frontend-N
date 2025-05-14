@@ -49,9 +49,9 @@ export default function CarVariantSection({
   return (
     <>
       <div className="flex items-center justify-between flex-wrap">
-        <h2 className="text-gray-500 text-sm md:text-base lg:text-lg xl:text-xl font-medium mb-0">
+        <h1 className="text-gray-500 text-sm md:text-base lg:text-lg xl:text-xl font-medium mb-0">
           {brand_name} Cars In India
-        </h2>
+        </h1>
         <Select defaultValue={`/${selectedBrandSlug}`}>
           <SelectTrigger className="w-[160px] bg-transparent border-gray-400 focus:ring-0 focus:ring-offset-0 lg:hidden flex">
             <SelectValue />
