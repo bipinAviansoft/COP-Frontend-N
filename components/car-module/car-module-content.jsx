@@ -197,9 +197,13 @@ export default async function CarModuleContent({
         ...(galleryData?.Interior?.graphic_file || []),
       ],
       offers: {
+        "@type": "Offer",
         priceCurrency: "INR",
         price: headerDetails?.ex_showroom_price,
         availability: "https://schema.org/InStock",
+        url: modelPage
+          ? `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}`
+          : `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}/${variantSlug}`,
       },
       brand: `${headerDetails?.brand_name}`,
       sku: "",
