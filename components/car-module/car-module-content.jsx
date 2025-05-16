@@ -244,7 +244,7 @@ export default async function CarModuleContent({
           getFeatureValue(
             specificationSchemaData?.Specifications?.Fuel?.details,
             "Fuel Tank Capacity"
-          ).replace(/ litres$/, "")
+          )?.replace(/ litres$/, "")
         ),
       },
       numberOfAirbags: getFeatureValue(
