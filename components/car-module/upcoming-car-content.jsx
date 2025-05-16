@@ -142,7 +142,7 @@ export default async function UpcomingCarContent({
         modelPage={modelPage}
         upcoming_stage={upcoming_stage}
         similarModelsData={similarModelsData}
-        blogs={blogs?.result}
+        blogs={blogs?.result || null}
       />
     </>
   );

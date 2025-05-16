@@ -73,15 +73,21 @@ export default function UpcomingCarModule({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const similarModelsCars = similarModelsData?.models;
+  let similarModelsCars = [];
+  let similarModelBodyType = [];
+  let similarModelBudgetType = [];
 
-  const similarModelBodyType = similarModelsCars?.filter(
-    (item) => item?.car_type === upcomingCarData?.body_type
-  );
+  if (similarModelsData && similarModelsData?.models) {
+    similarModelsCars = similarModelsData?.models;
 
-  const similarModelBudgetType = [...similarModelsCars].sort(
-    (a, b) => a.min_price - b.min_price
-  );
+    similarModelBodyType = similarModelsCars?.filter(
+      (item) => item?.car_type === upcomingCarData?.body_type
+    );
+
+    similarModelBudgetType = [...similarModelsCars]?.sort(
+      (a, b) => a.min_price - b.min_price
+    );
+  }
 
   return (
     <>
@@ -224,25 +230,28 @@ export default function UpcomingCarModule({
                     </div>
                   </div>
                   {/* end */}
-
-                  <div className="bg-white rounded-[16px] py-[15px] md:py-[30px] px-[15px] md:px-[40px] w-full">
-                    <LatestAutomotiveNews
-                      blogs={blogs}
-                      title={`${headerData?.name}`}
+                  {blogs ? (
+                    <div className="bg-white rounded-[16px] py-[15px] md:py-[30px] px-[15px] md:px-[40px] w-full">
+                      <LatestAutomotiveNews
+                        blogs={blogs}
+                        title={`${headerData?.name}`}
+                      />
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+              {similarModelsData ? (
+                <div className="w-full xl:w-[calc(25%-10px)]">
+                  <div className="">
+                    <SimilarCarModel
+                      brandSlug={brandSlug}
+                      similarModelsData={similarModelsData}
+                      similarModelBodyType={similarModelBodyType}
+                      similarModelBudgetType={similarModelBudgetType}
                     />
                   </div>
                 </div>
-              </div>
-              <div className="w-full xl:w-[calc(25%-10px)]">
-                <div className="">
-                  <SimilarCarModel
-                    brandSlug={brandSlug}
-                    similarModelsData={similarModelsData}
-                    similarModelBodyType={similarModelBodyType}
-                    similarModelBudgetType={similarModelBudgetType}
-                  />
-                </div>
-              </div>
+              ) : null}
             </div>
           </div>
         </div>

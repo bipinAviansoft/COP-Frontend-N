@@ -171,8 +171,6 @@ export default async function CarModuleContent({
     })),
   };
 
-  // console.log("specificationSchemaData: ", specificationSchemaData);
-
   const getFeatureValue = (detailsArray, keyName) => {
     const feature = detailsArray?.find(
       (item) =>
@@ -210,7 +208,7 @@ export default async function CarModuleContent({
       ],
       offers: {
         priceCurrency: "INR",
-        price: `${variantEmiData?.ex_showroom_price}`,
+        price: `${headerDetails?.ex_showroom_price || ""}`,
         availability: "https://schema.org/InStock",
       },
       brand: `${headerDetails?.brand_name}`,
@@ -242,7 +240,7 @@ export default async function CarModuleContent({
         "@type": "QualitativeValue",
         name: fuel,
       })),
-      description: `${modelDescriptionData?.description}`,
+      description: `${modelDescriptionData?.description || ""}`,
       mpn: "",
       numberOfForwardGears: "",
       fuelCapacity: {
@@ -300,12 +298,12 @@ export default async function CarModuleContent({
           },
         },
       ],
-      vehicleSeatingCapacity: `${variantEmiData?.seating_capacity}`,
+      vehicleSeatingCapacity: `${variantEmiData?.seating_capacity || ""}`,
       color: [...new Set(variantColorsData?.map((item) => item.color_name))],
       aggregateRating: {
         "@type": "AggregateRating",
         reviewCount: `${
-          reviewData?.totalRating > 0 ? reviewData?.totalRating : 4.5
+          reviewData?.totalRating > 0 ? reviewData?.totalRating : 10
         }`,
         ratingValue: `${
           reviewData?.averageRating > 0 ? reviewData?.averageRating : 4.5
@@ -332,22 +330,6 @@ export default async function CarModuleContent({
       ],
     },
   ];
-
-  // console.log(`resp ${variantsData}`, variantsData);
-  // console.log(`resp ${headerDetails}`, headerDetails);
-  // console.log(`resp ${pricingData}`, pricingData);
-  // console.log(`resp ${variantColorsData}`, variantColorsData);
-  // console.log(`resp ${modelDescriptionData}`, modelDescriptionData);
-  // console.log(`resp ${specificationData}`, specificationData);
-  // console.log(`resp ${similarModelsData}`, similarModelsData);
-  // console.log(`resp ${galleryData}`, galleryData);
-  // console.log(`resp ${similarVariantsData}`, similarVariantsData);
-  // console.log(`resp ${variantsMileageData}`, variantsMileageData);
-  // console.log(`resp ${faqFullData}`, faqFullData);
-  // console.log(`resp ${dealersData}`, dealersData);
-  // console.log(`resp ${variantEmiData}`, variantEmiData);
-  // console.log(`resp ${reviewData}`, reviewData);
-  // console.log(`resp ${blogs?.result}`, blogs?.result);
 
   return (
     <>

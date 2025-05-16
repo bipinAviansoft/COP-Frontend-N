@@ -11,7 +11,7 @@ export default function SimilarCarModel({
   return (
     <>
       <div className="space-y-[20px]">
-        {similarModelsData?.models.length > 0 ? (
+        {similarModelsData?.models?.length > 0 ? (
           <div className="py-[25px] px-[17px] bg-white rounded-[16px] ">
             <h2 className="text-[20px] font-[600] leading-[27px] text-[#000000] mb-[10px]">
               More from {similarModelsData?.brand_name}

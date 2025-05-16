@@ -33,6 +33,7 @@ export default function SimilarCarsCarousel({ variants, modelType }) {
   var similarCarsSettings = {
     dots: false,
     infinite: false,
+    adaptiveHeight: false,
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
@@ -62,7 +63,7 @@ export default function SimilarCarsCarousel({ variants, modelType }) {
 
   return (
     <>
-      <Slider {...similarCarsSettings}>
+      <Slider {...similarCarsSettings} className="similar_var_slider">
         {variants.map((variant, index) => {
           const formattedPrice = !isNaN(variant?.ex_showroom_price)
             ? formatCarPrice(variant?.ex_showroom_price)
@@ -145,13 +146,15 @@ export default function SimilarCarsCarousel({ variants, modelType }) {
                           </span>
                         </li>
                       ) : null}
-                      <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
-                        Mileage
-                        <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
-                          {" "}
-                          {variant?.feature_values?.Mileage}
-                        </span>
-                      </li>
+                      {variant?.feature_values?.Mileage ? (
+                        <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
+                          Mileage
+                          <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
+                            {" "}
+                            {variant?.feature_values?.Mileage}
+                          </span>
+                        </li>
+                      ) : null}
                     </ul>
                   </div>
                 ) : (
@@ -175,13 +178,15 @@ export default function SimilarCarsCarousel({ variants, modelType }) {
                           </span>
                         </li>
                       ) : null}
-                      <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
-                        Battery Capacity
-                        <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
-                          {" "}
-                          {variant?.feature_values?.Battery_Capacity}
-                        </span>
-                      </li>
+                      {variant?.feature_values?.Battery_Capacity ? (
+                        <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
+                          Battery Capacity
+                          <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
+                            {" "}
+                            {variant?.feature_values?.Battery_Capacity}
+                          </span>
+                        </li>
+                      ) : null}
                       {variant?.feature_values?.Power ? (
                         <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
                           Power
@@ -218,13 +223,15 @@ export default function SimilarCarsCarousel({ variants, modelType }) {
                           </span>
                         </li>
                       ) : null}
-                      <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
-                        Charging Time (AC)
-                        <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
-                          {" "}
-                          {variant?.feature_values?.Charging_Time_AC}
-                        </span>
-                      </li>
+                      {variant?.feature_values?.Charging_Time_AC ? (
+                        <li className="text-[15px] font-normal leading-[22px] text-[#565F64] mb-[10px]">
+                          Charging Time (AC)
+                          <span className="block text-[14px] font-normal text-[#000000] leading-[20px] bg-[#FFFFFF] rounded-[4px] px-[7px] py-[4px]">
+                            {" "}
+                            {variant?.feature_values?.Charging_Time_AC}
+                          </span>
+                        </li>
+                      ) : null}
                     </ul>
                   </div>
                 )}

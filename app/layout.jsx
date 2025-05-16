@@ -46,9 +46,50 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        {process.env.NEXT_SITE_URL == "https://caronphone.com" ? (
+          <>
+            {/* ahrefs */}
+            <Script
+              src="https://analytics.ahrefs.com/analytics.js"
+              data-key="LiNR0FsCk0jNb2q62YxJcA"
+              async
+            ></Script>
+            {/* GTM */}
+            <Script id="gtm-script" strategy="beforeInteractive">
+              {`
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-P65SJ94H');
+          `}
+            </Script>
+            {/* Hotjar Tracking Code for https://caronphone.com/ */}
+            <Script>
+              {`(function(h, o, t, j, a, r) {
+                h.hj = h.hj || function() {
+                    (h.hj.q = h.hj.q || []).push(arguments)
+                };
+                h._hjSettings = {
+                    hjid: 4988983,
+                    hjsv: 6
+                };
+                a = o.getElementsByTagName('head')[0];
+                r = o.createElement('script');
+                r.async = 1;
+                r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+                a.appendChild(r);
+            })(window, document, 'https: //static.hotjar.com/c/hotjar-', '.js?sv=');`}
+            </Script>
+            <meta name="robots" content="index, follow" />
+          </>
+        ) : (
+          <meta name="robots" content="noindex, nofollow" />
+        )}
+
         <link rel="icon" type="image/png" href="/favicon.png" />
         <meta name="theme-color" content="#0177aa" />
-        <meta name="robots" content="noindex, nofollow" />
+
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="application-name" content="CarOnPhone" />
@@ -69,6 +110,15 @@ export default function RootLayout({ children }) {
       <body
         className={`${poppins.className} antialiased flex flex-col bg-theme-background selection:bg-sky-100 selection:text-sky-600`}
       >
+        {/* ✅ GTM <noscript> at top of <body> */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-P65SJ94H"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
         <StoreProvider>
           <QueryProvider>
             <ToastContainer

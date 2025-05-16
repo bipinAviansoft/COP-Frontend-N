@@ -186,7 +186,12 @@ body{font-family: "Poppins", serif;}
 @media screen and (min-width: 1024px) {
   .slick-track {
     display: flex !important;
-    align-items: center !important;
+  }
+  .similar_var_slider .slick-slide{
+    height: auto;
+  }
+  .similar_var_slider .slick-slide > div,.similar_var_slider .slick-slide > div > div{
+    height: 100%;
   }
 }
 .fuel_cal_section:after {
