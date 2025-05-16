@@ -44,8 +44,8 @@ export default async function CarModuleContent({
   const headerDetails = headerData?.variant_detail?.[0];
 
   if (!headerDetails) {
-    console.error("Missing header details");
-    return null;
+    console.error("Model is not available");
+    throw new Error("Model is not available");
   }
 
   const cookieStore = cookies();
