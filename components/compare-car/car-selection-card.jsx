@@ -43,9 +43,9 @@ export default function CarSelectionCard({
             onClick={isNext ? () => openModal(true) : () => {}}
           >
             <Image src={AddCarIcon} alt="" className="w-[80px]" />
-            <h4 className="text-base lg:text-lg font-semibold text-gray-500">
+            <div className="text-base lg:text-lg font-semibold text-gray-500">
               Add Car to Compare
-            </h4>
+            </div>
           </div>
         ) : (
           <div

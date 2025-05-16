@@ -89,20 +89,26 @@ export default async function CarModuleContent({
     {
       "@type": "ListItem",
       position: 1,
-      name: "Home",
-      item: `${process.env.NEXT_SITE_URL}`,
+      item: {
+        "@id": `${process.env.NEXT_SITE_URL}`,
+        name: "Home",
+      },
     },
     {
       "@type": "ListItem",
       position: 2,
-      name: headerDetails?.brand_name,
-      item: `${process.env.NEXT_SITE_URL}/${brandSlug}`,
+      item: {
+        "@id": `${process.env.NEXT_SITE_URL}/${brandSlug}`,
+        name: headerDetails?.brand_name || "",
+      },
     },
     {
       "@type": "ListItem",
       position: 3,
-      name: headerDetails?.model_name,
-      item: `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}`,
+      item: {
+        "@id": `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}`,
+        name: headerDetails?.model_name || "",
+      },
     },
   ];
 
@@ -111,8 +117,10 @@ export default async function CarModuleContent({
     breadcrumbItems.push({
       "@type": "ListItem",
       position: 4,
-      name: headerDetails?.variant_name,
-      item: `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}/${variantSlug}`,
+      item: {
+        "@id": `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}/${variantSlug}`,
+        name: headerDetails?.variant_name || "",
+      },
     });
   }
 
@@ -142,12 +150,10 @@ export default async function CarModuleContent({
         "@type": "Review",
         reviewRating: {
           "@type": "Rating",
-          ratingValue: `${
-            reviewData?.averageRating > 0 ? reviewData?.averageRating : 4.5
-          }`,
-          bestRating: `${
-            reviewData?.averageRating > 0 ? reviewData?.averageRating : 4.5
-          }`,
+          ratingValue:
+            reviewData?.averageRating > 0 ? reviewData?.averageRating : 4.5,
+          bestRating:
+            reviewData?.averageRating > 0 ? reviewData?.averageRating : 4.5,
         },
         author: {
           "@type": "Person",
@@ -180,22 +186,6 @@ export default async function CarModuleContent({
     return feature ? feature?.feature_value?.trim() : null;
   };
 
-  const getFeatureValueFromSpecifications = (
-    specifications,
-    sectionName,
-    keyName
-  ) => {
-    const section = specifications[sectionName];
-    if (!section || !section.details) return null;
-
-    const feature = section.details.find(
-      (item) =>
-        item.features_name.trim().toLowerCase() === keyName.trim().toLowerCase()
-    );
-
-    return feature ? feature.feature_value.trim() : null;
-  };
-
   // ✅ Car Schema
   const carSchema = [
     {
@@ -208,7 +198,7 @@ export default async function CarModuleContent({
       ],
       offers: {
         priceCurrency: "INR",
-        price: `${headerDetails?.ex_showroom_price || ""}`,
+        price: headerDetails?.ex_showroom_price,
         availability: "https://schema.org/InStock",
       },
       brand: `${headerDetails?.brand_name}`,
@@ -246,15 +236,17 @@ export default async function CarModuleContent({
       fuelCapacity: {
         "@type": "QuantitativeValue",
         unitCode: "Ltr",
-        value: `${getFeatureValue(
-          specificationSchemaData?.Specifications?.Fuel?.details,
-          "Fuel Tank Capacity"
-        )}`,
+        value: parseInt(
+          getFeatureValue(
+            specificationSchemaData?.Specifications?.Fuel?.details,
+            "Fuel Tank Capacity"
+          ).replace(/ litres$/, "")
+        ),
       },
-      numberOfAirbags: `${getFeatureValue(
+      numberOfAirbags: getFeatureValue(
         specificationData?.features?.safety_And_Driver_Assistance?.details,
         "No Of Airbags"
-      )}`,
+      ),
       fuelEfficiency: [
         {
           "@type": "QuantitativeValue",
@@ -298,22 +290,17 @@ export default async function CarModuleContent({
           },
         },
       ],
-      vehicleSeatingCapacity: `${variantEmiData?.seating_capacity || ""}`,
+      vehicleSeatingCapacity: variantEmiData?.seating_capacity || "",
       color: [...new Set(variantColorsData?.map((item) => item.color_name))],
       aggregateRating: {
         "@type": "AggregateRating",
-        reviewCount: `${
-          reviewData?.totalRating > 0 ? reviewData?.totalRating : 10
-        }`,
-        ratingValue: `${
-          reviewData?.averageRating > 0 ? reviewData?.averageRating : 4.5
-        }`,
-        worstRating: `${
-          reviewData?.averageRating > 0 ? reviewData?.averageRating : 4.5
-        }`,
-        bestRating: `${
-          reviewData?.averageRating > 0 ? reviewData?.averageRating : 4.5
-        }`,
+        reviewCount: reviewData?.totalRating > 0 ? reviewData?.totalRating : 10,
+        ratingValue:
+          reviewData?.averageRating > 0 ? reviewData?.averageRating : 4.5,
+        worstRating:
+          reviewData?.averageRating > 0 ? reviewData?.averageRating : 4.5,
+        bestRating:
+          reviewData?.averageRating > 0 ? reviewData?.averageRating : 4.5,
       },
       "@graph": [
         {

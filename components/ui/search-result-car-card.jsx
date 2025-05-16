@@ -52,12 +52,14 @@ export default function SearchResultCarCard({ carDetails, upcoming = false }) {
       </div>
       <div className="grow flex flex-col px-0.5 md:px-1.5 lg:px-0 py-1">
         <div className="grow flex flex-col py-2">
-          <Link
-            href={slug}
-            className="text-sm md:text-base lg:text-lg font-semibold text-theme-black line-clamp-1 mb-1"
-          >
-            {name}
-          </Link>
+          <h3>
+            <Link
+              href={slug}
+              className="text-sm md:text-base lg:text-lg font-semibold text-theme-black line-clamp-1 mb-1"
+            >
+              {name}
+            </Link>
+          </h3>
           <p className="text-sm md:text-base lg:text-lg font-semibold text-[#484848]">
             ₹ {formatCarMinMaxPrice(min_price, max_price)} *
           </p>

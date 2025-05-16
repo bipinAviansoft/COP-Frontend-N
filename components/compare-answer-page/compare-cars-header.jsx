@@ -55,9 +55,9 @@ export default function CompareCarsHeader({
           </PopoverContent>
         </Popover>
         <div className="flex flex-row items-center gap-x-2 lg:flex-col lg:items-start lg:gap-y-4">
-          <h1 className="text-base lg:text-xl xl:text-3xl font-semibold text-gray-800 ">
+          <h2 className="text-base lg:text-xl xl:text-3xl font-semibold text-gray-800 ">
             Your <strong> Compare </strong>
-          </h1>
+          </h2>
           <div className="inline-flex items-center gap-x-3 bg-primary-darker px-2 py-2 rounded-md">
             <Checkbox
               id="terms"
@@ -119,9 +119,9 @@ export default function CompareCarsHeader({
                     >
                       <i className="bx bx-pencil text-sm lg:text-base"></i>
                     </Button>
-                    <h4 className="text-sm lg:text-base xl:text-lg font-semibold  text-black whitespace-nowrap overflow-hidden text-ellipsis line-clamp-1 indent-0">
+                    <h3 className="text-sm lg:text-base xl:text-lg font-semibold  text-black whitespace-nowrap overflow-hidden text-ellipsis line-clamp-1 indent-0">
                       {brand_name} {model_name}
-                    </h4>
+                    </h3>
                     <p className="text-sm  font-normal text-gray-500 text-ellipsis line-clamp-1 whitespace-nowrap overflow-hidden">
                       {variant_name}
                     </p>
@@ -146,9 +146,9 @@ export default function CompareCarsHeader({
                   onClick={openModal}
                 >
                   <Image src={AddCarIcon} alt="" className="w-[70px] mb-3" />
-                  <h4 className="text-sm md:text-base font-medium text-gray-500 text-center">
+                  <h3 className="text-sm md:text-base font-medium text-gray-500 text-center">
                     Add Car to Compare
-                  </h4>
+                  </h3>
                 </div>
               </div>
             </div>

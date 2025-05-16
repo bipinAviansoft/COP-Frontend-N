@@ -66,20 +66,26 @@ export default async function UpcomingCarContent({
     {
       "@type": "ListItem",
       position: 1,
-      name: "Home",
-      item: `${process.env.NEXT_SITE_URL}`,
+      item: {
+        "@id": `${process.env.NEXT_SITE_URL}`,
+        name: "Home",
+      },
     },
     {
       "@type": "ListItem",
       position: 2,
-      name: headerData?.data?.brand_name,
-      item: `${process.env.NEXT_SITE_URL}/${brandSlug}`,
+      item: {
+        "@id": `${process.env.NEXT_SITE_URL}/${brandSlug}`,
+        name: headerData?.data?.brand_name || "",
+      },
     },
     {
       "@type": "ListItem",
       position: 3,
-      name: headerData?.data?.model_name,
-      item: `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}`,
+      item: {
+        "@id": `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}`,
+        name: headerData?.data?.model_name || "",
+      },
     },
   ];
 

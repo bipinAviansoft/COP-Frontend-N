@@ -23,14 +23,14 @@ export default async function SearchResults({
   return (
     <div className="flex flex-col gap-y-4">
       <div className="flex justify-between items-center">
-        <h4 className="text-gray-darker lg:text-lg font-medium">
+        <h1 className="text-gray-darker lg:text-lg font-medium">
           <span className="inline-block px-2 py-0.5 bg-primary-lighter text-white rounded-lg mr-2">
             {totalRecords}
           </span>{" "}
           {pageType === filterPageConstants.UPCOMING_CARS
             ? "Upcoming Cars in India"
             : "Cars in India with search options"}
-        </h4>
+        </h1>
         {pageType !== filterPageConstants.UPCOMING_CARS ? (
           <span className="hidden lg:block">
             <SortByOptionsDesktop sortByPrice={sortByPrice} />
