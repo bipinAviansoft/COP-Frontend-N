@@ -2,6 +2,7 @@ import { fetchBlogs, fetchData } from "@/lib/fetch";
 import CarModuleInteractiveWrapper from "./car-module-interactive-wrapper";
 import { cookies } from "next/headers";
 import Script from "next/script";
+import { redirect } from "next/navigation";
 
 export default async function CarModuleContent({
   brandSlug,
@@ -44,27 +45,33 @@ export default async function CarModuleContent({
   const headerDetails = headerData?.variant_detail?.[0];
 
   if (!headerDetails) {
-    console.error("Model is not available");
-    throw new Error("Model is not available");
+    return redirect(`/${brandSlug}`);
   }
 
   const cookieStore = cookies();
   const cityId = cookieStore.get("city");
 
-  const [dealersData, reviewData, blogs, faqList, specificationSchemaData] =
-    await Promise.all([
-      fetchData(
-        `/dealership?brand=${headerDetails?.brand_name}&city=${
-          cityId?.value || ""
-        }`
-      ),
-      fetchData(`/ratings-and-reviews/${brandSlug}/${modelSlug}`),
-      fetchBlogs(headerDetails?.brand_name),
-      fetchData(`/brands/${brandSlug}/${modelSlug}/${variantSlug}/faq`),
-      fetchData(
-        `/brands/${brandSlug}/${modelSlug}/${variantSlug}/specifications`
-      ),
-    ]);
+  const [
+    dealersData,
+    reviewData,
+    blogs,
+    faqList,
+    specificationSchemaData,
+    modelPrice,
+  ] = await Promise.all([
+    fetchData(
+      `/dealership?brand=${headerDetails?.brand_name}&city=${
+        cityId?.value || ""
+      }`
+    ),
+    fetchData(`/ratings-and-reviews/${brandSlug}/${modelSlug}`),
+    fetchBlogs(headerDetails?.brand_name),
+    fetchData(`/brands/${brandSlug}/${modelSlug}/${variantSlug}/faq`),
+    fetchData(
+      `/brands/${brandSlug}/${modelSlug}/${variantSlug}/specifications`
+    ),
+    fetchData(`/brands/${brandSlug}?modelSlug=${modelSlug}`),
+  ]);
 
   // ✅ WebPage Schema
   const webpageSchema = {
@@ -199,7 +206,7 @@ export default async function CarModuleContent({
       offers: {
         "@type": "Offer",
         priceCurrency: "INR",
-        price: headerDetails?.ex_showroom_price,
+        price: modelPrice?.min_price,
         availability: "https://schema.org/InStock",
         url: modelPage
           ? `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}`

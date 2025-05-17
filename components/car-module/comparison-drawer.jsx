@@ -26,7 +26,7 @@ export default function ComparisonDrawer({ variants, selectedVariantSlug }) {
     toggleCar(selectedVariant);
   }, []);
 
-  const compareHref = cars.map((car) => car.full_slug).join("-and-");
+  const compareHref = cars?.map((car) => car?.full_slug)?.join("-and-");
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
