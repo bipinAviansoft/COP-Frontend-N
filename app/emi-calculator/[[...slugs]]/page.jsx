@@ -45,17 +45,14 @@ export default async function Page({ params }) {
 
   const brandModelsData = await fetchData("/brands?models=true");
 
-  let variantData = null;
+  let variantData;
 
   if (brandSlug && modelSlug && variantSlug) {
-    try {
-      variantData = await fetchData(
-        `/emi-calculator/${brandSlug}/${modelSlug}/${variantSlug}`
-      );
-    } catch (e) {
-      console.error("Variant data fetch error:", e.message);
-    }
+    variantData = await fetchData(
+      `/emi-calculator/${brandSlug}/${modelSlug}/${variantSlug}`
+    );
   }
+  console.log("variantData: ", variantData);
 
   return (
     <div className="bg-[#f6f2f2]">

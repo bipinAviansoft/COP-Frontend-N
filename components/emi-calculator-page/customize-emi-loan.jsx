@@ -50,26 +50,6 @@ export default function CustomizeEmiSection({
     }
   }, [dpAmt, variantData]);
 
-  // const handleDpAmtChange = (e) => {
-
-  //   const value = Number(e.target.value);
-  //   const carPrice = variantData.ex_showroom_price;
-
-  //   if (isNaN(value)) {
-  //     setDpAmt(0.05 * carPrice);
-  //     setLoanAmt(0.95 * carPrice);
-  //   } else if (value > 0.95 * carPrice) {
-  //     setDpAmt(0.95 * carPrice);
-  //     setLoanAmt(0.05 * carPrice);
-  //   } else if (value < 0) {
-  //     setDpAmt(0);
-  //     setLoanAmt(carPrice);
-  //   } else {
-  //     setDpAmt(value);
-  //     setLoanAmt(carPrice - value);
-  //   }
-  // };
-
   const handleDpAmtChange = (e) => {
     const value = Number(e.target.value);
     const carPrice = variantData?.ex_showroom_price || 0;
@@ -162,7 +142,7 @@ export default function CustomizeEmiSection({
             onOpenChange={() => setIsModalOpen(false)}
             onSelectVariant={onSelectVariant}
           />
-          {brandSlug && modelSlug && variantSlug && (
+          {brandSlug && modelSlug && variantSlug && variantData && (
             <div className="w-full lg:w-2/3">
               <ExploreBrandCard model={variantData} singlePrice />
             </div>
