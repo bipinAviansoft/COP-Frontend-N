@@ -111,14 +111,16 @@ export default function RootLayout({ children }) {
         className={`${poppins.className} antialiased flex flex-col bg-theme-background selection:bg-sky-100 selection:text-sky-600`}
       >
         {/* ✅ GTM <noscript> at top of <body> */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-P65SJ94H"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          ></iframe>
-        </noscript>
+        {process.env.NEXT_SITE_URL == "https://caronphone.com" ? (
+          <noscript>
+            <iframe
+              src="https://www.googletagmanager.com/ns.html?id=GTM-P65SJ94H"
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            ></iframe>
+          </noscript>
+        ) : null}
         <StoreProvider>
           <QueryProvider>
             <ToastContainer
