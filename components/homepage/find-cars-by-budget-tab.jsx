@@ -101,7 +101,11 @@ export default function FindCarsByBudgetTab({ ev }) {
           )}
           size="lg"
         >
-          <i className="bx bx-right-arrow-alt text-white text-2xl"></i>
+          <Link
+            href={`advanced-search?minPrice=${values[0]}&maxPrice=${values[1]}`}
+          >
+            <i className="bx bx-right-arrow-alt text-white text-2xl"></i>
+          </Link>
         </Button>
         <Button
           animated

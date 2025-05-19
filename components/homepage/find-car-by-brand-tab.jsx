@@ -82,7 +82,9 @@ export default function FindCarByBrandTab({ brandModels }) {
         className="md:hidden rounded-full w-10 h-10 aspect-square p-1 shrink-0"
         size="lg"
       >
-        <i className="bx bx-right-arrow-alt text-white text-2xl"></i>
+        <Link href={href}>
+          <i className="bx bx-right-arrow-alt text-white text-2xl"></i>
+        </Link>
       </Button>
       <Button
         animated

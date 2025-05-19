@@ -29,7 +29,7 @@ export default function SearchResultCarCard({ carDetails, upcoming = false }) {
     wishlistStore?.some((item) => item.slug.startsWith(`/${slug}`));
 
   return (
-    <div className="bg-white h-full relative overflow-hidden border-1 shadow-md rounded-lg flex flex-col p-1 md:p-2.5 group">
+    <div className="bg-white relative overflow-hidden border-1 shadow-md rounded-lg flex flex-col p-1 md:p-2.5 group">
       <div className="relative w-full aspect-3/2 xl:aspect-5/3 cursor-pointer overflow-hidden rounded-md">
         <Button
           className="p-0 bg-transparent text-xl lg:text-2xl absolute top-2 lg:top-4 right-2 lg:right-4 z-20 min-h-fit overflow-visible"
