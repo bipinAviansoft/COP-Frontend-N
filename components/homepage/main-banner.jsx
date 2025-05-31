@@ -37,7 +37,7 @@ export default function MainBanner({ bannerData, carTypes, brandModels }) {
 
     return (
       <div key={id} className="relative flex-[0_0_100%]">
-        <CityProtectedLink href={slug}>
+        <CityProtectedLink href={slug} className="block">
           <div className="relative w-full h-full md:hidden">
             <Image
               src={banner_image_mob}
@@ -60,13 +60,13 @@ export default function MainBanner({ bannerData, carTypes, brandModels }) {
               priority={index === 0}
             />
           </div>
-          <div className="hidden md:block absolute w-full top-12 2xl:top-[20%]">
+          <div className="hidden md:block absolute w-full top-12 2xl:top-[20%] z-[2]">
             <div className="container">
               <div className="md:w-3/5 lg:w-1/2">
-                <h3 className="text-white font-bold mb-2 xl:mb-3 lg:leading-8 text-xl md:text-2xl xl:leading-7 2xl:text-3xl 2xl:leading-9 2xl:mb-4 tracking-wider">
+                <h3 className="text-white font-[700] mb-2 xl:mb-3 lg:leading-8 text-xl md:text-2xl xl:leading-7 2xl:text-3xl 2xl:leading-9 2xl:mb-4 tracking-wider uppercase ">
                   {banner_heading}
                 </h3>
-                <p className="text-stone-400 text-sm xl:text-base ">
+                <p className="text-white text-sm xl:text-base ">
                   {banner_description}
                 </p>
               </div>

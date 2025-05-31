@@ -1,3 +1,4 @@
+import Link from "next/link";
 import CityProtectedLink from "../../city-protected-link";
 
 export default function RecentSelections({ recentSelections, onSelection }) {
@@ -13,14 +14,14 @@ export default function RecentSelections({ recentSelections, onSelection }) {
                 key={id}
                 className=" text-gray-darker text-sm p-1.5 hover:bg-gray-100 rounded"
               >
-                <CityProtectedLink
+                <Link
                   href={`/${slug}`}
                   className="flex items-center gap-x-2 w-full"
                   onClick={() => onSelection(recentItem)}
                 >
                   <i className="bx bx-time-five"></i>
                   <span>{name}</span>
-                </CityProtectedLink>
+                </Link>
               </li>
             );
           })}

@@ -265,17 +265,17 @@ export default function SearchFilters({
               Features
             </AccordionTrigger>
             <AccordionContent>
-              <p className="px-6 mt-4 font-semibold text-theme-black text-base">
+              <h3 className="px-6 mt-4 font-semibold text-theme-black text-base">
                 Interior:{" "}
-              </p>
+              </h3>
               <Filter
                 endpoint={`${baseEndpoint}/interior`}
                 queryKey="interior"
                 filters={filters}
               />
-              <p className="px-6 mt-4 font-semibold text-theme-black text-base">
+              <h3 className="px-6 mt-4 font-semibold text-theme-black text-base">
                 Exterior:
-              </p>
+              </h3>
               <Filter
                 endpoint={`${baseEndpoint}/exterior`}
                 queryKey="exterior"

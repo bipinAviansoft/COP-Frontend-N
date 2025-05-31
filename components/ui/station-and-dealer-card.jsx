@@ -15,7 +15,7 @@ export default function StationAndDealerCard({
     <div className="grow w-full bg-white border-2 rounded-md flex flex-col">
       <div className="flex items-center justify-between border-b border-gray-200 p-3">
         <div>
-          <h4 className="text-base font-semibold m-0">{title}</h4>
+          <h3 className="text-base font-semibold m-0">{title}</h3>
           {description && (
             <p className="text-sm font-semibold text-gray-darker">
               {description}

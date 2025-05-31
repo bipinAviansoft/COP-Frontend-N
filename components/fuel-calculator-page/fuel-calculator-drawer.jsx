@@ -110,9 +110,9 @@ export default function FuelCalculatorDrawer() {
             </div>
 
             <div className="mb-5">
-              <h2 className="text-2xl md:text-3xl xl:text-4xl font-bold mb-2">
+              <h1 className="text-2xl md:text-3xl xl:text-4xl font-bold mb-2">
                 Fuel Calculator
-              </h2>
+              </h1>
               <p className="text-sm lg:text-base text-gray-600">
                 Plan your travel effectively by estimating fuel costs.
               </p>

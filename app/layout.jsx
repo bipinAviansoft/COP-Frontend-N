@@ -49,11 +49,11 @@ export default function RootLayout({ children }) {
         {process.env.NEXT_SITE_URL == "https://caronphone.com" ? (
           <>
             {/* ahrefs */}
-            <Script
+            {/* <Script
               src="https://analytics.ahrefs.com/analytics.js"
               data-key="LiNR0FsCk0jNb2q62YxJcA"
               async
-            ></Script>
+            ></Script> */}
             {/* GTM */}
             <Script id="gtm-script" strategy="beforeInteractive">
               {`
@@ -65,7 +65,7 @@ export default function RootLayout({ children }) {
           `}
             </Script>
             {/* Hotjar Tracking Code for https://caronphone.com/ */}
-            <Script>
+            {/* <Script>
               {`(function(h, o, t, j, a, r) {
                 h.hj = h.hj || function() {
                     (h.hj.q = h.hj.q || []).push(arguments)
@@ -79,8 +79,8 @@ export default function RootLayout({ children }) {
                 r.async = 1;
                 r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
                 a.appendChild(r);
-            })(window, document, 'https: //static.hotjar.com/c/hotjar-', '.js?sv=');`}
-            </Script>
+            })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');`}
+            </Script> */}
             <meta name="robots" content="index, follow" />
           </>
         ) : (

@@ -39,8 +39,9 @@ export default function SimilarCarModel({
                       />
                       <div>
                         <h3 className="text-[16px] leading-[22px] font-[600] text-[#282C2F] mb-[5px] ">
-                          {item?.name}
+                          {similarModelsData?.brand_name} {item?.name}
                         </h3>
+
                         <p className="text-[14px] leading-[19px] text-[#565F64] ">
                           ₹ {formattedMinPrice?.price}-
                           {formattedMaxPrice?.price} {formattedMaxPrice?.unit}*
@@ -103,7 +104,7 @@ export default function SimilarCarModel({
                               />
                               <div>
                                 <h3 className="text-[16px] leading-[22px] font-[600] text-[#282C2F] mb-[5px] ">
-                                  {item?.name}
+                                  {similarModelsData?.brand_name} {item?.name}
                                 </h3>
                                 <p className="text-[14px] leading-[19px] text-[#565F64] ">
                                   ₹ {formattedMinPrice?.price}-
@@ -143,7 +144,7 @@ export default function SimilarCarModel({
                                 />
                                 <div>
                                   <h3 className="text-[16px] leading-[22px] font-[600] text-[#282C2F] mb-[5px] ">
-                                    {item?.name}
+                                    {similarModelsData?.brand_name} {item?.name}
                                   </h3>
                                   <p className="text-[14px] leading-[19px] text-[#565F64] ">
                                     ₹ {formattedMinPrice?.price}-

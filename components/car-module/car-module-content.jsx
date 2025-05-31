@@ -12,6 +12,8 @@ export default async function CarModuleContent({
   modelPage,
   upcoming_stage,
 }) {
+
+  
   const [
     headerData,
     variantColorsData,
@@ -43,6 +45,7 @@ export default async function CarModuleContent({
   ]);
 
   const headerDetails = headerData?.variant_detail?.[0];
+  
 
   if (!headerDetails) {
     return redirect(`/${brandSlug}`);

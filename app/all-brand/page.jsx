@@ -24,7 +24,11 @@ export default async function AllBrands() {
   return (
     <>
       {/* Banner  */}
-      {/* <CommonBanner /> */}
+      <CommonBanner
+        bannerImgUrl="https://static.caronphone.com/public/Banner/53/53.webp"
+        heading="Top Car Brands In India"
+        description="An extensive showcase of India's popular car brands that are continuing to expand the boundaries of technology in India."
+      />
 
       {/* Brands Listing  */}
       <section className="container py-6 lg:py-6">

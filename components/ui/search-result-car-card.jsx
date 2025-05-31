@@ -66,11 +66,11 @@ export default function SearchResultCarCard({ carDetails, upcoming = false }) {
           <p className="text-[10px] lg:text-xs text-gray-darker">
             {upcoming ? "Estimated price" : "Ex-showroom Price"}
           </p>
-          {variant_count && (
+          {/* {variant_count && (
             <p className="text-xs md:text-sm text-primary-lighter font-medium line-clamp-1 mt-0.5 md:mt-1.5">
               Variants matching your criteria ({variant_count})
             </p>
-          )}
+          )} */}
         </div>
         {!upcoming && (
           <Link href={slug} className="block mt-2">

@@ -1,4 +1,4 @@
-import CityProtectedLink from "../../city-protected-link";
+import Link from "next/link";
 
 export default function SearchResults({ results, onSelection }) {
   return (
@@ -10,13 +10,13 @@ export default function SearchResults({ results, onSelection }) {
             key={id}
             className=" text-gray-darker text-sm p-1.5 hover:bg-gray-100 rounded"
           >
-            <CityProtectedLink
+            <Link
               href={`/${slug}`}
               className="flex items-center gap-x-2"
               onClick={() => onSelection(result)}
             >
               <span>{name}</span>
-            </CityProtectedLink>
+            </Link>
           </li>
         );
       })}

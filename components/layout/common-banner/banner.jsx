@@ -16,9 +16,11 @@ export default function CommonBanner({ bannerImgUrl, heading, description }) {
           <h1 className="font-semibold text-white text-xl lg:text-2xl mb-2 lg:mb-4">
             {heading}
           </h1>
-          <p className="text-sm text-gray-400 lg:text-base lg:w-1/2">
-            {description}
-          </p>
+          {description ? (
+            <p className="text-sm text-gray-400 lg:text-base lg:w-1/2">
+              {description}
+            </p>
+          ) : null}
         </div>
       </div>
     </section>

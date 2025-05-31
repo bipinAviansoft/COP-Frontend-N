@@ -16,14 +16,14 @@ export default function FaqMainBanner({ name, imgUrl, fullSlug }) {
           <h2 className="text-xl md:text-[22px] lg:text-[28px] font-bold my-2 lg:my-4">
             {name}
           </h2>
-          <Link href={`/test-drive/${fullSlug}`}>
+          {/* <Link href={`/test-drive/${fullSlug}`}>
             <Button
               animated
               className="px-3 lg:px-5 py-2 text-xs lg:text-sm font-medium uppercase"
             >
               Book a test drive
             </Button>
-          </Link>
+          </Link> */}
         </div>
       </div>
       <div className="w-full sm:w-1/2 lg:w-5/12">

@@ -1,6 +1,7 @@
 import FaqDetails from "@/components/faqs-details/faqs-details";
 import FaqMainBanner from "@/components/faqs-details/faqs-main-banner";
 import { fetchData, fetchMetaData } from "@/lib/fetch";
+import { redirect } from "next/navigation";
 
 export async function generateMetadata({ params }) {
   const bodyData = { page_name_slug: "faqs" };
@@ -9,8 +10,13 @@ export async function generateMetadata({ params }) {
   let baseVariantSlug;
 
   if (!variantSlug) {
-    const { variants } = await fetchData(`/brands/${brandSlug}/${modelSlug}`);
-    baseVariantSlug = variants[0]?.slug?.split("/")[2];
+    const { variants, upcoming_stage } = await fetchData(
+      `/brands/${brandSlug}/${modelSlug}`
+    );
+    if (upcoming_stage == 1) {
+      return redirect(`/${brandSlug}/${modelSlug}`);
+    }
+    baseVariantSlug = variants ? variants[0]?.slug?.split("/")[2] : null;
   }
 
   const fullSlug = `${brandSlug}/${modelSlug}/${
@@ -33,11 +39,20 @@ export async function generateMetadata({ params }) {
 
   const canonicalUrl = brandSlug ? slug : `${process.env.NEXT_SITE_URL}/faqs`;
 
-  if (brandSlug && modelSlug && variantSlug) {
-    data.title = `${variant_name} ${data.title}`;
+  if (brandSlug && modelSlug) {
+    data.title = `${variant_name} ${
+      variantSlug ? data.title : "- FAQs Your Questions Answered"
+    } `;
+    data.description = `Get answers to all your queries about the ${
+      variantSlug ? variant_name : `(${variant_name})`
+    }. Explore detailed FAQs covering engine specs, performance, safety features, dimensions, and more. Your complete guide to the ${
+      variantSlug ? variant_name : `(${variant_name})`
+    } awaits.`;
     data.openGraph.title = `${data.title}`;
+    data.openGraph.description = data.description;
     data.openGraph.url = `${canonicalUrl}`;
     data.twitter.title = `${data.title}`;
+    data.twitter.description = data.description;
   }
 
   return {
@@ -52,11 +67,33 @@ export default async function FaqsPage({ params }) {
   const { slugs } = params;
   const [brandSlug, modelSlug, variantSlug] = slugs;
 
+  if (!brandSlug.includes("-cars")) {
+    const cleanedBrandSlug = `${brandSlug}-cars`;
+    if (!variantSlug) {
+      return redirect(`/faqs/${cleanedBrandSlug}/${modelSlug}`);
+    } else {
+      return redirect(`/faqs/${cleanedBrandSlug}/${modelSlug}/${variantSlug}`);
+    }
+  //   if (!brandSlug.includes("-cars")) {
+  //     return redirect(`/faq/${cleanedBrandSlug}/${modelSlug}`);
+  //   }
+  // } else {
+  //   if (!brandSlug.includes("-cars")) {
+  //     const cleanedBrandSlug = `${brandSlug}-cars`;
+  //     return redirect(`/faq/${cleanedBrandSlug}/${modelSlug}`);
+  //   }
+  }
+
   let baseVariantSlug;
 
   if (!variantSlug) {
-    const { variants } = await fetchData(`/brands/${brandSlug}/${modelSlug}`);
-    baseVariantSlug = variants[0]?.slug?.split("/")[2];
+    const { variants, upcoming_stage } = await fetchData(
+      `/brands/${brandSlug}/${modelSlug}`
+    );
+    if (upcoming_stage == 1) {
+      return redirect(`/${brandSlug}/${modelSlug}`);
+    }
+    baseVariantSlug = variants ? variants[0]?.slug?.split("/")[2] : null;
   }
 
   const fullSlug = `${brandSlug}/${modelSlug}/${

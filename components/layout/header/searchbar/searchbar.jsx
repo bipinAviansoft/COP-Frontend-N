@@ -16,7 +16,7 @@ const fetchSearchResults = async (term) => {
   if (!response.ok) {
     const error = await response.json();
     const { message } = error;
-    throw new Error(message || `Search API Failed!`); 
+    throw new Error(message || `Search API Failed!`);
   }
 
   const data = await response.json();
@@ -62,9 +62,9 @@ export default function SearchBar() {
   }, []);
 
   const handleSelection = (searchItem) => {
-    setIsOpen(false);
     setInRecentSelections(searchItem);
-    setSearchTerm("");
+    // setSearchTerm("");
+    // setIsOpen(false);
   };
 
   const setInRecentSelections = (searchItem) => {
@@ -129,7 +129,8 @@ export default function SearchBar() {
           id="search-results"
           role="region"
           aria-live="polite"
-          className="absolute top-[110%] inset-x-0 min-h-40 max-h-80 bg-white shadow-xl z-30 rounded-md hidden group-focus-within:flex flex-col gap-y-2 p-4 overflow-y-auto"
+          className="absolute top-[110%] inset-x-0 min-h-40 max-h-80 bg-white shadow-xl z-30 rounded-md hidden group-focus-within:flex flex-col gap-y-2 p-4 overflow-y-auto z-[9999]"
+          onMouseDown={(e) => e.preventDefault()}
         >
           {results && (
             <SearchResults results={results} onSelection={handleSelection} />

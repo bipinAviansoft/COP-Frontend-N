@@ -161,9 +161,9 @@ export default function TollCalculatorDrawer() {
 
               {/* Drawer Header */}
               <div className="mb-5">
-                <h2 className="text-2xl md:text-3xl xl:text-4xl font-bold mb-2">
+                <h1 className="text-2xl md:text-3xl xl:text-4xl font-bold mb-2">
                   Toll Tax calculator
-                </h2>
+                </h1>
                 <p className="text-sm lg:text-base text-gray-600">
                   Get well prepared for your trips by calculating your accurate
                   toll costs based on your selected route.

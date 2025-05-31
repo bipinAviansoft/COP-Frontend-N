@@ -112,7 +112,7 @@ export default function B2BpartnerSection() {
           <div className="bg-white shadow-md px-4 py-6 lg:px-5 lg:py-7 rounded-3xl mx-0 my-5 md:mx-[30px] xl:mx-[80px] lg:my-0 flex flex-col gap-4 lg:gap-5">
             <div className="grid w-full items-center gap-2">
               <Label htmlFor="name" className="text-sm">
-                Full Name*
+                Full Name<span className="text-red">*</span>
               </Label>
               <Input
                 type="text"

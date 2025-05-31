@@ -26,10 +26,13 @@ export async function generateMetadata({ params }) {
     : `${process.env.NEXT_SITE_URL}/emi-calculator`;
 
   if (variantData) {
-    data.title = `${variantData?.name} ${data.title}`;
+    data.title = `${variantData?.name} Car Loan EMI Calculator – Check Best EMI & Interest Rates`;
+    data.description = `Calculate ${variantData?.name} Car Loan EMI, check best interest rates, down payment & loan tenure.`;
     data.openGraph.title = data.title;
+    data.openGraph.description = data.description;
     data.openGraph.url = canonicalUrl;
     data.twitter.title = data.title;
+    data.twitter.description = data.description;
   }
 
   return {
@@ -52,7 +55,6 @@ export default async function Page({ params }) {
       `/emi-calculator/${brandSlug}/${modelSlug}/${variantSlug}`
     );
   }
-  console.log("variantData: ", variantData);
 
   return (
     <div className="bg-[#f6f2f2]">

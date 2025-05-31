@@ -24,7 +24,7 @@ export default function LatestAutomotiveNews({ blogs, title }) {
   const [relativeTimes, setRelativeTimes] = useState([]);
 
   useEffect(() => {
-    const times = blogs.map((blog) =>
+    const times = blogs?.map((blog) =>
       formatDistanceToNowStrict(new Date(blog.post_date), { addSuffix: true })
     );
     setRelativeTimes(times);
@@ -35,7 +35,7 @@ export default function LatestAutomotiveNews({ blogs, title }) {
       {/* header */}
       <div className="flex justify-between items-center mb-2">
         <h2 className="text-[18px] md:text-[24px] font-[600] leading-[28px] text-[#000000] m-0">
-          {title ? `${title} News & Updates` : "Latest Automotive News"}
+          {title ? `${title} News & Updates` : "Latest Car News Section"}
         </h2>
         <div className="flex items-center gap-x-2">
           <div className="hidden md:flex items-center gap-x-2">
@@ -63,7 +63,7 @@ export default function LatestAutomotiveNews({ blogs, title }) {
           {blogs?.map((news, index) => {
             const { ID, news_image, brand, post_title } = news;
             const { url, link } = news_image;
-            const { name: author, image: authorImgUrl } = brand["0"];
+            // const { name: author, image: authorImgUrl } = brand["0"];
 
             return (
               <li
@@ -71,20 +71,24 @@ export default function LatestAutomotiveNews({ blogs, title }) {
                 className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.33%] xl:flex-[0_0_25%] pl-4 py-3 flex flex-col"
               >
                 <Link
-                  href={link}
+                  href={link || "/"}
                   className="grow p-4 rounded-xl bg-[#fafafa] flex flex-col"
                 >
                   <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-x-2">
-                      <div className="w-8 h-8 relative">
-                        <img
-                          src={authorImgUrl}
-                          alt={author}
-                          className="max-w-[32px] object-contain"
-                        />
+                    {brand?.length > 0 ? (
+                      <div className="flex items-center gap-x-2">
+                        <div className="w-8 h-8 relative">
+                          <img
+                            src={brand["0"]?.image}
+                            alt={brand["0"]?.name}
+                            className="max-w-[32px] object-contain"
+                          />
+                        </div>
+                        <span className="text-sm font-medium">
+                          {brand["0"]?.name}
+                        </span>
                       </div>
-                      <span className="text-sm font-medium">{author}</span>
-                    </div>
+                    ) : null}
                     <span className="text-xs text-gray-darker">
                       {relativeTimes[index] || ""}
                     </span>
@@ -93,7 +97,7 @@ export default function LatestAutomotiveNews({ blogs, title }) {
                     <img
                       className="object-cover"
                       src={url}
-                      alt={`Image provided by ${author} for this news`}
+                      alt={`Image provided by ${brand["0"]?.name} for this news`}
                     />
                   </div>
                   <h3 className="text-[16px] font-semibold line-clamp-2 mb-2">

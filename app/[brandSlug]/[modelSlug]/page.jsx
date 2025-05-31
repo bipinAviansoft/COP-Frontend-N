@@ -1,15 +1,25 @@
 import CarModuleContent from "@/components/car-module/car-module-content";
 import UpcomingCarContent from "@/components/car-module/upcoming-car-content";
 import { fetchData, fetchMetaData } from "@/lib/fetch";
+import { redirect } from "next/navigation";
 
 export async function generateMetadata({ params }) {
   const { brandSlug, modelSlug, variantSlug } = params;
   let bodyData;
 
+  if (!brandSlug.includes("-cars")) {
+    const cleanedBrandSlug = `${brandSlug}-cars`;
+    return redirect(`/${cleanedBrandSlug}/${modelSlug}`);
+  }
+
   const variantsData = await fetchData(
     `/brands/${brandSlug}/${modelSlug}`,
     true
   );
+
+  if (!variantsData || variantsData.length == 0) {
+    return redirect(`/${brandSlug}`);
+  }
 
   let pageImg;
 
@@ -58,17 +68,19 @@ export async function generateMetadata({ params }) {
 export default async function CarModuleWithoutVariant({ params }) {
   const { brandSlug, modelSlug } = params;
 
+  if (!brandSlug.includes("-cars")) {
+    const cleanedBrandSlug = `${brandSlug}-cars`;
+    return redirect(`/${cleanedBrandSlug}/${modelSlug}`);
+  }
+
+  const variantsData = await fetchData(
+    `/brands/${brandSlug}/${modelSlug}`,
+    true
+  );
+  if (!variantsData || variantsData.length == 0) {
+    return redirect(`/${brandSlug}`);
+  }
   try {
-    const variantsData = await fetchData(
-      `/brands/${brandSlug}/${modelSlug}`,
-      true
-    );
-
-    if (!variantsData) {
-      console.error("No variant data found");
-      return new Error();
-    }
-
     if (variantsData?.upcoming_stage) {
       return (
         <UpcomingCarContent

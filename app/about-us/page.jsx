@@ -36,10 +36,10 @@ export default function Page() {
         </p>
         <StepSection />
         <p className="text-sm lg:text-base font-normal text-gray-500 mt-3 lg:mt-5 text-center">
-          These values aren&apos;t just words on paper; they are the principles
-          that guide our actions every day. We invite you to join us on our
-          journey as we continue to drive dreams home^ while staying true to
-          these core values.
+          {`These values aren't just words on paper; they are the principles that
+        guide our actions every day. We invite you to join us on our journey
+        as we continue to drive dreams home^ while staying true to these core
+        values.`}
         </p>
       </section>
     </>

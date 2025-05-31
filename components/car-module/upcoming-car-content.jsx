@@ -75,13 +75,21 @@ export default async function UpcomingCarContent({
       "@type": "ListItem",
       position: 2,
       item: {
+        "@id": `${process.env.NEXT_SITE_URL}/upcoming-car`,
+        name: "Upcoming Cars",
+      },
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      item: {
         "@id": `${process.env.NEXT_SITE_URL}/${brandSlug}`,
         name: headerData?.data?.brand_name || "",
       },
     },
     {
       "@type": "ListItem",
-      position: 3,
+      position: 4,
       item: {
         "@id": `${process.env.NEXT_SITE_URL}/${brandSlug}/${modelSlug}`,
         name: headerData?.data?.model_name || "",

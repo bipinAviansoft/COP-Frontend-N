@@ -5,7 +5,12 @@ export default function FeaturedLinkCard({ featuredItem }) {
   const { title, imageUrl, imageAlt, iconUrl, iconAlt, slug } = featuredItem;
 
   return (
-    <li className="rounded-md overflow-hidden shadow-lg">
+    // slug == "/test-drive" ? true : false
+    <li
+      className={`rounded-md overflow-hidden shadow-lg ${
+        slug == "/test-drive" ? "pointer-events-none opacity-60" : ""
+      }`}
+    >
       <Link href={slug} className="relative block p-2 lg:p-2.5 xl:p-3 h-full">
         <Image
           src={imageUrl}

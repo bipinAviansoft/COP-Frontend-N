@@ -95,6 +95,7 @@ export default function ElectricCarsSection({ evBanners }) {
   const {
     id,
     name,
+    slug,
     min_price,
     max_price,
     battery_capacity,
@@ -188,7 +189,10 @@ export default function ElectricCarsSection({ evBanners }) {
             <div className="md:order-5 lg:order-3 md:w-3/4 md:mx-auto lg:w-full lg:mb-8">
               <ElectricCarsSpecGrid {...specs} />
             </div>
-            <Link href={"/ev-car"} className="table md:order-3 lg:order-5">
+            <Link
+              href={slug || "/ev-car"}
+              className="table md:order-3 lg:order-5"
+            >
               <Button
                 animated
                 className="border border-white bg-white/15 uppercase text-xs md:text-sm lg:text-base lg:h-auto tracking-wider px-4 lg:px-8 self-center md:self-start mb-4  h-auto"

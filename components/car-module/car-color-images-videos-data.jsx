@@ -11,7 +11,7 @@ export default function CarColorImagesVideosData({
   headerDetails,
   modelPage,
 }) {
-  const imageAltData = galleryData?.Exterior?.graphic_file_mob_alt?.split(",");
+  const imageAltData = galleryData?.Exterior?.graphic_file_alt?.split(",");
 
   var gallerySettings = {
     dots: false,
@@ -196,26 +196,24 @@ export default function CarColorImagesVideosData({
                 <div className="p-[15px] md:p-[30px]">
                   <Slider {...gallerySettings}>
                     {galleryData &&
-                      galleryData?.Exterior?.graphic_file_mob.map(
-                        (item, index) => {
-                          return (
-                            <>
-                              <div className="item">
-                                <img
-                                  key={index + 35265}
-                                  src={item}
-                                  alt={
-                                    imageAltData && imageAltData.length > 0
-                                      ? imageAltData[index]
-                                      : "image"
-                                  }
-                                  className="rounded-[8px] h-[190px] md:h-[auto] max-h-[400px] w-full object-cover"
-                                />
-                              </div>
-                            </>
-                          );
-                        }
-                      )}
+                      galleryData?.Exterior?.graphic_file.map((item, index) => {
+                        return (
+                          <>
+                            <div className="item">
+                              <img
+                                key={index + 35265}
+                                src={item}
+                                alt={
+                                  imageAltData && imageAltData.length > 0
+                                    ? imageAltData[index]
+                                    : "image"
+                                }
+                                className="rounded-[8px] h-[190px] md:h-[auto] md:min-h-[400px] max-h-[400px] w-full object-cover"
+                              />
+                            </div>
+                          </>
+                        );
+                      })}
                   </Slider>
                 </div>
               </TabsContent>
@@ -265,7 +263,7 @@ export default function CarColorImagesVideosData({
                               >
                                 <div className="w-full">
                                   <ul className="flex flex-wrap gap-[10px] md:gap-[20px] w-full">
-                                    {galleryData[key]?.graphic_file_mob?.map(
+                                    {galleryData[key]?.graphic_file?.map(
                                       (imgItem, idx) => {
                                         return (
                                           <>
@@ -292,10 +290,10 @@ export default function CarColorImagesVideosData({
                                                     : "image"
                                                 }
                                                 loading="lazy"
-                                                className={`w-full h-[260px] shadow-[0_0_5px_rgba(0,0,0,0.2)] object-cover rounded-[8px] ${
+                                                className={`w-full  shadow-[0_0_5px_rgba(0,0,0,0.2)] object-cover rounded-[8px] ${
                                                   idx === 0
-                                                    ? "h-[260px] md:h-[496px]"
-                                                    : ""
+                                                    ? "md:h-[496px]"
+                                                    : "md:h-[260px]"
                                                 }`}
                                               />
                                             </li>

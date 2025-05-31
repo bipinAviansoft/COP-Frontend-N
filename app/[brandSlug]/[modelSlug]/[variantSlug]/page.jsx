@@ -1,14 +1,28 @@
 import CarModuleContent from "@/components/car-module/car-module-content";
 import { fetchData, fetchMetaData } from "@/lib/fetch";
+import { redirect } from "next/navigation";
 
 export async function generateMetadata({ params }) {
   const { brandSlug, modelSlug, variantSlug } = params;
   let bodyData;
 
-  const variantsData = await fetchData(
-    `/brands/${brandSlug}/${modelSlug}/${variantSlug}`,
-    true
-  );
+  if (!brandSlug.includes("-cars")) {
+    const cleanedBrandSlug = `${brandSlug}-cars`;
+    return redirect(`/${cleanedBrandSlug}/${modelSlug}/${variantSlug}`);
+  }
+
+  const [variantsData, variantStatus] = await Promise.all([
+    fetchData(`/brands/${brandSlug}/${modelSlug}`, true),
+    fetchData(`/brands/${brandSlug}/${modelSlug}/${variantSlug}`),
+  ]);
+
+  if (!variantsData || variantsData.length == 0) {
+    return redirect(`/${brandSlug}`);
+  }
+
+  if (!variantStatus || variantStatus.length == 0) {
+    return redirect(`/${brandSlug}/${modelSlug}`);
+  }
 
   const pageImg = variantsData?.variant_image;
 
@@ -47,15 +61,28 @@ export async function generateMetadata({ params }) {
 export default async function CarModuleWithVariant({ params }) {
   const { brandSlug, modelSlug, variantSlug } = params;
 
+  if (variantSlug.includes("---")) {
+    const cleanedSlug = variantSlug.replace(/---/g, "-");
+    return redirect(`/${brandSlug}/${modelSlug}/${cleanedSlug}`);
+  }
+
+  if (!brandSlug.includes("-cars")) {
+    const cleanedBrandSlug = `${brandSlug}-cars`;
+    return redirect(`/${cleanedBrandSlug}/${modelSlug}/${variantSlug}`);
+  }
+
   try {
-    const variantsData = await fetchData(
-      `/brands/${brandSlug}/${modelSlug}`,
-      true
-    );
+    const [variantsData, variantStatus] = await Promise.all([
+      fetchData(`/brands/${brandSlug}/${modelSlug}`, true),
+      fetchData(`/brands/${brandSlug}/${modelSlug}/${variantSlug}`),
+    ]);
 
     if (!variantsData) {
-      console.error("No variant data found");
-      return new Error();
+      return redirect(`/${brandSlug}`);
+    }
+
+    if (!variantStatus || variantStatus.length == 0) {
+      return redirect(`/${brandSlug}/${modelSlug}`);
     }
 
     return (

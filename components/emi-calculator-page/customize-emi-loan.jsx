@@ -31,10 +31,10 @@ export default function CustomizeEmiSection({
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [dpAmt, setDpAmt] = useState(
-    variantData ? variantData.ex_showroom_price * 0.05 : 0
+    variantData ? variantData?.ex_showroom_price * 0.05 : 0
   );
   const [loanAmt, setLoanAmt] = useState(
-    variantData ? variantData.ex_showroom_price - dpAmt : 500000
+    variantData ? variantData?.ex_showroom_price - dpAmt : 500000
   );
   const [roi, setRoi] = useState(9);
   const [period, setPeriod] = useState(60);
@@ -163,8 +163,7 @@ export default function CustomizeEmiSection({
       )}
       <div className={`bg-white ${brandModelsData === false ? "" : "mt-8"}`}>
         <h2 className="text-[18px] md:text-[24px] font-[600] leading-[28px] text-[#000000] pt-[20px] md:pt-[35px] px-[15px] md:px-[40px] m-0">
-          Calculate {headerDetails?.brand_name} {headerDetails?.model_name}{" "}
-          {modelPage ? "" : headerDetails?.variant_name} Car Loan EMI
+          Customize {variantData?.name} Car Loan EMI
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-0">
           <div className="lg:col-span-6 xl:col-span-6 space-y-10 p-[15px] md:p-8">

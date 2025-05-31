@@ -138,6 +138,9 @@ export default function CarModuleHeader({
       <div className="container">
         <div className="breadcrumb hidden md:inline-flex flex-nowrap">
           <Link href={"/"}>CarOnPhone</Link>
+          {upcoming_stage ? (
+            <Link href={"/upcoming-car"}>Upcoming Cars</Link>
+          ) : null}
           <Link href={`/${brandSlug}`}>{headerDetails?.brand_name} Cars</Link>
 
           {modelPage ? (
